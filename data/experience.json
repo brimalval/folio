@@ -1,0 +1,56 @@
+[
+	{
+		"id": "focus-global-2",
+		"company": "Focus Global Inc.",
+		"position": "Full-Stack Software Engineer II",
+		"startDate": "April 2024",
+		"endDate": "Present",
+		"description": "Leading digital transformation initiatives for Southeast Asia's premier home goods distributor, developing enterprise-scale platforms that serve thousands of customers across multiple countries.",
+		"location": "Philippines",
+		"companySize": "550+ employees helping manage 30+ global home brands distributed across Philippines, Singapore, and Malaysia",
+		"technologies": [
+			"TypeScript",
+			"NextJS",
+			"React",
+			"Tailwind CSS",
+			"Prisma",
+			"PostgreSQL",
+			"Python",
+			"Flask",
+			"FastAPI",
+			"Hono.js",
+			"Tanstack",
+			"ShadCN",
+			"Zod",
+			"AWS",
+			"SST"
+		]
+	},
+	{
+		"id": "focus-global",
+		"company": "Focus Global Inc.",
+		"position": "Full-Stack Software Engineer",
+		"startDate": "October 2022",
+		"endDate": "April 2024",
+		"description": "Leading digital transformation initiatives for Southeast Asia's premier home goods distributor, developing enterprise-scale platforms that serve thousands of customers across multiple countries.",
+		"location": "Philippines",
+		"companySize": "550+ employees helping manage 30+ global home brands distributed across Philippines, Singapore, and Malaysia",
+		"technologies": [
+			"TypeScript",
+			"NextJS",
+			"React",
+			"Tailwind CSS",
+			"Prisma",
+			"PostgreSQL",
+			"Python",
+			"Flask",
+			"FastAPI",
+			"Hono.js",
+			"Tanstack",
+			"ShadCN",
+			"Zod",
+			"AWS",
+			"SST"
+		]
+	}
+]

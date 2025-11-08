@@ -1,0 +1,102 @@
+[
+	{
+		"category": "frontend",
+		"name": "JavaScript",
+		"level": "advanced"
+	},
+	{
+		"category": "frontend",
+		"name": "TypeScript",
+		"level": "advanced"
+	},
+	{
+		"category": "frontend",
+		"name": "React",
+		"level": "advanced"
+	},
+	{
+		"category": "frontend",
+		"name": "NextJS",
+		"level": "advanced"
+	},
+	{
+		"category": "frontend",
+		"name": "Tailwind CSS",
+		"level": "advanced"
+	},
+	{
+		"category": "frontend",
+		"name": "ShadCN",
+		"level": "advanced"
+	},
+	{
+		"category": "frontend",
+		"name": "Tanstack Query",
+		"level": "intermediate"
+	},
+	{
+		"category": "backend",
+		"name": "Python",
+		"level": "advanced"
+	},
+	{
+		"category": "backend",
+		"name": "Flask",
+		"level": "intermediate"
+	},
+	{
+		"category": "backend",
+		"name": "FastAPI",
+		"level": "intermediate"
+	},
+	{
+		"category": "backend",
+		"name": "Hono.js",
+		"level": "intermediate"
+	},
+	{
+		"category": "database",
+		"name": "PostgreSQL",
+		"level": "advanced"
+	},
+	{
+		"category": "database",
+		"name": "Prisma",
+		"level": "advanced"
+	},
+	{
+		"category": "database",
+		"name": "SQLAlchemy",
+		"level": "advanced"
+	},
+	{
+		"category": "devops",
+		"name": "AWS",
+		"level": "intermediate"
+	},
+	{
+		"category": "devops",
+		"name": "SST",
+		"level": "intermediate"
+	},
+	{
+		"category": "devops",
+		"name": "CloudFormation",
+		"level": "intermediate"
+	},
+	{
+		"category": "tool",
+		"name": "Zod",
+		"level": "advanced"
+	},
+	{
+		"category": "tool",
+		"name": "Git",
+		"level": "expert"
+	},
+	{
+		"category": "tool",
+		"name": "Neovim",
+		"level": "advanced"
+	}
+]
