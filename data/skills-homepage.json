@@ -2,16 +2,34 @@
 	{
 		"category": "Frontend",
 		"skills": [
-			"TypeScript",
-			"NextJS",
-			"React",
-			"Tailwind CSS",
-			"ShadCN",
-			"Tanstack"
+			{ "name": "TypeScript", "icon": "Code2" },
+			{ "name": "NextJS", "icon": "Triangle" },
+			{ "name": "React", "icon": "Atom" },
+			{ "name": "Tailwind CSS", "icon": "Palette" },
+			{ "name": "ShadCN", "icon": "Square" },
+			{ "name": "Tanstack", "icon": "Layers" }
 		]
 	},
 	{
 		"category": "Backend & DevOps",
-		"skills": ["Python", "PostgreSQL", "AWS", "SST", "Docker", "Prisma"]
+		"skills": [
+			{ "name": "Python", "icon": "Cpu" },
+			{ "name": "PostgreSQL", "icon": "Database" },
+			{ "name": "AWS", "icon": "Cloud" },
+			{ "name": "SST", "icon": "Server" },
+			{ "name": "Docker", "icon": "Container" },
+			{ "name": "Prisma", "icon": "Diamond" }
+		]
+	},
+	{
+		"category": "Development Tools",
+		"skills": [
+			{ "name": "Git", "icon": "GitBranch" },
+			{ "name": "Zod", "icon": "ShieldCheck" },
+			{ "name": "Neovim", "icon": "Terminal" },
+			{ "name": "Opencode", "icon": "Bot" },
+			{ "name": "Claude Code", "icon": "Bot" },
+			{ "name": "Figma", "icon": "PenTool" }
+		]
 	}
 ]

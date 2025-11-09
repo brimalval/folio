@@ -66,7 +66,10 @@ export interface ProjectSummary {
 // Skills data for homepage
 export interface SkillCategory {
   category: string;
-  skills: string[];
+  skills: Array<{
+    name: string;
+    icon: string;
+  }>;
 }
 
 // Experience data for about page

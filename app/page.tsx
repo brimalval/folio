@@ -49,7 +49,7 @@ export default function Home() {
 				{/* Technical Skills Overview */}
 				<section className="mb-20">
 					<h2 className="mb-8 text-center font-bold text-3xl">
-						Technical Expertise
+						Development Arsenal
 					</h2>
 					<Suspense fallback={<SkillsSectionSkeleton />}>
 						<SkillsSection />
@@ -67,7 +67,7 @@ export default function Home() {
 						<SocialLinks />
 					</div>
 					<Button size="lg" asChild>
-						<Link href="/about">Get in Touch</Link>
+						<Link href="/about">About Me</Link>
 					</Button>
 				</section>
 			</main>
