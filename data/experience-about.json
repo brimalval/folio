@@ -1,0 +1,20 @@
+{
+	"company": "Focus Global Inc.",
+	"position": "Full-Stack Developer",
+	"period": "October 2022 - Present",
+	"description": "Leading digital transformation initiatives for Southeast Asia's premier home goods distributor, developing production-ready platforms that serve thousands of customers across multiple countries.",
+	"overview": {
+		"scale": "30+ global home brands distributed across Philippines, Singapore, and Malaysia",
+		"marketLeadership": "34 years of excellence with 6 showrooms and 13 retail locations",
+		"brandPortfolio": "Premium brands including KitchenAid, Coleman, Levoit, Miele, Sub-Zero, Wolf, Sealy, Tempur",
+		"businessModel": "Premium brand distributor for consumer goods, home furnishings, and wellness products"
+	},
+	"responsibilities": [
+		"Full-stack development of enterprise applications using modern tech stacks",
+		"Cross-functional collaboration across specialized teams (internal tools, data engineering, product management)",
+		"Infrastructure as Code implementation using SST and AWS services",
+		"Performance optimization and business impact planning for high-volume applications",
+		"Early adoption of emerging technologies and frameworks",
+		"Continuous learning and skill development to stay ahead of technology trends"
+	]
+}

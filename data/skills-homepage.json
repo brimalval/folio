@@ -1,0 +1,17 @@
+[
+	{
+		"category": "Frontend",
+		"skills": [
+			"TypeScript",
+			"NextJS",
+			"React",
+			"Tailwind CSS",
+			"ShadCN",
+			"Tanstack"
+		]
+	},
+	{
+		"category": "Backend & DevOps",
+		"skills": ["Python", "PostgreSQL", "AWS", "SST", "Docker", "Prisma"]
+	}
+]

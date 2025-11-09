@@ -1,0 +1,20 @@
+[
+	{
+		"id": "omni-platform",
+		"title": "OMNI Platform",
+		"description": "Enterprise e-commerce platform managing $400K+ revenue across 3 countries",
+		"technologies": ["NextJS", "TypeScript", "Tailwind"]
+	},
+	{
+		"id": "hris-system",
+		"title": "HRIS System",
+		"description": "Employee management system serving 550+ employees with modern UX",
+		"technologies": ["NextJS", "Prisma", "PostgreSQL"]
+	},
+	{
+		"id": "chai-assistant",
+		"title": "ChAI Assistant",
+		"description": "AI-powered customer service tool saving 217 hours with 60% prompt acceptance rate",
+		"technologies": ["NextJS", "Python", "AI APIs"]
+	}
+]

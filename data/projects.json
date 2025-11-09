@@ -1,0 +1,77 @@
+[
+	{
+		"id": "omni-platform",
+		"title": "OMNI Platform Suite",
+		"description": "Internal dashboard for supply chain, order management, content management, and promo activation across multiple brand websites",
+		"longDescription": "Comprehensive enterprise platform managing 10+ brands across 3 countries with unified inventory, orders, and content management.",
+		"problem": "Managing 10+ brands across 3 countries with disparate systems for inventory, orders, and content. Need for unified platform to handle complex cross-border e-commerce operations.",
+		"solution": "Built comprehensive platform using NextJS, TypeScript, and Tailwind CSS with component reusability across brands. Integrated supply chain, order management, CMS, and promo activation systems.",
+		"metrics": [
+			{ "value": "$400K+", "label": "Total revenue processed" },
+			{ "value": "2,000+", "label": "Customers managed" },
+			{ "value": "90+", "label": "Monthly transactions" }
+		],
+		"highlights": [
+			"Multi-region operations across Malaysia, Philippines, Singapore",
+			"Component reusability architecture for 10+ brands",
+			"Robust inventory management system",
+			"Performance optimizations for high-volume operations",
+			"2+ years of continuous operation"
+		],
+		"technologies": [
+			"TypeScript",
+			"NextJS",
+			"React",
+			"Tailwind CSS",
+			"Tanstack",
+			"ShadCN",
+			"SST"
+		]
+	},
+	{
+		"id": "hris-system",
+		"title": "HRIS Employee Management System",
+		"description": "Company-wide employee management system replacing legacy C#/jQuery system",
+		"longDescription": "Modern employee management system serving 550+ employees with automated workflows for HR, accounting, and department managers.",
+		"problem": "Legacy C#/jQuery system with poor UX, limited functionality, and high maintenance costs. HR and accounting teams struggling with inefficient workflows across 550+ employees.",
+		"solution": "Complete system modernization using TypeScript, NextJS, and PostgreSQL. Designed production-ready architecture with intuitive UI/UX and automated workflows for multiple departments.",
+		"metrics": [],
+		"highlights": [
+			"Modern stack upgrade from C# backend + jQuery to TypeScript + modern frontend",
+			"Improved user experience with intuitive, visually appealing interface",
+			"Process automation for HR, accounting, and department managers",
+			"End-to-end architecture designed for growing organization",
+			"Database design for complex employee data relationships"
+		],
+		"technologies": [
+			"TypeScript",
+			"NextJS",
+			"Prisma",
+			"PostgreSQL",
+			"SST",
+			"ShadCN",
+			"Tanstack"
+		]
+	},
+	{
+		"id": "chai-assistant",
+		"title": "ChAI - Customer Success AI Integration",
+		"description": "AI assistant that generates responses based on company documents, streamlining customer success team workflow",
+		"longDescription": "AI-powered customer service tool using document-based response generation to handle routine inquiries and reduce team workload.",
+		"problem": "Customer success team spending excessive time on routine inquiries. Need for automation to handle repetitive queries while maintaining quality and accuracy.",
+		"solution": "AI-powered assistant using document-based response generation. Integrated with existing workflows and optimized for routine product inquiries, stock availability, and how-to questions.",
+		"metrics": [
+			{ "value": "12,000+", "label": "Customer queries processed" },
+			{ "value": "60%", "label": "AI response acceptance rate" },
+			{ "value": "217 hours", "label": "Team time saved (27 work days)" },
+			{ "value": "89%", "label": "Time reduction per ticket" }
+		],
+		"highlights": [
+			"Early AI adoption in customer service workflow",
+			"Document-based response generation",
+			"Performance optimization through data analysis",
+			"Measurable efficiency gains with 60% prompt acceptance rate"
+		],
+		"technologies": ["NextJS", "Python", "AI APIs", "TypeScript"]
+	}
+]

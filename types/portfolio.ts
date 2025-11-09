@@ -5,6 +5,7 @@ export interface Profile {
   location: string;
   email: string;
   avatar: string;
+  fullPhoto?: string;
   resumeUrl?: string;
   website?: string;
   phone?: string;
@@ -52,4 +53,49 @@ export interface Skill {
   name: string;
   level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
   certifications?: string[];
+}
+
+// Project data for homepage
+export interface ProjectSummary {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+}
+
+// Skills data for homepage
+export interface SkillCategory {
+  category: string;
+  skills: string[];
+}
+
+// Experience data for about page
+export interface ExperienceAbout {
+  company: string;
+  position: string;
+  period: string;
+  description: string;
+  overview: {
+    scale: string;
+    marketLeadership: string;
+    brandPortfolio: string;
+    businessModel: string;
+  };
+  responsibilities: string[];
+}
+
+// Enhanced project data for projects page
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  problem: string;
+  solution: string;
+  metrics: Array<{
+    value: string;
+    label: string;
+  }>;
+  highlights: string[];
+  technologies: string[];
 }

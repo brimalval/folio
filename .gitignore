@@ -9,6 +9,7 @@ dist/
 build/
 *.tgz
 .next/
+tsconfig.tsbuildinfo
 
 # Environment variables
 .env
