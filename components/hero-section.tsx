@@ -1,6 +1,6 @@
 export function HeroSection() {
 	return (
-		<section className="mb-20 text-center">
+		<section className="mb-10 text-center">
 			<h1 className="mb-4 font-bold text-5xl">Brian Malcolm Valencia</h1>
 			<h2 className="mb-6 font-semibold text-2xl text-muted-foreground">
 				Full-Stack Engineer who loves building production-ready solutions
@@ -35,7 +35,7 @@ export function HeroSection() {
 								d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 							/>
 						</svg>
-						<span>🇵🇭 Philippines</span>
+						<span>Philippines</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<svg
@@ -53,7 +53,7 @@ export function HeroSection() {
 								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
 							/>
 						</svg>
-						<span>Learning Japanese 🈴</span>
+						<span>Learning Japanese</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<svg
@@ -71,7 +71,7 @@ export function HeroSection() {
 								d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
 							/>
 						</svg>
-						<span>Learning Piano 🎹</span>
+						<span>Learning Piano</span>
 					</div>
 				</div>
 			</div>

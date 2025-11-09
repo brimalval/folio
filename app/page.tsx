@@ -18,13 +18,9 @@ export default function Home() {
 			<main className="mx-auto max-w-4xl px-6 py-16">
 				{/* Hero Section */}
 				<HeroSection />
-
-				<div className="mb-20 flex justify-center gap-4">
-					<Button asChild size="lg">
-						<Link href="/projects">View Projects</Link>
-					</Button>
+				<div className="mb-20 flex justify-center">
 					<Button variant="outline" size="lg" asChild>
-						<Link href="/about">About Me</Link>
+						<Link href="/about">More About Me</Link>
 					</Button>
 				</div>
 
@@ -44,6 +40,11 @@ export default function Home() {
 					>
 						<ProjectCards />
 					</Suspense>
+					<div className="mt-8 flex justify-center">
+						<Button asChild size="lg">
+							<Link href="/projects">View Projects</Link>
+						</Button>
+					</div>
 				</section>
 
 				{/* Technical Skills Overview */}
@@ -56,6 +57,8 @@ export default function Home() {
 					</Suspense>
 				</section>
 
+				{/* About Me Button */}
+
 				{/* Contact Section */}
 				<section className="text-center">
 					<h2 className="mb-4 font-bold text-2xl">Let's Connect</h2>
@@ -66,9 +69,6 @@ export default function Home() {
 					<div className="mb-6">
 						<SocialLinks />
 					</div>
-					<Button size="lg" asChild>
-						<Link href="/about">About Me</Link>
-					</Button>
 				</section>
 			</main>
 		</div>

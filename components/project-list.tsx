@@ -7,10 +7,20 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { getCachedProjects } from "@/lib/async-data";
+import { techIcons } from "@/lib/tech-icons";
+import * as Icons from "lucide-react";
 import type { Project } from "@/types/portfolio";
 
 export async function ProjectList() {
-	const projects = await getCachedProjects();
+	const projects = getCachedProjects();
+
+	const getIcon = (techName: string) => {
+		const iconName = techIcons[techName];
+		if (!iconName) return null;
+
+		const IconComponent = (Icons as any)[iconName];
+		return IconComponent ? <IconComponent className="h-3 w-3" /> : null;
+	};
 
 	return (
 		<>
@@ -81,7 +91,12 @@ export async function ProjectList() {
 								<h3 className="mb-3 font-semibold text-xl">Technology Stack</h3>
 								<div className="flex flex-wrap gap-2">
 									{project.technologies.map(tech => (
-										<Badge key={tech} variant="outline">
+										<Badge
+											key={tech}
+											variant="outline"
+											className="flex items-center gap-1"
+										>
+											{getIcon(tech)}
 											{tech}
 										</Badge>
 									))}
