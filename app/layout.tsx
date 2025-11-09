@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: "Brian Malcolm Valencia | Full-Stack Software Engineer",
 	description:
-		"Brian Malcolm Valencia - Enterprise-scale full-stack developer specializing in TypeScript, NextJS, and cloud infrastructure. Based in Philippines.",
+		"Brian Malcolm Valencia - Enterprise-scale full-stack developer specializing in TypeScript, NextJS, and cloud infrastructure. Based in the Philippines.",
 };
 
 export default function RootLayout({
