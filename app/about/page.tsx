@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { ExperienceSkeleton } from "@/components/skeletons";
+import { SocialLinks } from "@/components/social-links";
+import { Button } from "@/components/ui/button";
 import { CareerGoalsSection } from "./components/career-goals-section";
 import { DifferentiatorsSection } from "./components/differentiators-section";
 import { ExperienceSection } from "./components/experience-section";
-import { ExperienceSkeleton } from "@/components/skeletons";
 import { SocialIcons } from "./components/social-icons";
-import { SocialLinks } from "@/components/social-links";
 import { TechPhilosophySection } from "./components/tech-philosophy-section";
-import { Button } from "@/components/ui/button";
 
 export const revalidate = 86400; // Revalidate once per day
 

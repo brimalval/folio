@@ -1,3 +1,4 @@
+import * as Icons from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
 	Card,
@@ -8,18 +9,55 @@ import {
 } from "@/components/ui/card";
 import { getCachedProjects } from "@/lib/async-data";
 import { techIcons } from "@/lib/tech-icons";
-import * as Icons from "lucide-react";
 import type { Project } from "@/types/portfolio";
 
-export async function ProjectList() {
+export function ProjectList() {
 	const projects = getCachedProjects();
 
 	const getIcon = (techName: string) => {
 		const iconName = techIcons[techName];
 		if (!iconName) return null;
 
-		const IconComponent = (Icons as any)[iconName];
-		return IconComponent ? <IconComponent className="h-3 w-3" /> : null;
+		switch (iconName) {
+			case "Code2":
+				return <Icons.Code2 className="h-3 w-3" />;
+			case "Triangle":
+				return <Icons.Triangle className="h-3 w-3" />;
+			case "Atom":
+				return <Icons.Atom className="h-3 w-3" />;
+			case "Palette":
+				return <Icons.Palette className="h-3 w-3" />;
+			case "Square":
+				return <Icons.Square className="h-3 w-3" />;
+			case "Layers":
+				return <Icons.Layers className="h-3 w-3" />;
+			case "Cpu":
+				return <Icons.Cpu className="h-3 w-3" />;
+			case "Database":
+				return <Icons.Database className="h-3 w-3" />;
+			case "Cloud":
+				return <Icons.Cloud className="h-3 w-3" />;
+			case "Server":
+				return <Icons.Server className="h-3 w-3" />;
+			case "Container":
+				return <Icons.Container className="h-3 w-3" />;
+			case "Diamond":
+				return <Icons.Diamond className="h-3 w-3" />;
+			case "GitBranch":
+				return <Icons.GitBranch className="h-3 w-3" />;
+			case "ShieldCheck":
+				return <Icons.ShieldCheck className="h-3 w-3" />;
+			case "Terminal":
+				return <Icons.Terminal className="h-3 w-3" />;
+			case "Code":
+				return <Icons.Code className="h-3 w-3" />;
+			case "Bot":
+				return <Icons.Bot className="h-3 w-3" />;
+			case "PenTool":
+				return <Icons.PenTool className="h-3 w-3" />;
+			default:
+				return null;
+		}
 	};
 
 	return (

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { ProjectList } from "./components/project-list";
 import { ProjectDetailSkeleton } from "@/components/skeletons";
 import { Button } from "@/components/ui/button";
+import { ProjectList } from "./components/project-list";
 
 export const revalidate = 86400; // Revalidate once per day
 
