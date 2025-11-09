@@ -62,7 +62,7 @@ export default function About() {
 						<SocialLinks />
 					</div>
 					<Button size="lg" asChild>
-						<Link href="/">Back to Projects</Link>
+						<Link href="/projects">Back to Projects</Link>
 					</Button>
 				</section>
 			</main>
