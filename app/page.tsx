@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { HeroSection } from "@/components/hero-section";
-import { ProjectCards } from "@/components/project-cards";
+import { HeroSection } from "./components/hero-section";
+import { ProjectCards } from "./components/project-cards";
 import {
 	ProjectCardSkeleton,
 	SkillsSectionSkeleton,
 } from "@/components/skeletons";
-import { SkillsSection } from "@/components/skills-section";
+import { SkillsSection } from "./components/skills-section";
 import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
 

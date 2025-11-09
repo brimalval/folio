@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { ProjectList } from "@/components/project-list";
+import { ProjectList } from "./components/project-list";
 import { ProjectDetailSkeleton } from "@/components/skeletons";
 import { Button } from "@/components/ui/button";
 
