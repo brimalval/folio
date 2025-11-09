@@ -7,6 +7,7 @@ import {
 	SkillsSectionSkeleton,
 } from "@/components/skeletons";
 import { SkillsSection } from "@/components/skills-section";
+import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
 
 export const revalidate = 86400; // Revalidate once per day
@@ -62,6 +63,9 @@ export default function Home() {
 						Open to opportunities at enterprise companies and high-growth
 						startups
 					</p>
+					<div className="mb-6">
+						<SocialLinks />
+					</div>
 					<Button size="lg" asChild>
 						<Link href="/about">Get in Touch</Link>
 					</Button>

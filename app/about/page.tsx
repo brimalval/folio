@@ -4,6 +4,8 @@ import { CareerGoalsSection } from "@/components/career-goals-section";
 import { DifferentiatorsSection } from "@/components/differentiators-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { ExperienceSkeleton } from "@/components/skeletons";
+import { SocialIcons } from "@/components/social-icons";
+import { SocialLinks } from "@/components/social-links";
 import { TechPhilosophySection } from "@/components/tech-philosophy-section";
 import { Button } from "@/components/ui/button";
 
@@ -24,6 +26,7 @@ export default function About() {
 						about early technology adoption and building enterprise-scale
 						solutions that make a real impact.
 					</p>
+					<SocialIcons />
 				</section>
 
 				{/* Professional Journey */}
@@ -55,6 +58,9 @@ export default function About() {
 						I'm always interested in discussing opportunities, challenges, and
 						innovative projects.
 					</p>
+					<div className="mb-6">
+						<SocialLinks />
+					</div>
 					<Button size="lg" asChild>
 						<Link href="/">Back to Projects</Link>
 					</Button>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -33,10 +34,12 @@ export function Navigation() {
 			<div className="mx-auto max-w-4xl px-6 py-4">
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-3">
-						<img
+						<Image
 							src={profileData.avatar}
 							alt="Brian Valencia"
-							className="h-12 w-12 rounded-full object-cover"
+							width={48}
+							height={48}
+							className="rounded-full object-cover"
 						/>
 						<div
 							className={`font-bold text-black text-lg transition-all duration-300 dark:text-zinc-50 ${

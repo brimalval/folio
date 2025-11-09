@@ -48,8 +48,15 @@ export async function ExperienceSection() {
 						Role & Responsibilities
 					</h3>
 					<ul className="space-y-2 text-muted-foreground">
-						{experience.responsibilities.map((responsibility, index) => (
-							<li key={index}>• {responsibility}</li>
+						{experience.responsibilities.map(responsibility => (
+							<li
+								key={responsibility
+									.substring(0, 30)
+									.replace(/\s+/g, "-")
+									.toLowerCase()}
+							>
+								• {responsibility}
+							</li>
 						))}
 					</ul>
 				</div>

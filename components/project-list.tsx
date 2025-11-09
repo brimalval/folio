@@ -41,8 +41,10 @@ export async function ProjectList() {
 										Impact & Metrics
 									</h3>
 									<div className="grid gap-4 md:grid-cols-3">
-										{project.metrics.map((metric, index) => (
-											<Card key={index}>
+										{project.metrics.map(metric => (
+											<Card
+												key={`${metric.value}-${metric.label.replace(/\s+/g, "-").toLowerCase()}`}
+											>
 												<CardContent className="p-4 text-center">
 													<div className="font-bold text-2xl">
 														{metric.value}
@@ -62,8 +64,15 @@ export async function ProjectList() {
 									Technical Highlights
 								</h3>
 								<ul className="space-y-2 text-muted-foreground">
-									{project.highlights.map((highlight, index) => (
-										<li key={index}>• {highlight}</li>
+									{project.highlights.map(highlight => (
+										<li
+											key={highlight
+												.substring(0, 30)
+												.replace(/\s+/g, "-")
+												.toLowerCase()}
+										>
+											• {highlight}
+										</li>
 									))}
 								</ul>
 							</div>
