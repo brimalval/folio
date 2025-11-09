@@ -17,6 +17,11 @@ export const metadata: Metadata = {
 	title: "Brian Malcolm Valencia | Full-Stack Software Engineer",
 	description:
 		"Brian Malcolm Valencia - Enterprise-scale full-stack developer specializing in TypeScript, NextJS, and cloud infrastructure. Based in the Philippines.",
+	icons: {
+		icon: "/favicon.ico",
+		shortcut: "/favicon.ico",
+		apple: "/favicon.ico",
+	},
 };
 
 export default function RootLayout({
