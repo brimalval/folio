@@ -52,5 +52,16 @@
 			"AWS",
 			"SST"
 		]
+	},
+	{
+		"id": "netzwelt-internship",
+		"company": "Netzwelt Inc.",
+		"position": "Software Developer Intern",
+		"startDate": "March 2022",
+		"endDate": "April 2022",
+		"description": "Internship program with intensive learning and practical application in software development.",
+		"location": "Philippines",
+		"companySize": "Technology company focused on digital solutions",
+		"technologies": ["C#", "ASP.NET MVC", "JavaScript", "SQL"]
 	}
 ]

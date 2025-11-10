@@ -5,6 +5,7 @@ import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
 import { CareerGoalsSection } from "./components/career-goals-section";
 import { DifferentiatorsSection } from "./components/differentiators-section";
+import { EducationSection } from "./components/education-section";
 import { ExperienceSection } from "./components/experience-section";
 import { SocialIcons } from "./components/social-icons";
 import { TechPhilosophySection } from "./components/tech-philosophy-section";
@@ -34,6 +35,11 @@ export default function About() {
 					<Suspense fallback={<ExperienceSkeleton />}>
 						<ExperienceSection />
 					</Suspense>
+				</section>
+
+				{/* Education */}
+				<section className="mb-20">
+					<EducationSection />
 				</section>
 
 				{/* Technology Philosophy */}

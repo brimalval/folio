@@ -1,5 +1,11 @@
 import { z } from "zod";
-import type { Experience, Profile, Skill, Social } from "../types/portfolio";
+import type {
+	Experience,
+	Profile,
+	Skill,
+	Social,
+	Education,
+} from "../types/portfolio";
 
 // Zod schemas for validation
 const profileSchema = z.object({
@@ -9,9 +15,12 @@ const profileSchema = z.object({
 	location: z.string(),
 	email: z.email(),
 	avatar: z.string(),
+	fullPhoto: z.string().optional(),
 	resumeUrl: z.url().optional(),
 	website: z.url().optional(),
 	phone: z.string().optional(),
+	github: z.string().optional(),
+	linkedin: z.string().optional(),
 });
 
 const socialSchema = z.object({
@@ -39,6 +48,17 @@ const experienceSchema = z.object({
 	location: z.string().optional(),
 	companySize: z.string().optional(),
 	technologies: z.array(z.string()).optional(),
+});
+
+const educationSchema = z.object({
+	id: z.string(),
+	degree: z.string(),
+	institution: z.string(),
+	location: z.string(),
+	startDate: z.string().optional(),
+	endDate: z.string().optional(),
+	description: z.string(),
+	highlights: z.array(z.string()).optional(),
 });
 
 const skillSchema = z.object({
@@ -170,6 +190,16 @@ export async function getFeaturedProjects() {
 export async function getProjectById(id: string) {
 	const projects = await getProjects();
 	return projects.find(project => project.id === id);
+}
+
+export async function getEducation(): Promise<Education[]> {
+	try {
+		const data = await import("@/data/education.json");
+		return z.array(educationSchema).parse(data.default);
+	} catch (error) {
+		console.error("Error loading education:", error);
+		throw new Error("Failed to load education data");
+	}
 }
 
 export async function getSkillsByCategory() {
