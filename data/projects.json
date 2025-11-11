@@ -2,21 +2,19 @@
 	{
 		"id": "omni-platform",
 		"title": "OMNI Platform Suite",
-		"description": "Internal dashboard for supply chain, order management, content management, and promo activation across multiple brand websites",
-		"longDescription": "Comprehensive enterprise platform managing 10+ brands across 3 countries with unified inventory, orders, and content management.",
-		"problem": "Managing 10+ brands across 3 countries with disparate systems for inventory, orders, and content. Need for unified platform to handle complex cross-border e-commerce operations.",
-		"solution": "Built comprehensive platform using NextJS, TypeScript, and Tailwind CSS with component reusability across brands. Integrated supply chain, order management, CMS, and promo activation systems.",
+		"description": "Internal dashboard for supply chain, order management, and content management",
+		"longDescription": "All-in-one enterprise platform managing over 25 consumer goods/home furnishing brands across Philippines, Singapore, and Malaysia—including KitchenAid, Coleman, InstantPot, Oster, Tempur, Sealy, and more.",
+		"problem": "Managing over 25 brands across 3 countries with disparate systems for inventory, orders, and content. Need for unified platform to handle complex cross-border e-commerce operations.",
+		"solution": "Built all-in-one platform using NextJS, TypeScript, and Tailwind CSS with component reusability across brands. Integrated supply chain, order management, CMS, and promo activation systems.",
 		"metrics": [
-			{ "value": "$400K+", "label": "Total revenue processed" },
-			{ "value": "2,000+", "label": "Customers managed" },
-			{ "value": "90+", "label": "Monthly transactions" }
+			{ "value": "over $400K", "label": "Total revenue processed" },
+			{ "value": "over 2,000", "label": "Customers managed" },
+			{ "value": "over 90", "label": "Monthly transactions" }
 		],
 		"highlights": [
-			"Multi-region operations across Malaysia, Philippines, Singapore",
-			"Component reusability architecture for 10+ brands",
-			"Robust inventory management system",
-			"Performance optimizations for high-volume operations",
-			"2+ years of continuous operation"
+			"Enterprise platform managing over 25 consumer goods/home furnishing brands across Philippines, Singapore, and Malaysia",
+			"Processed over $400K in total revenue with over 2,000 customers and over 90 monthly transactions",
+			"Robust inventory and warehouse management system with more than 2 years of continuous operation"
 		],
 		"technologies": [
 			"TypeScript",
@@ -72,6 +70,13 @@
 			"Performance optimization through data analysis",
 			"Measurable efficiency gains with 60% prompt acceptance rate"
 		],
-		"technologies": ["NextJS", "Python", "AI APIs", "TypeScript"]
+		"technologies": [
+			"NextJS",
+			"Python",
+			"FastAPI",
+			"OpenAI SDK",
+			"Langchain",
+			"TypeScript"
+		]
 	}
 ]

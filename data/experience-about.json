@@ -10,15 +10,13 @@
 		"businessModel": "Premium brand distributor for consumer goods, home furnishings, and wellness products"
 	},
 	"responsibilities": [
-		"Full-stack development of enterprise applications using modern tech stacks",
-		"Cross-functional collaboration across specialized teams (internal tools, data engineering, product management)",
-		"Infrastructure as Code implementation using SST and AWS services",
-		"Performance optimization and business impact planning for high-volume applications",
-		"Early adoption of emerging technologies and frameworks",
-		"Continuous learning and skill development to stay ahead of technology trends",
-		"Thriving in fast-paced innovation environment, quickly adopting modern technologies including TypeScript, NextJS, ShadCN, Python, FastAPI, AWS, and SST",
-		"Modernizing legacy systems from C#/jQuery to TypeScript-based solutions",
-		"Designing component reusability architecture for scalable multi-brand operations",
-		"Implementing automated workflows for HR and accounting departments"
+		"Developed enterprise-scale platforms serving thousands of customers across multiple countries",
+		"Built all-in-one platforms managing over 25 brands across 3 countries with over $400K total revenue",
+		"Thrived in fast-paced innovation environment, quickly adopting modern technologies including TypeScript, NextJS, ShadCN, Python, FastAPI, AWS, and SST",
+		"Modernized legacy systems from C#/jQuery to TypeScript-based solutions",
+		"Effectively communicated technical concepts to non-technical stakeholders",
+		"Managed multi-tasking across maintenance tasks and innovation initiatives with frequent interdepartmental communication",
+		"Led the design and implementation of AWS infrastructure for internal HR system, using SST as an infrastructure-as-code framework to streamline provisioning and deployment",
+		"Guided small teams through ideation, design, and delivery of widely adopted applications"
 	]
 }

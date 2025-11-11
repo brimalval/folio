@@ -77,17 +77,12 @@
 	{
 		"category": "devops",
 		"name": "SST",
-		"level": "intermediate"
+		"level": "advanced"
 	},
 	{
 		"category": "devops",
 		"name": "CloudFormation",
 		"level": "intermediate"
-	},
-	{
-		"category": "tool",
-		"name": "Zod",
-		"level": "advanced"
 	},
 	{
 		"category": "tool",
@@ -97,6 +92,16 @@
 	{
 		"category": "tool",
 		"name": "Neovim",
+		"level": "expert"
+	},
+	{
+		"category": "tool",
+		"name": "Opencode/Claude Code",
+		"level": "intermediate"
+	},
+	{
+		"category": "tool",
+		"name": "Zod",
 		"level": "advanced"
 	}
 ]
