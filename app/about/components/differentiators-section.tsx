@@ -12,13 +12,13 @@ export function DifferentiatorsSection() {
 			id: "cross-functional",
 			title: "Cross-Functional Collaboration",
 			description:
-				"Extensive experience working across team boundaries with data engineering, product management, and specialized development teams.",
+				"Extensive experience working across team boundaries with marketing teams, data engineering, product management, and specialized development teams.",
 		},
 		{
 			id: "rapid-adaptation",
 			title: "Rapid Technology Adaptation",
 			description:
-				"Strong curiosity and ability to quickly master new technologies, enabling implementation of modern solutions that drive business value.",
+				"Strong curiosity and ability to quickly master new technologies, enabling implementation of modern solutions and modernization of legacy systems that drive business value.",
 		},
 		{
 			id: "devops-cloud",

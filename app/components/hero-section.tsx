@@ -6,10 +6,14 @@ export function HeroSection() {
 				Full-Stack Engineer who loves building production-ready solutions
 			</h2>
 			<p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-				I'm passionate about creating enterprise-grade applications with modern
-				technology stacks. Specializing in TypeScript, NextJS, and cloud
-				infrastructure, I help companies build robust systems with real business
-				impact.
+				Hi! I'm Brian. I enjoy solving problems and being in front of a
+				computer, and software engineering fits that perfectly. I write code{" "}
+				<small>
+					<small>in NeoVim, btw</small>
+				</small>{" "}
+				to build things that solve problems. Recently, I've been doing that
+				using TypeScript, NextJS, Python, AWS, among other tools. Super excited
+				to learn and build more!
 			</p>
 			<div className="mx-auto max-w-2xl">
 				<div className="flex flex-wrap justify-center gap-4 text-muted-foreground text-sm">

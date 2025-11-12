@@ -23,9 +23,8 @@ export default function About() {
 					</Button>
 					<h1 className="mb-4 font-bold text-4xl">About Brian</h1>
 					<p className="text-muted-foreground text-xl">
-						I'm a full-stack engineer based in the Philippines who's passionate
-						about early technology adoption and building enterprise-scale
-						solutions that make a real impact.
+						Here's my background: my professional journey so far, what sets me
+						apart as a developer, and where I'd like to take my career next.
 					</p>
 					<SocialIcons />
 				</section>
