@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { getCachedProjects } from "@/lib/async-data";
 import { techIcons } from "@/lib/tech-icons";
+import { ProjectGallery } from "./project-gallery";
 import type { Project } from "@/types/portfolio";
 
 export function ProjectList() {
@@ -140,6 +141,15 @@ export function ProjectList() {
 									))}
 								</div>
 							</div>
+
+							{project.gallery && project.gallery.length > 0 && (
+								<div>
+									<h3 className="mb-3 font-semibold text-xl">
+										Project Gallery
+									</h3>
+									<ProjectGallery images={project.gallery} />
+								</div>
+							)}
 						</CardContent>
 					</Card>
 				</section>
