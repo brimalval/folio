@@ -112,4 +112,10 @@ export interface Project {
   }>;
   highlights: string[];
   technologies: string[];
+  gallery?: Array<{
+    id: string;
+    src: string;
+    alt: string;
+    title?: string;
+  }>;
 }

@@ -28,27 +28,21 @@
 		"gallery": [
 			{
 				"id": "omni-dashboard",
-				"src": "/projects/omni-dashboard.png",
-				"alt": "OMNI Platform Dashboard Overview",
-				"title": "Main dashboard showing brand management and analytics"
+				"src": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/OMNI_Gallery/1.png",
+				"alt": "Order Management Interface",
+				"title": "Order Management Interface"
 			},
 			{
 				"id": "omni-inventory",
-				"src": "/projects/omni-inventory.png",
+				"src": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/OMNI_Gallery/2.png",
 				"alt": "Inventory Management System",
-				"title": "Real-time inventory tracking across warehouses"
+				"title": "Inventory tracking"
 			},
 			{
 				"id": "omni-orders",
-				"src": "/projects/omni-orders.png",
-				"alt": "Order Management Interface",
-				"title": "Cross-border order processing system"
-			},
-			{
-				"id": "omni-cms",
-				"src": "/projects/omni-cms.png",
-				"alt": "Content Management System",
-				"title": "Brand content and product catalog management"
+				"src": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/OMNI_Gallery/3.png",
+				"alt": "Promotion configuration",
+				"title": "Promotion configuration"
 			}
 		]
 	},
@@ -57,7 +51,7 @@
 		"title": "HRIS Employee Management System",
 		"description": "Company-wide employee management system replacing legacy C#/jQuery system",
 		"longDescription": "Modern employee management system serving 550+ employees with automated workflows for HR, accounting, and department managers.",
-		"problem": "Legacy C#/jQuery system with poor UX, limited functionality, and high maintenance costs. HR and accounting teams struggling with inefficient workflows across 550+ employees.",
+		"problem": "Legacy C#/jQuery system. HR and accounting teams struggling with some regular workflows (such as payroll calculation and timekeeping) for 550+ employees due to lack of automation in the system.",
 		"solution": "Complete system modernization using TypeScript, NextJS, and PostgreSQL. Designed production-ready architecture with intuitive UI/UX and automated workflows for multiple departments.",
 		"metrics": [],
 		"highlights": [
@@ -76,32 +70,7 @@
 			"ShadCN",
 			"Tanstack"
 		],
-		"gallery": [
-			{
-				"id": "hris-dashboard",
-				"src": "/projects/hris-dashboard.png",
-				"alt": "HRIS System Dashboard",
-				"title": "Employee management dashboard with key metrics"
-			},
-			{
-				"id": "hris-profile",
-				"src": "/projects/hris-profile.png",
-				"alt": "Employee Profile Management",
-				"title": "Comprehensive employee profile and records"
-			},
-			{
-				"id": "hris-workflows",
-				"src": "/projects/hris-workflows.png",
-				"alt": "Automated Workflows",
-				"title": "HR and accounting workflow automation"
-			},
-			{
-				"id": "hris-reports",
-				"src": "/projects/hris-reports.png",
-				"alt": "Reporting and Analytics",
-				"title": "Employee data analytics and reporting"
-			}
-		]
+		"gallery": []
 	},
 	{
 		"id": "chai-assistant",
@@ -130,31 +99,6 @@
 			"Langchain",
 			"TypeScript"
 		],
-		"gallery": [
-			{
-				"id": "chai-interface",
-				"src": "/projects/chai-interface.png",
-				"alt": "ChAI Assistant Interface",
-				"title": "Customer service AI assistant chat interface"
-			},
-			{
-				"id": "chai-dashboard",
-				"src": "/projects/chai-dashboard.png",
-				"alt": "ChAI Analytics Dashboard",
-				"title": "Performance metrics and analytics dashboard"
-			},
-			{
-				"id": "chai-training",
-				"src": "/projects/chai-training.png",
-				"alt": "Document Training Interface",
-				"title": "Document upload and training management"
-			},
-			{
-				"id": "chai-responses",
-				"src": "/projects/chai-responses.png",
-				"alt": "Response Quality Management",
-				"title": "AI response review and optimization tools"
-			}
-		]
+		"gallery": []
 	}
 ]

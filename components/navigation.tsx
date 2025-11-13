@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import profileData from "@/data/profile.json";
 
 export function Navigation() {
@@ -42,7 +43,7 @@ export function Navigation() {
 							className="rounded-full object-cover"
 						/>
 						<div
-							className={`font-bold text-black text-lg transition-all duration-300 dark:text-zinc-50 ${
+							className={`font-bold text-foreground text-lg transition-all duration-300 ${
 								showName || shouldShowAnimatedName
 									? "translate-x-0 opacity-100"
 									: "-translate-x-4 opacity-0"
@@ -51,31 +52,36 @@ export function Navigation() {
 							Brian Malcolm Valencia
 						</div>
 					</div>
-					<div className="flex gap-6">
+					<div className="flex items-center gap-6">
 						<Link
 							href="/"
-							className={`text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50 ${
-								pathname === "/" ? "text-black dark:text-zinc-50" : ""
+							className={`text-muted-foreground transition-colors hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground ${
+								pathname === "/" ? "text-foreground dark:text-foreground" : ""
 							}`}
 						>
 							Home
 						</Link>
 						<Link
 							href="/projects"
-							className={`text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50 ${
-								pathname === "/projects" ? "text-black dark:text-zinc-50" : ""
+							className={`text-muted-foreground transition-colors hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground ${
+								pathname === "/projects"
+									? "text-foreground dark:text-foreground"
+									: ""
 							}`}
 						>
 							Projects
 						</Link>
 						<Link
 							href="/about"
-							className={`text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50 ${
-								pathname === "/about" ? "text-black dark:text-zinc-50" : ""
+							className={`text-muted-foreground transition-colors hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground ${
+								pathname === "/about"
+									? "text-foreground dark:text-foreground"
+									: ""
 							}`}
 						>
 							About
 						</Link>
+						<ThemeToggle />
 					</div>
 				</div>
 			</div>
