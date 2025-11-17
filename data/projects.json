@@ -7,13 +7,16 @@
 		"problem": "Managing over 25 brands across 3 countries with disparate systems for inventory, orders, and content. Need for unified platform to handle complex cross-border e-commerce operations.",
 		"solution": "Built all-in-one platform using NextJS, TypeScript, and Tailwind CSS with component reusability across brands. Integrated supply chain, order management, CMS, and promo activation systems.",
 		"metrics": [
-			{ "value": "over $400K", "label": "Total revenue processed" },
+			{
+				"value": "₱1,650,000+",
+				"label": "Revenue from in-house ecommerce alone"
+			},
 			{ "value": "over 2,000", "label": "Customers managed" },
 			{ "value": "over 90", "label": "Monthly transactions" }
 		],
 		"highlights": [
 			"Enterprise platform managing over 25 consumer goods/home furnishing brands across Philippines, Singapore, and Malaysia",
-			"Processed over $400K in total revenue with over 2,000 customers and over 90 monthly transactions",
+			"Processed over ₱1,650,000 in total revenue from in-house ecommerce platforms alone with over 2,000 customers and over 90 monthly transactions",
 			"Robust inventory and warehouse management system with more than 2 years of continuous operation"
 		],
 		"technologies": [
