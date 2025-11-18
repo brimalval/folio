@@ -55,21 +55,6 @@ export default function About() {
 				<section className="mb-20">
 					<CareerGoalsSection />
 				</section>
-
-				{/* Contact */}
-				<section className="text-center">
-					<h2 className="mb-4 font-bold text-2xl">Let's Connect</h2>
-					<p className="mb-6 text-muted-foreground">
-						I'm always interested in discussing opportunities, challenges, and
-						innovative projects.
-					</p>
-					<div className="mb-6">
-						<SocialLinks />
-					</div>
-					<Button size="lg" asChild>
-						<Link href="/projects">Back to Projects</Link>
-					</Button>
-				</section>
 			</main>
 		</div>
 	);

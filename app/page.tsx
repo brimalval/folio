@@ -56,20 +56,6 @@ export default function Home() {
 						<SkillsSection />
 					</Suspense>
 				</section>
-
-				{/* About Me Button */}
-
-				{/* Contact Section */}
-				<section className="text-center">
-					<h2 className="mb-4 font-bold text-2xl">Let's Connect</h2>
-					<p className="mb-6 text-muted-foreground">
-						Open to opportunities at enterprise companies and high-growth
-						startups
-					</p>
-					<div className="mb-6">
-						<SocialLinks />
-					</div>
-				</section>
 			</main>
 		</div>
 	);
