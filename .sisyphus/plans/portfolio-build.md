@@ -377,7 +377,7 @@ Max Concurrent: 8 (Wave 3)
 
 ### Wave 2: Foundation Setup (3 tasks, sequential then parallel)
 
-- [ ] 3. **Project Setup & Configuration**
+- [x] 3. **Project Setup & Configuration**
 
   **What to do**:
   - Initialize Next.js 16.1.6 with App Router, React 19, TypeScript
@@ -476,7 +476,7 @@ Max Concurrent: 8 (Wave 3)
   **Commit**: YES
   - Message: `chore: initialize project with Next.js 16, React 19, Motion, R3F, Vitest`
   - Files: package.json, package-lock.json, vitest.config.ts, tsconfig.json
-  - Pre-commit: `npm run lint && npm run test`
+  - Pre-commit: `pnpm run lint && pnpm test`
 
 - [ ] 4. **Define Rose Pine Theme System**
 
@@ -665,7 +665,7 @@ Max Concurrent: 8 (Wave 3)
 
 ### Wave 3: Core Sections (8 tasks, parallel after Wave 2)
 
-- [ ] 6. **Build Hero Section with 3D Accent**
+- [x] 6. **Build Hero Section with 3D Accent**
 
   **What to do**:
   - TDD: Write tests for hero component first (renders title, subtitle, CTA buttons)
@@ -932,7 +932,7 @@ Max Concurrent: 8 (Wave 3)
   - Files: app/components/theme-toggle.tsx, app/components/__tests__/theme-toggle.test.tsx
   - Pre-commit: `npm run test`
 
-- [ ] 9. **Build Projects Section**
+- [x] 9. **Build Projects Section**
 
   **What to do**:
   - TDD: Write tests for project cards (renders 3 projects, shows metrics)
@@ -1025,13 +1025,13 @@ Max Concurrent: 8 (Wave 3)
   - Files: app/components/projects.tsx, app/components/__tests__/projects.test.tsx, app/components/project-card.tsx, app/components/project-gallery-modal.tsx
   - Pre-commit: `npm run test`
 
-- [ ] 10. **Build Skills Section** — [Category: visual-engineering] Skills by category from skills.json with staggered tag animations. Depends: Task 4. Blocks: Task 14. Pattern ref: data/skills.json:1-107, lib/data.ts:128-136. Acceptance: Skills grouped by category, stagger animation on scroll, responsive layout. QA: curl grep for skill tags, Playwright scroll test.
+- [x] 10. **Build Skills Section** — [Category: visual-engineering] Skills by category from skills.json with staggered tag animations. Depends: Task 4. Blocks: Task 14. Pattern ref: data/skills.json:1-107, lib/data.ts:128-136. Acceptance: Skills grouped by category, stagger animation on scroll, responsive layout. QA: curl grep for skill tags, Playwright scroll test.
 
-- [ ] 11. **Build Experience Timeline** — [Category: visual-engineering] Vertical timeline from experience.json with scroll reveal. Depends: Task 4. Blocks: Task 14. Pattern ref: data/experience.json:1-67. Acceptance: Timeline items render, dates show, scroll animation. QA: curl grep for experience items, Playwright scroll test.
+- [x] 11. **Build Experience Timeline** — [Category: visual-engineering] Vertical timeline from experience.json with scroll reveal. Depends: Task 4. Blocks: Task 14. Pattern ref: data/experience.json:1-67. Acceptance: Timeline items render, dates show, scroll animation. QA: curl grep for experience items, Playwright scroll test.
 
-- [ ] 12. **Build Education Section** — [Category: visual-engineering] Education cards from education.json. Depends: Task 4. Blocks: Task 14. Pattern ref: data/education.json:1-12. Acceptance: Degree, institution, highlights render. QA: curl grep for education content.
+- [x] 12. **Build Education Section** — [Category: visual-engineering] Education cards from education.json. Depends: Task 4. Blocks: Task 14. Pattern ref: data/education.json:1-12. Acceptance: Degree, institution, highlights render. QA: curl grep for education content.
 
-- [ ] 13. **Build Contact Section** — [Category: quick] Contact info with mailto link, social links, resume external link. Depends: Tasks 2 (resume link), 4. Pattern ref: data/profile.json:1-14, data/socials.json:1-14. Acceptance: Email mailto works, social links work, resume link opens. QA: Click mailto verify email client, click links verify URLs.
+- [x] 13. **Build Contact Section** — [Category: quick] Contact info with mailto link, social links, resume external link. Depends: Tasks 2 (resume link), 4. Pattern ref: data/profile.json:1-14, data/socials.json:1-14. Acceptance: Email mailto works, social links work, resume link opens. QA: Click mailto verify email client, click links verify URLs.
 
 ### Wave 4: Polish & Optimization (3 tasks, parallel)
 

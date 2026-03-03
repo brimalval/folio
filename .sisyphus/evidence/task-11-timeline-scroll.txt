@@ -1,0 +1,20 @@
+# Task 11: Experience Timeline Component Evidence
+
+## Build Verification
+Build Status: SUCCESS
+
+## Test Results
+- 14/14 experience tests passed
+
+## Features Implemented
+- Vertical timeline layout with left border line
+- Company, position, period, location, description display
+- Technology tags with hover effects
+- Scroll reveal animation using motion library
+- Rose Pine color scheme via CSS variables
+- Responsive design (sm/md breakpoints)
+- Max 3 experiences displayed
+
+## Files Created
+- app/components/experience.tsx
+- app/components/experience.test.tsx
