@@ -1,126 +1,26 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
-	--color-sidebar-ring: var(--sidebar-ring);
-	--color-sidebar-border: var(--sidebar-border);
-	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-	--color-sidebar-accent: var(--sidebar-accent);
-	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-	--color-sidebar-primary: var(--sidebar-primary);
-	--color-sidebar-foreground: var(--sidebar-foreground);
-	--color-sidebar: var(--sidebar);
-	--color-chart-5: var(--chart-5);
-	--color-chart-4: var(--chart-4);
-	--color-chart-3: var(--chart-3);
-	--color-chart-2: var(--chart-2);
-	--color-chart-1: var(--chart-1);
-	--color-ring: var(--ring);
-	--color-input: var(--input);
-	--color-border: var(--border);
-	--color-destructive: var(--destructive);
-	--color-accent-foreground: var(--accent-foreground);
-	--color-accent: var(--accent);
-	--color-muted-foreground: var(--muted-foreground);
-	--color-muted: var(--muted);
-	--color-secondary-foreground: var(--secondary-foreground);
-	--color-secondary: var(--secondary);
-	--color-primary-foreground: var(--primary-foreground);
-	--color-primary: var(--primary);
-	--color-popover-foreground: var(--popover-foreground);
-	--color-popover: var(--popover);
-	--color-card-foreground: var(--card-foreground);
-	--color-card: var(--card);
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
-}
 
 :root {
-	--radius: 0.625rem;
-	/* Rosé Pine Dawn Palette */
-	--background: #faf4ed;
-	--foreground: #575279;
-	--card: #fffaf3;
-	--card-foreground: #575279;
-	--popover: #f2e9e1;
-	--popover-foreground: #575279;
-	--primary: #907aa9;
-	--primary-foreground: #faf4ed;
-	--secondary: #9893a5;
-	--secondary-foreground: #faf4ed;
-	--muted: #9893a5;
-	--muted-foreground: #797593;
-	--accent: #d7827e;
-	--accent-foreground: #faf4ed;
-	--destructive: #b4637a;
-	--destructive-foreground: #faf4ed;
-	--border: #dfdad9;
-	--input: #f4ede8;
-	--ring: #907aa9;
-	--chart-1: #ea9d34;
-	--chart-2: #286983;
-	--chart-3: #56949f;
-	--chart-4: #d7827e;
-	--chart-5: #907aa9;
-	--sidebar: #fffaf3;
-	--sidebar-foreground: #575279;
-	--sidebar-primary: #907aa9;
-	--sidebar-primary-foreground: #faf4ed;
-	--sidebar-accent: #9893a5;
-	--sidebar-accent-foreground: #faf4ed;
-	--sidebar-border: #dfdad9;
-	--sidebar-ring: #907aa9;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-.dark {
-	/* Rosé Pine Moon Palette */
-	--background: #232136;
-	--foreground: #e0def4;
-	--card: #2a273f;
-	--card-foreground: #e0def4;
-	--popover: #393552;
-	--popover-foreground: #e0def4;
-	--primary: #c4a7e7;
-	--primary-foreground: #232136;
-	--secondary: #6e6a86;
-	--secondary-foreground: #232136;
-	--muted: #6e6a86;
-	--muted-foreground: #908caa;
-	--accent: #ea9a97;
-	--accent-foreground: #232136;
-	--destructive: #eb6f92;
-	--destructive-foreground: #232136;
-	--border: #44415a;
-	--input: #2a283e;
-	--ring: #c4a7e7;
-	--chart-1: #f6c177;
-	--chart-2: #3e8fb0;
-	--chart-3: #9ccfd8;
-	--chart-4: #ea9a97;
-	--chart-5: #c4a7e7;
-	--sidebar: #2a273f;
-	--sidebar-foreground: #e0def4;
-	--sidebar-primary: #c4a7e7;
-	--sidebar-primary-foreground: #232136;
-	--sidebar-accent: #6e6a86;
-	--sidebar-accent-foreground: #232136;
-	--sidebar-border: #44415a;
-	--sidebar-ring: #c4a7e7;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
