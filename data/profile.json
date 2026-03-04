@@ -1,14 +1,14 @@
 {
-	"name": "Brian Valencia",
-	"title": "Full-Stack Software Engineer",
-	"bio": "Mid-to-Senior level Full-stack Software Engineer with DevOps experience, focused on modern full-stack development and building production-ready applications with real business impact.",
-	"location": "Philippines",
-	"email": "brianmalcolm.v@gmail.com",
-	"phone": "+63 916 416 4268",
-	"github": "brimalval",
-	"linkedin": "brian-malcolm-valencia-032752220",
-	"avatar": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico-thumb.jpg",
-	"fullPhoto": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico.jpg",
-	"resumeUrl": "/",
-	"website": ""
+  "name": "Brian Valencia",
+  "title": "Full-Stack Software Engineer",
+  "bio": "Full-stack Software Engineer with DevOps experience, focused on modern full-stack development and building production-ready applications with real business impact.",
+  "location": "Philippines",
+  "email": "brianmalcolm.v@gmail.com",
+  "phone": "+63 916 416 4268",
+  "github": "brimalval",
+  "linkedin": "brian-malcolm-valencia-032752220",
+  "avatar": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico-thumb.jpg",
+  "fullPhoto": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico.jpg",
+  "resumeUrl": "/",
+  "website": ""
 }
