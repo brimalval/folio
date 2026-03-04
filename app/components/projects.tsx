@@ -35,7 +35,7 @@ export default function Projects() {
               key={project.id}
               data-testid={`project-card-${index}`}
               tabIndex={0}
-              className="group relative p-8 rounded-2xl transition-all duration-300 cursor-pointer hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] focus-visible:scale-[1.02]"
+              className="group relative p-8 rounded-2xl transition-all duration-300 cursor-pointer card-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               style={{
                 backgroundColor: 'var(--surface)',
                 border: '1px solid var(--subtle)',

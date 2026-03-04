@@ -87,13 +87,13 @@ export default function Skills() {
                       key={skill.name}
                       data-testid={`skill-tag-${skill.name}`}
                       tabIndex={0}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] focus-visible:scale-105"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 card-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                       style={{
                         backgroundColor: 'var(--surface)',
                         color: 'var(--foreground)',
                         border: '1px solid var(--subtle)',
                       }}
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{

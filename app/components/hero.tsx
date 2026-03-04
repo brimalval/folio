@@ -82,7 +82,12 @@ export default function Hero() {
       </div>
 
       <motion.div 
-        className="relative z-10 text-center max-w-4xl mx-auto space-y-8"
+        className="relative z-10 text-center max-w-4xl mx-auto space-y-8 px-6 py-8 rounded-3xl"
+        style={{
+          background: 'rgba(var(--nav-bg-rgb), 0.5)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+        }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -125,7 +130,7 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta cta-primary"
             style={{ 
               backgroundColor: 'var(--iris)', 
               color: 'var(--base)',

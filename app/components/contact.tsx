@@ -41,7 +41,7 @@ export default function Contact() {
           <a
             href={`mailto:${profile.email}`}
             data-testid="email-link"
-            className="flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta max-w-full"
+            className="flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta cta-primary max-w-full"
             style={{
               backgroundColor: 'var(--iris)',
               color: 'var(--base)',
@@ -74,7 +74,7 @@ export default function Contact() {
                 data-testid={`social-link-${social.platform}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-110"
+                className="p-4 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 card-hover"
                 style={{
                   backgroundColor: 'var(--surface)',
                   color: 'var(--iris)',
@@ -114,7 +114,7 @@ export default function Contact() {
               data-testid="resume-link"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105"
+              className="flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 card-hover"
               style={{
                 backgroundColor: 'transparent',
                 color: 'var(--subtle)',

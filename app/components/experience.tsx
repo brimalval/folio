@@ -52,7 +52,7 @@ export default function ExperienceSection() {
                 />
 
                 <div
-                  className="p-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+                  className="p-6 rounded-xl transition-all duration-300 card-hover"
                   style={{
                     backgroundColor: 'var(--surface)',
                     border: '1px solid var(--subtle)',
