@@ -12,7 +12,7 @@ export default function ExperienceSection() {
     <section
       data-testid="experience-section"
       id="experience"
-      className="min-h-screen px-6 py-24 md:py-32"
+      className="min-h-screen px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"
@@ -22,7 +22,7 @@ export default function ExperienceSection() {
         variants={staggerContainer}
       >
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-16 text-center"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16 text-center"
           style={{ color: 'var(--foreground)' }}
           variants={fadeInUp}
         >
@@ -35,7 +35,7 @@ export default function ExperienceSection() {
             style={{ background: 'linear-gradient(to bottom, var(--iris), transparent)' }}
           />
 
-          <div className="space-y-12 pl-8">
+          <div className="space-y-10 pl-8">
             {typedExperience.slice(0, 3).map((item, index) => (
               <motion.div
                 key={item.id}

@@ -65,9 +65,9 @@ export default function Hero() {
   const [webglAvailable] = useState(checkWebGL)
 
   return (
-    <section 
+    <section
       data-testid="hero-section"
-      className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 py-24 md:py-32 lg:py-40 gap-12 md:gap-16 overflow-x-hidden"
+      className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 py-20 md:py-28 lg:py-36 gap-12 md:gap-16 overflow-x-hidden"
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {webglAvailable ? (
@@ -87,8 +87,8 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <motion.h1 
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
           style={{ color: 'var(--foreground)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -97,8 +97,8 @@ export default function Hero() {
           {profile.name}
         </motion.h1>
         
-        <motion.p 
-          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium tracking-wide"
+        <motion.p
+          className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-wide"
           style={{ color: 'var(--iris)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -107,8 +107,8 @@ export default function Hero() {
           {profile.title}
         </motion.p>
         
-        <motion.p 
-          className="text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
+        <motion.p
+          className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
           style={{ color: 'var(--subtle)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

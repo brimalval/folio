@@ -48,7 +48,7 @@ export default function Skills() {
     <section
       data-testid="skills-section"
       id="skills"
-      className="min-h-screen px-6 py-24 md:py-32"
+      className="min-h-screen px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"
@@ -58,14 +58,14 @@ export default function Skills() {
         variants={staggerContainer}
       >
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-16 text-center"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16 text-center"
           style={{ color: 'var(--foreground)' }}
           variants={fadeInUp}
         >
           Skills & Technologies
         </motion.h2>
 
-        <div className="grid gap-12 md:gap-16">
+        <div className="grid gap-10 md:gap-12">
           {sortedCategories.map((category, categoryIndex) => (
             <motion.div
               key={category}
@@ -74,7 +74,7 @@ export default function Skills() {
               custom={categoryIndex}
             >
               <h3
-                className="text-xl md:text-2xl font-semibold mb-6"
+                className="text-lg md:text-xl font-semibold mb-6"
                 style={{ color: 'var(--iris)' }}
               >
                 {categoryLabels[category] || category}

@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <section
       data-testid="contact-section"
-      className="min-h-screen flex flex-col justify-center items-center relative px-6 py-24 md:py-32 gap-16"
+      className="min-h-screen flex flex-col justify-center items-center relative px-6 py-20 md:py-28 gap-16"
     >
       <motion.div
         className="relative z-10 text-center w-full max-w-5xl mx-auto space-y-12 px-4"
@@ -19,7 +19,7 @@ export default function Contact() {
         variants={staggerContainer}
       >
         <motion.h2
-          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+          className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight"
           style={{ color: 'var(--foreground)' }}
           variants={fadeInUp}
         >

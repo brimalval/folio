@@ -12,7 +12,7 @@ export default function Education() {
     <section
       data-testid="education-section"
       id="education"
-      className="px-6 py-24 md:py-32"
+      className="px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"
@@ -22,7 +22,7 @@ export default function Education() {
         variants={staggerContainer}
       >
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-16 text-center"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16 text-center"
           style={{ color: 'var(--foreground)' }}
           variants={fadeInUp}
         >
