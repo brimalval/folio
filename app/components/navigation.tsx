@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import profile from '@/data/profile.json'
+import ThemeToggle from './theme-toggle'
 
 const navItems = [
   { id: 'hero', label: 'Home' },
@@ -141,40 +142,44 @@ export default function Navigation() {
               </a>
             </div>
 
-            <ul className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      scrollToSection(item.id)
-                    }}
-                    className={`
-                      px-4 py-2 rounded-lg text-sm font-medium
-                      transition-all duration-200 cursor-pointer
-                      ${activeSection === item.id 
-                        ? 'bg-[var(--iris)]/10 text-[var(--iris)]' 
-                        : 'text-[var(--subtle)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]'
-                      }
-                    `}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="flex items-center gap-2">
+              <ul className="hidden md:flex items-center gap-1">
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        scrollToSection(item.id)
+                      }}
+                      className={`
+                        px-4 py-2 rounded-lg text-sm font-medium
+                        transition-all duration-200 cursor-pointer
+                        ${activeSection === item.id
+                          ? 'bg-[var(--iris)]/10 text-[var(--iris)]'
+                          : 'text-[var(--subtle)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]'
+                        }
+                      `}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
 
-            <button
-              data-testid="hamburger-button"
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer"
-              style={{ color: 'var(--foreground)' }}
-              aria-label={isOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isOpen}
-            >
-              <HamburgerIcon isOpen={isOpen} />
-            </button>
+              <ThemeToggle />
+
+              <button
+                data-testid="hamburger-button"
+                onClick={() => setIsOpen(!isOpen)}
+                className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer"
+                style={{ color: 'var(--foreground)' }}
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isOpen}
+              >
+                <HamburgerIcon isOpen={isOpen} />
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
