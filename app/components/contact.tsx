@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import profile from '@/data/profile.json'
 import socials from '@/data/socials.json'
+import { fadeInUp, staggerContainer, staggerItem, viewportConfig } from '@/lib/animations/variants'
 
 export default function Contact() {
   return (
@@ -11,19 +12,16 @@ export default function Contact() {
       className="min-h-screen flex flex-col justify-center items-center relative px-6 py-24 md:py-32 lg:py-40 gap-16"
     >
       <motion.div
-        className="relative z-10 text-center max-w-4xl mx-auto space-y-12"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="relative z-10 text-center w-full max-w-4xl mx-auto space-y-12 px-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={staggerContainer}
       >
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight"
           style={{ color: 'var(--foreground)' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          variants={fadeInUp}
         >
           Get in Touch
         </motion.h2>
@@ -31,25 +29,19 @@ export default function Contact() {
         <motion.p
           className="text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"
           style={{ color: 'var(--subtle)' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
+          variants={staggerItem}
         >
           Feel free to reach out for collaborations, opportunities, or just to say hello.
         </motion.p>
 
         <motion.div
           className="flex flex-col gap-8 items-center pt-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          variants={staggerItem}
         >
           <a
             href={`mailto:${profile.email}`}
             data-testid="email-link"
-            className="flex items-center gap-3 px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
+            className="flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta max-w-full"
             style={{
               backgroundColor: 'var(--iris)',
               color: 'var(--base)',
@@ -58,19 +50,20 @@ export default function Contact() {
             } as React.CSSProperties}
           >
             <svg
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="shrink-0"
             >
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </svg>
-            <span>{profile.email}</span>
+            <span className="break-all sm:break-normal">{profile.email}</span>
           </a>
 
           <div className="flex gap-4">

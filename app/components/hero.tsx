@@ -1,28 +1,17 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Canvas } from '@react-three/fiber'
-import { Float, MeshDistortMaterial } from '@react-three/drei'
-import { Suspense, useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import { Suspense, useState } from 'react'
 import profile from '@/data/profile.json'
 
-function FloatingShape() {
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
-      <mesh scale={1.2}>
-        <icosahedronGeometry args={[1, 2]} />
-        <MeshDistortMaterial
-          color="#c4a7e7"
-          attach="material"
-          distort={0.3}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </mesh>
-    </Float>
-  )
-}
+const ThreeCanvas = dynamic(
+  () => import('./three-canvas'),
+  { 
+    ssr: false,
+    loading: () => <GradientFallback />
+  }
+)
 
 function GradientFallback() {
   return (
@@ -65,32 +54,25 @@ function ScrollIndicator() {
   )
 }
 
-export default function Hero() {
-  const [webglAvailable, setWebglAvailable] = useState(true)
+function checkWebGL(): boolean {
+  if (typeof window === 'undefined') return true
+  const canvas = document.createElement('canvas')
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+  return !!gl
+}
 
-  useEffect(() => {
-    const canvas = document.createElement('canvas')
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
-    setWebglAvailable(!!gl)
-  }, [])
+export default function Hero() {
+  const [webglAvailable] = useState(checkWebGL)
 
   return (
     <section 
       data-testid="hero-section"
-      className="min-h-screen flex flex-col justify-center items-center relative px-6 py-24 md:py-32 lg:py-40 gap-12 md:gap-16"
+      className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 py-24 md:py-32 lg:py-40 gap-12 md:gap-16 overflow-x-hidden"
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {webglAvailable ? (
           <Suspense fallback={<GradientFallback />}>
-            <Canvas 
-              camera={{ position: [0, 0, 5], fov: 45 }}
-              className="opacity-40"
-              fallback={<GradientFallback />}
-            >
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[10, 10, 5]} intensity={1} />
-              <FloatingShape />
-            </Canvas>
+            <ThreeCanvas />
           </Suspense>
         ) : (
           <div className="flex items-center justify-center h-full">
@@ -106,7 +88,7 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <motion.h1 
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
           style={{ color: 'var(--foreground)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -116,7 +98,7 @@ export default function Hero() {
         </motion.h1>
         
         <motion.p 
-          className="text-xl md:text-2xl lg:text-3xl font-medium tracking-wide"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium tracking-wide"
           style={{ color: 'var(--iris)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,14 +118,14 @@ export default function Hero() {
         </motion.p>
 
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 w-full px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           <a
             href="#projects"
-            className="px-8 py-4 rounded-full font-medium text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
             style={{ 
               backgroundColor: 'var(--iris)', 
               color: 'var(--base)',
@@ -155,7 +137,7 @@ export default function Hero() {
           </a>
           <a
             href={`mailto:${profile.email}`}
-            className="px-8 py-4 rounded-full font-medium text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
             style={{ 
               backgroundColor: 'transparent', 
               color: 'var(--foreground)',
