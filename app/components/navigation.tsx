@@ -135,7 +135,7 @@ export default function Navigation() {
                   e.preventDefault()
                   scrollToSection('hero')
                 }}
-                className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
                 style={{ color: 'var(--foreground)' }}
               >
                 {profile.name.split(' ')[0]}
@@ -155,6 +155,7 @@ export default function Navigation() {
                       className={`
                         px-4 py-2 rounded-lg text-sm font-medium
                         transition-all duration-200 cursor-pointer
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]
                         ${activeSection === item.id
                           ? 'bg-[var(--iris)]/10 text-[var(--iris)]'
                           : 'text-[var(--subtle)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]'
@@ -172,7 +173,7 @@ export default function Navigation() {
               <button
                 data-testid="hamburger-button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer"
+                className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 style={{ color: 'var(--foreground)' }}
                 aria-label={isOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isOpen}
@@ -224,6 +225,7 @@ export default function Navigation() {
                         className={`
                           block px-4 py-3 rounded-xl text-base font-medium
                           transition-all duration-200 cursor-pointer
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]
                           ${activeSection === item.id 
                             ? 'bg-[var(--iris)]/10 text-[var(--iris)]' 
                             : 'text-[var(--subtle)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]'

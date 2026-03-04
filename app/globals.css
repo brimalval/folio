@@ -133,6 +133,21 @@ body {
   @keyframes float {
     0%, 100% { transform: none; }
   }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .hover\:scale-105:hover,
+  .hover\:scale-\[1\.02\]:hover,
+  [class*="hover:scale"] {
+    transform: none !important;
+  }
 }
 
 /* Ensure animations work smoothly */

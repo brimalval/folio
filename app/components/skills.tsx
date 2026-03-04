@@ -86,7 +86,8 @@ export default function Skills() {
                     <motion.span
                       key={skill.name}
                       data-testid={`skill-tag-${skill.name}`}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 hover:scale-105"
+                      tabIndex={0}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] focus-visible:scale-105"
                       style={{
                         backgroundColor: 'var(--surface)',
                         color: 'var(--foreground)',
@@ -100,6 +101,7 @@ export default function Skills() {
                         duration: 0.4,
                       }}
                       whileHover={{ borderColor: 'var(--iris)' }}
+                      whileFocus={{ borderColor: 'var(--iris)' }}
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />
                       {skill.name}

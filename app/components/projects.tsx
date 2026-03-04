@@ -34,13 +34,15 @@ export default function Projects() {
             <motion.article
               key={project.id}
               data-testid={`project-card-${index}`}
-              className="group relative p-8 rounded-2xl transition-all duration-300 cursor-pointer hover:scale-[1.02]"
+              tabIndex={0}
+              className="group relative p-8 rounded-2xl transition-all duration-300 cursor-pointer hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] focus-visible:scale-[1.02]"
               style={{
                 backgroundColor: 'var(--surface)',
                 border: '1px solid var(--subtle)',
               }}
               variants={staggerItem}
               whileHover={{ borderColor: 'var(--iris)' }}
+              whileFocus={{ borderColor: 'var(--iris)' }}
             >
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">

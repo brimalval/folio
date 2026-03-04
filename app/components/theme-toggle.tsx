@@ -2,6 +2,7 @@
 
 /* eslint-disable react-hooks/set-state-in-effect */
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 function SunIcon() {
   return (
@@ -52,10 +53,20 @@ export default function ThemeToggle() {
     return savedTheme || 'dark'
   })
   const [mounted, setMounted] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
     /* eslint-disable react-hooks/set-state-in-effect */
     setMounted(true)
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+    
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   useEffect(() => {
@@ -71,7 +82,7 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer"
+        className="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
         style={{ color: 'var(--foreground)' }}
         aria-label="Toggle theme"
       >
@@ -83,12 +94,22 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer"
+      className="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
       style={{ color: 'var(--foreground)' }}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
       aria-pressed={theme === 'dark'}
     >
-      {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={theme}
+          initial={prefersReducedMotion ? false : { rotate: -90, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          exit={prefersReducedMotion ? undefined : { rotate: 90, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+        </motion.div>
+      </AnimatePresence>
     </button>
   )
 }
