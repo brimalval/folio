@@ -12,10 +12,10 @@ export default function Projects() {
     <section
       data-testid="projects-section"
       id="projects"
-      className="min-h-screen px-6 py-24 md:py-32 lg:py-40"
+      className="min-h-screen px-6 py-24 md:py-32"
     >
       <motion.div
-        className="max-w-6xl mx-auto"
+        className="max-w-5xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}

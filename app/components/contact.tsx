@@ -9,10 +9,10 @@ export default function Contact() {
   return (
     <section
       data-testid="contact-section"
-      className="min-h-screen flex flex-col justify-center items-center relative px-6 py-24 md:py-32 lg:py-40 gap-16"
+      className="min-h-screen flex flex-col justify-center items-center relative px-6 py-24 md:py-32 gap-16"
     >
       <motion.div
-        className="relative z-10 text-center w-full max-w-4xl mx-auto space-y-12 px-4"
+        className="relative z-10 text-center w-full max-w-5xl mx-auto space-y-12 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}

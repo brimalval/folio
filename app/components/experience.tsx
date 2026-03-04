@@ -12,10 +12,10 @@ export default function ExperienceSection() {
     <section
       data-testid="experience-section"
       id="experience"
-      className="min-h-screen px-6 py-24 md:py-32 lg:py-40"
+      className="min-h-screen px-6 py-24 md:py-32"
     >
       <motion.div
-        className="max-w-4xl mx-auto"
+        className="max-w-5xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}

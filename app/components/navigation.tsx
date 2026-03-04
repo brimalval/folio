@@ -52,6 +52,7 @@ export default function Navigation() {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
+      history.replaceState(null, '', `#${sectionId}`)
     }
     setIsOpen(false)
   }, [])
@@ -121,17 +122,24 @@ export default function Navigation() {
           }}
         >
           <div className="flex items-center justify-between">
-            <a
-              href="#hero"
-              onClick={(e) => {
-                e.preventDefault()
-                scrollToSection('hero')
-              }}
-              className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity"
-              style={{ color: 'var(--foreground)' }}
-            >
-              {profile.name.split(' ')[0]}
-            </a>
+            <div className="flex items-center gap-3">
+              <img
+                src={profile.avatar}
+                alt={`${profile.name} avatar`}
+                className="w-8 h-8 rounded-full object-cover"
+              />
+              <a
+                href="#hero"
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollToSection('hero')
+                }}
+                className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                style={{ color: 'var(--foreground)' }}
+              >
+                {profile.name.split(' ')[0]}
+              </a>
+            </div>
 
             <ul className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (

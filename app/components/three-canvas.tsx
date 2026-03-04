@@ -7,7 +7,7 @@ function FloatingShape() {
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
       <mesh scale={1.2}>
-        <icosahedronGeometry args={[1, 2]} />
+        <tetrahedronGeometry args={[1, 0]} />
         <MeshDistortMaterial
           color="#c4a7e7"
           attach="material"
@@ -15,6 +15,7 @@ function FloatingShape() {
           speed={2}
           roughness={0.2}
           metalness={0.8}
+          wireframe={true}
         />
       </mesh>
     </Float>

@@ -4,6 +4,21 @@ import { motion } from 'motion/react'
 import skills from '@/data/skills.json'
 import { fadeInUp, staggerContainer, staggerItem, viewportConfig, getStaggerDelay } from '@/lib/animations/variants'
 import type { Skill } from '@/types/portfolio'
+import { getSkillIcon } from '@/lib/icon-mapping'
+import {
+  FileCode2,
+  Atom,
+  Terminal,
+  Database,
+  Cloud,
+  GitBranch,
+  Palette,
+  Layout,
+  Zap,
+  Shield,
+  Code,
+  Code2,
+} from 'lucide-react'
 
 const categoryLabels: Record<string, string> = {
   frontend: 'Frontend',
@@ -33,10 +48,10 @@ export default function Skills() {
     <section
       data-testid="skills-section"
       id="skills"
-      className="min-h-screen px-6 py-24 md:py-32 lg:py-40"
+      className="min-h-screen px-6 py-24 md:py-32"
     >
       <motion.div
-        className="max-w-6xl mx-auto"
+        className="max-w-5xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
@@ -65,28 +80,32 @@ export default function Skills() {
                 {categoryLabels[category] || category}
               </h3>
               <div className="flex flex-wrap gap-3">
-                {groupedSkills[category].map((skill, skillIndex) => (
-                  <motion.span
-                    key={skill.name}
-                    data-testid={`skill-tag-${skill.name}`}
-                    className="px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 hover:scale-105"
-                    style={{
-                      backgroundColor: 'var(--surface)',
-                      color: 'var(--foreground)',
-                      border: '1px solid var(--subtle)',
-                    }}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      delay: getStaggerDelay(categoryIndex * 3 + skillIndex, 0.05),
-                      duration: 0.4,
-                    }}
-                    whileHover={{ borderColor: 'var(--iris)' }}
-                  >
-                    {skill.name}
-                  </motion.span>
-                ))}
+                {groupedSkills[category].map((skill, skillIndex) => {
+                  const Icon = getSkillIcon(skill.name)
+                  return (
+                    <motion.span
+                      key={skill.name}
+                      data-testid={`skill-tag-${skill.name}`}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 hover:scale-105"
+                      style={{
+                        backgroundColor: 'var(--surface)',
+                        color: 'var(--foreground)',
+                        border: '1px solid var(--subtle)',
+                      }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        delay: getStaggerDelay(categoryIndex * 3 + skillIndex, 0.05),
+                        duration: 0.4,
+                      }}
+                      whileHover={{ borderColor: 'var(--iris)' }}
+                    >
+                      <Icon className="w-4 h-4 flex-shrink-0" />
+                      {skill.name}
+                    </motion.span>
+                  )
+                })}
               </div>
             </motion.div>
           ))}
