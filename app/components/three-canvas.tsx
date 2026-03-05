@@ -40,8 +40,8 @@ function ParticleField({ mousePosition, reducedMotion }: { mousePosition: { x: n
     if (!pointsRef.current || reducedMotion) return
     pointsRef.current.rotation.y = clock.elapsedTime * 0.015
     pointsRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.01) * 0.05
-    pointsRef.current.position.x += (mousePosition.x * 0.5 - pointsRef.current.position.x) * 0.05
-    pointsRef.current.position.y += (-mousePosition.y * 0.3 - pointsRef.current.position.y) * 0.05
+    pointsRef.current.position.x += (mousePosition.x * 0.8 - pointsRef.current.position.x) * 0.08
+    pointsRef.current.position.y += (-mousePosition.y * 0.5 - pointsRef.current.position.y) * 0.08
   })
 
   return (
@@ -96,7 +96,7 @@ export default function ThreeCanvas() {
     <Canvas
       camera={{ position: [0, 0, 5], fov: 60 }}
       dpr={[1, 1.5]}
-      className="opacity-50"
+      className="opacity-60"
     >
       <ParticleField mousePosition={mousePosition} reducedMotion={prefersReducedMotion} />
     </Canvas>

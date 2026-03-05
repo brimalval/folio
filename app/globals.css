@@ -97,6 +97,14 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Hide native scrollbar */
+html {
+  scrollbar-width: none; /* Firefox */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
