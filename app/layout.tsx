@@ -10,7 +10,8 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Brian Valencia — Full-Stack Engineer",
-  description: "Full-stack engineer building well-crafted digital products. Based in the Philippines.",
+  description:
+    "Full-stack engineer building well-crafted digital products. Based in the Philippines.",
 };
 
 export default function RootLayout({
@@ -33,11 +34,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${outfit.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${outfit.variable} antialiased`}>{children}</body>
     </html>
   );
 }

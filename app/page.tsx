@@ -5,10 +5,12 @@ import Projects from "./components/projects";
 import Skills from "./components/skills";
 import Experience from "./components/experience";
 import Contact from "./components/contact";
+import ReactLenis from "lenis/react";
 
 export default function Home() {
   return (
     <>
+      <ReactLenis root options={{ allowNestedScroll: true }} />
       <Navigation />
       <main>
         <div id="hero">
