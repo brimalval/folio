@@ -1,7 +1,6 @@
 'use client'
 
-/* eslint-disable react-hooks/set-state-in-effect */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useSyncExternalStore } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 function SunIcon() {
@@ -46,34 +45,33 @@ function MoonIcon() {
   )
 }
 
+const noopSubscribe = () => () => {}
+
+function useMediaQuery(query: string) {
+  return useSyncExternalStore(
+    (callback) => {
+      const mq = window.matchMedia(query)
+      mq.addEventListener('change', callback)
+      return () => mq.removeEventListener('change', callback)
+    },
+    () => window.matchMedia(query).matches,
+    () => false
+  )
+}
+
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window === 'undefined') return 'dark'
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
     return savedTheme || 'dark'
   })
-  const [mounted, setMounted] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const mounted = useSyncExternalStore(noopSubscribe, () => true, () => false)
 
   useEffect(() => {
-    /* eslint-disable react-hooks/set-state-in-effect */
-    setMounted(true)
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-    }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
-
-  useEffect(() => {
-    const htmlElement = document.documentElement
-    htmlElement.setAttribute('data-theme', theme)
+    document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem('theme', theme)
-  }, [theme, mounted])
+  }, [theme])
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))

@@ -4,7 +4,8 @@ import { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const PARTICLE_COUNT = 350
+const MOBILE_PARTICLE_COUNT = 150
+const DESKTOP_PARTICLE_COUNT = 350
 
 const colorPalette = [
   new THREE.Color('#c4a7e7'),
@@ -12,10 +13,10 @@ const colorPalette = [
   new THREE.Color('#ebbcba'),
 ]
 
-function createParticleData() {
-  const positions = new Float32Array(PARTICLE_COUNT * 3)
-  const colors = new Float32Array(PARTICLE_COUNT * 3)
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
+function createParticleData(count: number) {
+  const positions = new Float32Array(count * 3)
+  const colors = new Float32Array(count * 3)
+  for (let i = 0; i < count; i++) {
     positions[i * 3] = (Math.random() - 0.5) * 12
     positions[i * 3 + 1] = (Math.random() - 0.5) * 8
     positions[i * 3 + 2] = (Math.random() - 0.5) * 6
@@ -27,10 +28,13 @@ function createParticleData() {
   return { positions, colors }
 }
 
-const particleData = createParticleData()
+const mobileParticleData = createParticleData(MOBILE_PARTICLE_COUNT)
+const desktopParticleData = createParticleData(DESKTOP_PARTICLE_COUNT)
 
 function ParticleField({ mousePosition, reducedMotion }: { mousePosition: { x: number, y: number }, reducedMotion: boolean }) {
   const pointsRef = useRef<THREE.Points>(null)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const particleData = isMobile ? mobileParticleData : desktopParticleData
 
   useFrame(({ clock }) => {
     if (!pointsRef.current || reducedMotion) return
@@ -91,6 +95,7 @@ export default function ThreeCanvas() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 60 }}
+      dpr={[1, 1.5]}
       className="opacity-50"
     >
       <ParticleField mousePosition={mousePosition} reducedMotion={prefersReducedMotion} />

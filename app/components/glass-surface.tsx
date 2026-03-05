@@ -49,7 +49,6 @@ export const GlassSurface = React.forwardRef<HTMLDivElement, GlassSurfaceProps>(
     // Dark mode: use lower opacity for subtlety
     const lightBg = `rgba(var(--nav-bg-rgb, 250, 244, 237), ${config.lightOpacity})`
     const darkBg = `rgba(var(--nav-bg-rgb, 25, 23, 36), ${config.darkOpacity})`
-    const borderColor = `rgba(var(--border-rgb, 0, 0, 0), ${config.borderOpacity})`
 
     // Frosted highlight: subtle top-edge inner glow
     const frostHighlight = `inset 0 1px 0 rgba(255, 255, 255, 0.1)`
