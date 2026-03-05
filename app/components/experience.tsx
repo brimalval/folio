@@ -31,7 +31,7 @@ export default function ExperienceSection() {
     <section
       data-testid="experience-section"
       id="experience"
-      className="px-6 py-20 md:py-28"
+      className="section-experience px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"

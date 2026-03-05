@@ -42,7 +42,7 @@ export default function Skills() {
     <section
       data-testid="skills-section"
       id="skills"
-      className="px-6 py-20 md:py-28"
+      className="section-skills px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"
