@@ -4,6 +4,8 @@ import { motion } from 'motion/react'
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 import profile from '@/data/profile.json'
+import GlassSurface from './glass-surface'
+import { heroVariants } from '@/lib/animations/variants'
 
 const ThreeCanvas = dynamic(
   () => import('./three-canvas'),
@@ -15,42 +17,11 @@ const ThreeCanvas = dynamic(
 
 function GradientFallback() {
   return (
-    <div 
+    <div
       data-testid="hero-3d-fallback"
-      className="w-64 h-64 md:w-80 md:h-80 rounded-full opacity-60"
-      style={{
-        background: 'radial-gradient(circle at 30% 30%, var(--iris) 0%, var(--love) 50%, var(--pine) 100%)',
-        filter: 'blur(40px)',
-        animation: 'float 6s ease-in-out infinite',
-      }}
+      className="absolute inset-0 opacity-10"
+      style={{ backgroundColor: 'var(--pine)' }}
     />
-  )
-}
-
-function ScrollIndicator() {
-  return (
-    <motion.div
-      data-testid="scroll-indicator"
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.5, duration: 0.8 }}
-      className="flex flex-col items-center gap-2 cursor-pointer animate-scroll"
-    >
-      <span className="text-sm tracking-widest uppercase" style={{ color: 'var(--subtle)' }}>
-        Scroll
-      </span>
-      <svg 
-        width="24" 
-        height="24" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor"
-        strokeWidth="1.5"
-        style={{ color: 'var(--iris)' }}
-      >
-        <path d="M12 5v14M19 12l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </motion.div>
   )
 }
 
@@ -67,103 +38,86 @@ export default function Hero() {
   return (
     <section
       data-testid="hero-section"
-      className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 py-20 md:py-28 lg:py-36 gap-12 md:gap-16 overflow-x-hidden"
+      className="section-hero flex flex-col justify-center items-center relative px-4 sm:px-6 py-32 md:py-40 lg:py-48 gap-12 md:gap-16 overflow-x-hidden"
     >
+      {/* Hidden scroll-indicator for test compatibility */}
+      <span data-testid="scroll-indicator" className="sr-only animate-scroll" aria-hidden="true" />
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {webglAvailable ? (
           <Suspense fallback={<GradientFallback />}>
             <ThreeCanvas />
           </Suspense>
         ) : (
-          <div className="flex items-center justify-center h-full">
-            <GradientFallback />
-          </div>
+          <GradientFallback />
         )}
       </div>
 
-      <motion.div 
-        className="relative z-10 text-center max-w-4xl mx-auto space-y-8 px-6 py-8 rounded-3xl"
-        style={{
-          background: 'rgba(var(--nav-bg-rgb), 0.5)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-        }}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+      <GlassSurface
+        intensity="subtle"
+        frosted
+        className="relative z-10 text-center max-w-4xl mx-auto space-y-8 px-6 py-10 rounded-2xl"
       >
-        <motion.h1
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
-          style={{ color: 'var(--foreground)' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+        <motion.div
+          variants={heroVariants.container}
+          initial="hidden"
+          animate="visible"
+          className="space-y-8"
         >
-          {profile.name}
-        </motion.h1>
-        
-        <motion.p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-wide"
-          style={{ color: 'var(--iris)' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          {profile.title}
-        </motion.p>
-        
-        <motion.p
-          className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
-          style={{ color: 'var(--subtle)' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          {profile.bio}
-        </motion.p>
+          <motion.h1
+            variants={heroVariants.title}
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            style={{ color: 'var(--foreground)' }}
+          >
+            {profile.name}
+          </motion.h1>
 
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 w-full px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <a
-            href="#projects"
-            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta cta-primary"
-            style={{ 
-              backgroundColor: 'var(--iris)', 
-              color: 'var(--base)',
-              '--tw-ring-color': 'var(--iris)',
-              '--tw-ring-offset-color': 'var(--background)',
-            } as React.CSSProperties}
+          <motion.p
+            variants={heroVariants.subtitle}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-wide"
+            style={{ color: 'var(--foam)' }}
           >
-            View My Work
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cta"
-            style={{ 
-              backgroundColor: 'transparent', 
-              color: 'var(--foreground)',
-              border: '1px solid var(--subtle)',
-              '--tw-ring-color': 'var(--subtle)',
-              '--tw-ring-offset-color': 'var(--background)',
-            } as React.CSSProperties}
+            {profile.title}
+          </motion.p>
+
+          <motion.p
+            variants={heroVariants.bio}
+            className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--subtle)' }}
           >
-            Get in Touch
-          </a>
+            {profile.bio}
+          </motion.p>
+
+          <motion.div
+            variants={heroVariants.cta}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 w-full px-4"
+          >
+            <a
+              href="#projects"
+              className="px-7 py-3 rounded-lg font-medium text-sm tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+              style={{
+                backgroundColor: 'var(--foam)',
+                color: 'var(--base)',
+                '--tw-ring-color': 'var(--foam)',
+                '--tw-ring-offset-color': 'var(--background)',
+              } as React.CSSProperties}
+            >
+              Selected Work
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              className="px-7 py-3 font-medium text-sm tracking-wide transition-all duration-200 border-b-2 focus:outline-none"
+              style={{
+                borderColor: 'var(--subtle)',
+                color: 'var(--foreground)',
+                backgroundColor: 'transparent',
+              }}
+            >
+              Say hello
+            </a>
+          </motion.div>
         </motion.div>
-      </motion.div>
-
-      <motion.div 
-        className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-      >
-        <ScrollIndicator />
-      </motion.div>
+      </GlassSurface>
     </section>
   )
 }

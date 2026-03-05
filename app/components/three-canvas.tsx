@@ -1,82 +1,99 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { Float, MeshDistortMaterial } from '@react-three/drei'
+import { useRef, useState, useEffect } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import * as THREE from 'three'
 
-function FloatingShape({ wireframeColor }: { wireframeColor: string }) {
+const PARTICLE_COUNT = 350
+
+const colorPalette = [
+  new THREE.Color('#c4a7e7'),
+  new THREE.Color('#9ccfd8'),
+  new THREE.Color('#ebbcba'),
+]
+
+function createParticleData() {
+  const positions = new Float32Array(PARTICLE_COUNT * 3)
+  const colors = new Float32Array(PARTICLE_COUNT * 3)
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 12
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 8
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 6
+    const color = colorPalette[Math.floor(Math.random() * colorPalette.length)]
+    colors[i * 3] = color.r
+    colors[i * 3 + 1] = color.g
+    colors[i * 3 + 2] = color.b
+  }
+  return { positions, colors }
+}
+
+const particleData = createParticleData()
+
+function ParticleField({ mousePosition, reducedMotion }: { mousePosition: { x: number, y: number }, reducedMotion: boolean }) {
+  const pointsRef = useRef<THREE.Points>(null)
+
+  useFrame(({ clock }) => {
+    if (!pointsRef.current || reducedMotion) return
+    pointsRef.current.rotation.y = clock.elapsedTime * 0.015
+    pointsRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.01) * 0.05
+    pointsRef.current.position.x += (mousePosition.x * 0.5 - pointsRef.current.position.x) * 0.05
+    pointsRef.current.position.y += (-mousePosition.y * 0.3 - pointsRef.current.position.y) * 0.05
+  })
+
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
-      <mesh scale={1.2}>
-        <torusKnotGeometry args={[1, 0.3, 128, 32, 2, 3]} />
-        <MeshDistortMaterial
-          color={wireframeColor}
-          attach="material"
-          distort={0.3}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-          wireframe={true}
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[particleData.positions, 3]}
         />
-      </mesh>
-    </Float>
+        <bufferAttribute
+          attach="attributes-color"
+          args={[particleData.colors, 3]}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.025}
+        vertexColors
+        transparent
+        opacity={0.7}
+        sizeAttenuation
+      />
+    </points>
   )
 }
 
 export default function ThreeCanvas() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const [wireframeColor, setWireframeColor] = useState('#e0def4')
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  })
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPrefersReducedMotion(mediaQuery.matches)
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-    }
-
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches)
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   useEffect(() => {
-    const updateColor = () => {
-      const computedStyle = getComputedStyle(document.documentElement)
-      const color = computedStyle.getPropertyValue('--wireframe').trim()
-      setWireframeColor(color || '#e0def4')
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: -(e.clientY / window.innerHeight) * 2 + 1,
+      })
     }
-
-    updateColor()
-    const observer = new MutationObserver(updateColor)
-    observer.observe(document.documentElement, { attributes: true })
-
-    return () => observer.disconnect()
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 45 }}
-      className="opacity-40"
+      camera={{ position: [0, 0, 5], fov: 60 }}
+      className="opacity-50"
     >
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      {prefersReducedMotion ? (
-        <mesh scale={1.2}>
-          <torusKnotGeometry args={[1, 0.3, 128, 32, 2, 3]} />
-          <MeshDistortMaterial
-            color={wireframeColor}
-            attach="material"
-            distort={0.3}
-            speed={2}
-            roughness={0.2}
-            metalness={0.8}
-            wireframe={true}
-          />
-        </mesh>
-      ) : (
-        <FloatingShape wireframeColor={wireframeColor} />
-      )}
+      <ParticleField mousePosition={mousePosition} reducedMotion={prefersReducedMotion} />
     </Canvas>
   )
 }
