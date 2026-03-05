@@ -2,111 +2,102 @@
 
 import { motion } from 'motion/react'
 import experience from '@/data/experience.json'
-import { fadeInUp, staggerContainer, staggerItem, viewportConfig } from '@/lib/animations/variants'
-import type { Experience } from '@/types/portfolio'
+import education from '@/data/education.json'
+import { experienceVariants, viewportConfig } from '@/lib/animations/variants'
+import type { Experience, Education } from '@/types/portfolio'
+
+const companyAccents: Record<string, string> = {
+  'Focus Global Inc.': 'var(--foam)',
+  'Netzwelt Inc.': 'var(--pine)',
+  education: 'var(--gold)',
+}
+
+const rewrittenDescriptions: Record<string, string> = {
+  'focus-global-3':
+    'Led frontend and backend development of OMNI Platform — an enterprise suite managing 25+ brands across 3 SE Asian markets. Shipped new e-commerce workflows, supply chain tooling, and promotional automation systems used daily by operations teams.',
+  'focus-global-2':
+    'Expanded platform capabilities with new order management modules and cross-border inventory features. Contributed to architecture decisions that reduced deployment complexity and improved team velocity.',
+  'focus-global':
+    'Built initial production-ready modules for the OMNI platform. Shipped real features alongside senior engineers while ramping on enterprise-scale full-stack development.',
+  'netzwelt-internship':
+    '2-month intensive internship. Shipped working features in C# and ASP.NET MVC, contributing to production codebase from week one.',
+}
 
 export default function ExperienceSection() {
   const typedExperience = experience as Experience[]
+  const typedEducation = (education as Education[])[0]
 
   return (
     <section
       data-testid="experience-section"
       id="experience"
-      className="min-h-screen px-6 py-20 md:py-28"
+      className="px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        variants={staggerContainer}
+        variants={experienceVariants.container}
       >
         <motion.h2
-          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16 text-center"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16"
           style={{ color: 'var(--foreground)' }}
-          variants={fadeInUp}
+          variants={experienceVariants.heading}
         >
-          Experience
+          Where I&apos;ve Worked
         </motion.h2>
 
-        <div className="relative">
-          <div
-            className="absolute left-0 top-0 bottom-0 w-px"
-            style={{ background: 'linear-gradient(to bottom, var(--iris), transparent)' }}
-          />
+        <div className="space-y-8">
+          {typedExperience.map((item, index) => {
+            const accentColor = companyAccents[item.company] ?? 'var(--iris)'
+            const description = rewrittenDescriptions[item.id] ?? item.description
 
-          <div className="space-y-10 pl-8">
-            {typedExperience.slice(0, 3).map((item, index) => (
+            return (
               <motion.div
                 key={item.id}
                 data-testid={`experience-item-${index}`}
-                className="relative"
-                variants={staggerItem}
+                variants={experienceVariants.item}
+                className="grid md:grid-cols-[1fr_3fr] gap-6 border-l-4 pl-6 py-4"
+                style={{ borderLeftColor: accentColor }}
               >
-                <div
-                  className="absolute -left-8 top-2 w-3 h-3 rounded-full"
-                  style={{
-                    backgroundColor: 'var(--iris)',
-                    boxShadow: '0 0 0 4px var(--surface), 0 0 0 6px var(--iris)',
-                  }}
-                />
+                <div className="flex flex-col gap-1">
+                  <p className="text-sm font-mono" style={{ color: 'var(--muted)' }}>
+                    {item.startDate} — {item.endDate ?? 'Present'}
+                  </p>
+                  <p className="text-base font-semibold" style={{ color: accentColor }}>
+                    {item.company}
+                  </p>
+                  {item.location && (
+                    <p className="text-xs" style={{ color: 'var(--subtle)' }}>
+                      {item.location}
+                    </p>
+                  )}
+                </div>
 
-                <div
-                  className="p-6 rounded-xl transition-all duration-300 card-hover"
-                  style={{
-                    backgroundColor: 'var(--surface)',
-                    border: '1px solid var(--subtle)',
-                  }}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                    <div>
-                      <h3
-                        className="text-xl md:text-2xl font-semibold"
-                        style={{ color: 'var(--foreground)' }}
-                      >
-                        {item.position}
-                      </h3>
-                      <p
-                        className="text-base md:text-lg"
-                        style={{ color: 'var(--iris)' }}
-                      >
-                        {item.company}
-                      </p>
-                    </div>
-                    <div className="sm:text-right flex-shrink-0">
-                      <p
-                        className="text-sm md:text-base"
-                        style={{ color: 'var(--muted)' }}
-                      >
-                        {item.startDate} — {item.endDate || 'Present'}
-                      </p>
-                      {item.location && (
-                        <p
-                          className="text-sm"
-                          style={{ color: 'var(--subtle)' }}
-                        >
-                          {item.location}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
+                <div>
+                  <h3
+                    className="text-lg md:text-xl font-semibold mb-2"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    {item.position}
+                  </h3>
                   <p
-                    className="text-base leading-relaxed mb-4"
+                    className="text-sm leading-relaxed mb-4"
                     style={{ color: 'var(--subtle)' }}
                   >
-                    {item.description}
+                    {description}
                   </p>
 
                   {item.technologies && (
                     <div className="flex flex-wrap gap-2">
-                      {item.technologies.slice(0, 6).map((tech) => (
+                      {item.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 text-xs rounded"
+                          className="text-xs font-mono px-1.5 py-0.5 rounded"
                           style={{
-                            backgroundColor: 'var(--overlay)',
                             color: 'var(--muted)',
+                            border: '1px solid var(--subtle)',
                           }}
                         >
                           {tech}
@@ -116,8 +107,42 @@ export default function ExperienceSection() {
                   )}
                 </div>
               </motion.div>
-            ))}
-          </div>
+            )
+          })}
+
+          <motion.div
+            data-testid="experience-item-4"
+            variants={experienceVariants.item}
+            className="grid md:grid-cols-[1fr_3fr] gap-6 border-l-4 pl-6 py-4"
+            style={{ borderLeftColor: companyAccents.education }}
+          >
+            <div className="flex flex-col gap-1">
+              <p className="text-sm font-mono" style={{ color: 'var(--muted)' }}>
+                Education
+              </p>
+              <p className="text-base font-semibold" style={{ color: companyAccents.education }}>
+                {typedEducation.institution}
+              </p>
+              <p className="text-xs" style={{ color: 'var(--subtle)' }}>
+                {typedEducation.location}
+              </p>
+            </div>
+
+            <div>
+              <h3
+                className="text-lg md:text-xl font-semibold mb-2"
+                style={{ color: 'var(--foreground)' }}
+              >
+                {typedEducation.degree}
+              </h3>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: 'var(--subtle)' }}
+              >
+                BS Computer Science — Technological Institute of the Philippines · Magna Cum Laude
+              </p>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

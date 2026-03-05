@@ -2,23 +2,9 @@
 
 import { motion } from 'motion/react'
 import skills from '@/data/skills.json'
-import { fadeInUp, staggerContainer, staggerItem, viewportConfig, getStaggerDelay } from '@/lib/animations/variants'
+import { skillsVariants, viewportConfig } from '@/lib/animations/variants'
 import type { Skill } from '@/types/portfolio'
 import { getSkillIcon } from '@/lib/icon-mapping'
-import {
-  FileCode2,
-  Atom,
-  Terminal,
-  Database,
-  Cloud,
-  GitBranch,
-  Palette,
-  Layout,
-  Zap,
-  Shield,
-  Code,
-  Code2,
-} from 'lucide-react'
 
 const categoryLabels: Record<string, string> = {
   frontend: 'Frontend',
@@ -30,9 +16,17 @@ const categoryLabels: Record<string, string> = {
 
 const categoryOrder = ['frontend', 'backend', 'database', 'devops', 'tool']
 
+const categoryAccents: Record<string, string> = {
+  frontend: 'var(--foam)',
+  backend: 'var(--pine)',
+  database: 'var(--gold)',
+  devops: 'var(--rose)',
+  tool: 'var(--iris)',
+}
+
 export default function Skills() {
   const typedSkills = skills as Skill[]
-  
+
   const groupedSkills = typedSkills.reduce((acc, skill) => {
     const category = skill.category
     if (!acc[category]) {
@@ -48,69 +42,66 @@ export default function Skills() {
     <section
       data-testid="skills-section"
       id="skills"
-      className="min-h-screen px-6 py-20 md:py-28"
+      className="px-6 py-20 md:py-28"
     >
       <motion.div
         className="max-w-5xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        variants={staggerContainer}
+        variants={skillsVariants.container}
       >
         <motion.h2
           className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-16 text-center"
           style={{ color: 'var(--foreground)' }}
-          variants={fadeInUp}
+          variants={skillsVariants.heading}
         >
-          Skills & Technologies
+          Toolkit
         </motion.h2>
 
         <div className="grid gap-10 md:gap-12">
-          {sortedCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category}
-              data-testid={`skill-category-${category}`}
-              variants={staggerItem}
-              custom={categoryIndex}
-            >
-              <h3
-                className="text-lg md:text-xl font-semibold mb-6"
-                style={{ color: 'var(--iris)' }}
+          {sortedCategories.map((category) => {
+            const accent = categoryAccents[category] ?? 'var(--iris)'
+            return (
+              <motion.div
+                key={category}
+                data-testid={`skill-category-${category}`}
+                variants={skillsVariants.category}
               >
-                {categoryLabels[category] || category}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {groupedSkills[category].map((skill, skillIndex) => {
-                  const Icon = getSkillIcon(skill.name)
-                  return (
-                    <motion.span
-                      key={skill.name}
-                      data-testid={`skill-tag-${skill.name}`}
-                      tabIndex={0}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-200 card-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                      style={{
-                        backgroundColor: 'var(--surface)',
-                        color: 'var(--foreground)',
-                        border: '1px solid var(--subtle)',
-                      }}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        delay: getStaggerDelay(categoryIndex * 3 + skillIndex, 0.05),
-                        duration: 0.4,
-                      }}
-                      whileHover={{ borderColor: 'var(--iris)' }}
-                      whileFocus={{ borderColor: 'var(--iris)' }}
-                    >
-                      <Icon className="w-4 h-4 flex-shrink-0" />
-                      {skill.name}
-                    </motion.span>
-                  )
-                })}
-              </div>
-            </motion.div>
-          ))}
+                <h3
+                  className="text-xs uppercase tracking-widest font-semibold mb-4"
+                  style={{ color: accent }}
+                >
+                  {categoryLabels[category] || category}
+                </h3>
+                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-3">
+                  {groupedSkills[category].map((skill) => {
+                    const Icon = getSkillIcon(skill.name)
+                    return (
+                      <motion.div
+                        key={skill.name}
+                        data-testid={`skill-tag-${skill.name}`}
+                        className="flex flex-col items-center gap-1.5 px-2 py-3 rounded-lg"
+                        style={{ backgroundColor: 'var(--surface)' }}
+                        variants={skillsVariants.item}
+                      >
+                        <Icon
+                          className="w-6 h-6 flex-shrink-0"
+                          style={{ color: accent }}
+                        />
+                        <span
+                          className="text-xs text-center"
+                          style={{ color: 'var(--subtle)' }}
+                        >
+                          {skill.name}
+                        </span>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </motion.div>
     </section>

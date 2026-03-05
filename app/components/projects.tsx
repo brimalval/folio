@@ -1,16 +1,20 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import projects from '@/data/projects.json'
 import { projectVariants, viewportConfig } from '@/lib/animations/variants'
 import type { Project } from '@/types/portfolio'
+import ProjectDetail from './project-detail'
 
 export default function Projects() {
   const typedProjects = projects as Project[]
   const accentColors = ['var(--foam)', 'var(--pine)', 'var(--gold)']
   const categoryLabels = ['Enterprise Platform', 'HR Automation', 'AI Assistant']
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   return (
+    <>
     <section
       data-testid="projects-section"
       id="projects"
@@ -49,6 +53,8 @@ export default function Projects() {
                   className="group py-12 px-6 md:px-8 cursor-pointer transition-all duration-300 border-b focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   style={{ borderColor: 'rgba(var(--border-rgb, 128, 128, 128), 0.15)' }}
                   variants={projectVariants.cardLeft}
+                  layoutId={`project-card-${project.id}`}
+                  onClick={() => setSelectedId(project.id)}
                 >
                   <div className="grid md:grid-cols-[3fr_1fr] gap-8 items-start">
                     <div>
@@ -58,12 +64,13 @@ export default function Projects() {
                       >
                         {projectNumber} · {categoryLabel}
                       </div>
-                      <h3
+                      <motion.h3
+                        layoutId={`project-title-${project.id}`}
                         className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
                         style={{ color: 'var(--foreground)' }}
                       >
                         {project.title}
-                      </h3>
+                      </motion.h3>
                       <p
                         className="text-base leading-relaxed mb-6"
                         style={{ color: 'var(--subtle)' }}
@@ -115,6 +122,8 @@ export default function Projects() {
                   className="group py-12 px-6 md:px-8 cursor-pointer transition-all duration-300 border-b focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   style={{ borderColor: 'rgba(var(--border-rgb, 128, 128, 128), 0.15)' }}
                   variants={projectVariants.cardRight}
+                  layoutId={`project-card-${project.id}`}
+                  onClick={() => setSelectedId(project.id)}
                 >
                   <div className="grid md:grid-cols-[1fr_2fr] gap-8">
                     <div>
@@ -140,12 +149,13 @@ export default function Projects() {
                       )}
                     </div>
                     <div>
-                      <h3
+                      <motion.h3
+                        layoutId={`project-title-${project.id}`}
                         className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
                         style={{ color: 'var(--foreground)' }}
                       >
                         {project.title}
-                      </h3>
+                      </motion.h3>
                       <p
                         className="text-base leading-relaxed mb-6"
                         style={{ color: 'var(--subtle)' }}
@@ -182,6 +192,8 @@ export default function Projects() {
                 className="group py-12 px-6 md:px-8 cursor-pointer transition-all duration-300 border-b focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 style={{ borderColor: 'rgba(var(--border-rgb, 128, 128, 128), 0.15)' }}
                 variants={projectVariants.cardLeft}
+                layoutId={`project-card-${project.id}`}
+                onClick={() => setSelectedId(project.id)}
               >
                 <div className="mb-6">
                   <div
@@ -190,12 +202,13 @@ export default function Projects() {
                   >
                     {projectNumber} · {categoryLabel}
                   </div>
-                  <h3
+                  <motion.h3
+                    layoutId={`project-title-${project.id}`}
                     className="text-4xl md:text-5xl font-bold tracking-tight"
                     style={{ color: 'var(--foreground)' }}
                   >
                     {project.title}
-                  </h3>
+                  </motion.h3>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
@@ -243,6 +256,18 @@ export default function Projects() {
         </motion.div>
       </div>
     </section>
+    <AnimatePresence>
+      {selectedId && (
+        <ProjectDetail
+          key={selectedId}
+          selectedId={selectedId}
+          projects={typedProjects}
+          accentColors={accentColors}
+          onClose={() => setSelectedId(null)}
+        />
+      )}
+    </AnimatePresence>
+    </>
   )
 }
 
