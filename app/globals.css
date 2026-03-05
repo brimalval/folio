@@ -3,8 +3,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit);
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -48,6 +48,7 @@
   --iris: #907aa9;
   --foam: #56949f;
   --gold: #ea9d34;
+  --rose: #d7827e;
   --subtle: #797593;
   --muted: #9893a5;
   --surface: #fffaf3;
@@ -58,6 +59,11 @@
   --nav-bg-rgb: 250, 244, 237;
   --border-rgb: 0, 0, 0;
   --wireframe: #575279;
+  --accent-primary: var(--iris);
+  --accent-secondary: var(--foam);
+  --accent-warm: var(--rose);
+  --accent-highlight: var(--gold);
+  --accent-critical: var(--love);
 }
 
 [data-theme="dark"] {
@@ -67,6 +73,7 @@
   --iris: #c4a7e7;
   --foam: #9ccfd8;
   --gold: #f6c177;
+  --rose: #ebbcba;
   --subtle: #908caa;
   --muted: #6e6a86;
   --surface: #1f1d2e;
@@ -77,6 +84,11 @@
   --nav-bg-rgb: 25, 23, 36;
   --border-rgb: 255, 255, 255;
   --wireframe: #e0def4;
+  --accent-primary: var(--iris);
+  --accent-secondary: var(--foam);
+  --accent-warm: var(--rose);
+  --accent-highlight: var(--gold);
+  --accent-critical: var(--love);
 }
 
 body {
@@ -166,6 +178,30 @@ body::before {
   z-index: 9999;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Dark mode: slightly more visible grain for depth */
+[data-theme="dark"] body::before {
+  opacity: 0.05;
+}
+
+/* Grain overlay utility for specific containers */
+.grain-overlay {
+  position: relative;
+}
+
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .grain-overlay::after {
+  opacity: 0.05;
 }
 
 /* Section entrance with subtle character */
@@ -263,4 +299,53 @@ body::before {
   .card-hover:hover {
     transform: none;
   }
+}
+
+/* Section Color Temperature Shifts */
+/* Subtle background variations per section for editorial rhythm */
+
+/* Hero: Pure base background */
+.section-hero {
+  background-color: var(--background);
+}
+
+/* About: Slightly warmer (rose/pink tint) */
+[data-theme="light"] .section-about {
+  background-color: #fbf0eb;
+}
+
+[data-theme="dark"] .section-about {
+  background-color: #1d1b2e;
+}
+
+/* Projects: Slightly cooler (pine/foam tint) */
+[data-theme="light"] .section-projects {
+  background-color: #f4f7f4;
+}
+
+[data-theme="dark"] .section-projects {
+  background-color: #181c29;
+}
+
+/* Skills: Neutral base */
+.section-skills {
+  background-color: var(--background);
+}
+
+/* Experience: Slightly warmer (neutral-warm) */
+[data-theme="light"] .section-experience {
+  background-color: #faf4f0;
+}
+
+[data-theme="dark"] .section-experience {
+  background-color: #1c1c2e;
+}
+
+/* Contact: Slightly deeper/darker */
+[data-theme="light"] .section-contact {
+  background-color: #f7f0ed;
+}
+
+[data-theme="dark"] .section-contact {
+  background-color: #161420;
 }
