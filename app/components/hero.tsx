@@ -85,7 +85,7 @@ export default function Hero() {
             className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
             style={{ color: 'var(--subtle)' }}
           >
-            {profile.bio}
+            {"I build software that works quietly and well. Systems that solve problems without calling attention to themselves."}
           </motion.p>
 
           <motion.div

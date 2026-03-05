@@ -42,7 +42,7 @@ describe("Hero", () => {
       render(<Hero />);
       expect(
         screen.getByText(
-          /Full-stack Software Engineer with DevOps experience/i,
+          /I build software that works quietly and well/i,
         ),
       ).toBeInTheDocument();
     });
