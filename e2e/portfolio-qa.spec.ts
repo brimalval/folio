@@ -127,9 +127,10 @@ test.describe('Interaction Tests', () => {
   })
 
   test('project expansion — click opens detail, Escape closes', async ({ page }) => {
-    await page.locator('[data-testid="project-card-0"]').scrollIntoViewIfNeeded()
+    const projectCard = page.locator('[data-testid="project-card-0"]')
+    await projectCard.scrollIntoViewIfNeeded()
     await page.waitForTimeout(400)
-    await page.locator('[data-testid="project-card-0"]').click()
+    await projectCard.click()
     await page.waitForTimeout(600)
 
     const projectDetail = page.locator('[data-testid="project-detail"]')

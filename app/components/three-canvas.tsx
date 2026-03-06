@@ -1,11 +1,22 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, type MutableRefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 const MOBILE_PARTICLE_COUNT = 150;
-const DESKTOP_PARTICLE_COUNT = 350;
+const DESKTOP_PARTICLE_COUNT = 180;
+const CURSOR_REPULSION_RADIUS = 1.5;
+const CURSOR_REPULSION_STRENGTH = 0.65;
+const CURSOR_INTENSITY_EASE = 0.08;
+const PARTICLE_EASE = 0.12;
+
+type CursorState = {
+  x: number;
+  y: number;
+  active: boolean;
+  intensity: number;
+};
 
 const colorPalette = [
   new THREE.Color("#c4a7e7"),
@@ -32,30 +43,91 @@ const mobileParticleData = createParticleData(MOBILE_PARTICLE_COUNT);
 const desktopParticleData = createParticleData(DESKTOP_PARTICLE_COUNT);
 
 function ParticleField({
-  mousePosition,
+  cursorRef,
   reducedMotion,
 }: {
-  mousePosition: { x: number; y: number };
+  cursorRef: MutableRefObject<CursorState>;
   reducedMotion: boolean;
 }) {
   const pointsRef = useRef<THREE.Points>(null);
+  const positionsAttributeRef = useRef<THREE.BufferAttribute | null>(null);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const particleData = isMobile ? mobileParticleData : desktopParticleData;
+  const restPositionsRef = useRef<Float32Array>(
+    new Float32Array(particleData.positions),
+  );
 
   useFrame(({ clock }) => {
-    if (!pointsRef.current || reducedMotion) return;
-    pointsRef.current.rotation.y = clock.elapsedTime * 0.015;
-    pointsRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.01) * 0.05;
-    pointsRef.current.position.x +=
-      (mousePosition.x * 0.8 - pointsRef.current.position.x) * 0.08;
-    pointsRef.current.position.y +=
-      (-mousePosition.y * 0.5 - pointsRef.current.position.y) * 0.08;
+    if (!pointsRef.current || !positionsAttributeRef.current) return;
+    const points = pointsRef.current;
+    const positions = positionsAttributeRef.current.array as Float32Array;
+    const restPositions = restPositionsRef.current;
+    const cursor = cursorRef.current;
+
+    if (reducedMotion) {
+      cursor.active = false;
+      cursor.intensity = 0;
+      cursor.x = 0;
+      cursor.y = 0;
+
+      for (let i = 0; i < positions.length; i += 3) {
+        positions[i] = restPositions[i];
+        positions[i + 1] = restPositions[i + 1];
+        positions[i + 2] = restPositions[i + 2];
+      }
+
+      points.rotation.set(0, 0, 0);
+      positionsAttributeRef.current.needsUpdate = true;
+      return;
+    }
+
+    points.rotation.y = clock.elapsedTime * 0.015;
+    points.rotation.x = Math.sin(clock.elapsedTime * 0.01) * 0.05;
+
+    const targetIntensity = !cursor.active ? 0 : 1;
+    cursor.intensity += (targetIntensity - cursor.intensity) * CURSOR_INTENSITY_EASE;
+
+    const influence = cursor.intensity;
+    const hasInfluence = influence > 0.001;
+    const cursorWorldX = cursor.x * 6;
+    const cursorWorldY = cursor.y * 4;
+    const radiusSq = CURSOR_REPULSION_RADIUS * CURSOR_REPULSION_RADIUS;
+
+    for (let i = 0; i < positions.length; i += 3) {
+      const restX = restPositions[i];
+      const restY = restPositions[i + 1];
+      const restZ = restPositions[i + 2];
+      let targetX = restX;
+      let targetY = restY;
+
+      if (hasInfluence) {
+        const dx = restX - cursorWorldX;
+        const dy = restY - cursorWorldY;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < radiusSq) {
+          const distance = Math.sqrt(distSq);
+          const safeDistance = distance || 0.0001;
+          const falloff = 1 - distance / CURSOR_REPULSION_RADIUS;
+          const repulsion = CURSOR_REPULSION_STRENGTH * falloff * influence;
+          targetX = restX + (dx / safeDistance) * repulsion;
+          targetY = restY + (dy / safeDistance) * repulsion;
+        }
+      }
+
+      positions[i] += (targetX - positions[i]) * PARTICLE_EASE;
+      positions[i + 1] += (targetY - positions[i + 1]) * PARTICLE_EASE;
+      positions[i + 2] += (restZ - positions[i + 2]) * PARTICLE_EASE;
+    }
+
+    positionsAttributeRef.current.needsUpdate = true;
   });
 
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
+          ref={positionsAttributeRef}
           attach="attributes-position"
           args={[particleData.positions, 3]}
         />
@@ -76,41 +148,65 @@ function ParticleField({
 }
 
 export default function ThreeCanvas() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersReducedMotion = false;
+  const cursorRef = useRef<CursorState>({
+    x: 0,
+    y: 0,
+    active: false,
+    intensity: 0,
   });
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handleChange = (e: MediaQueryListEvent) =>
-      setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1,
-      });
+    const updateCursor = (clientX: number, clientY: number) => {
+      const cursor = cursorRef.current;
+      cursor.x = (clientX / window.innerWidth) * 2 - 1;
+      cursor.y = -(clientY / window.innerHeight) * 2 + 1;
+      cursor.active = true;
     };
+
+    const handleMouseMove = (event: MouseEvent) =>
+      updateCursor(event.clientX, event.clientY);
+    const handleTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      updateCursor(touch.clientX, touch.clientY);
+    };
+    const handleCursorInactive = () => {
+      const cursor = cursorRef.current;
+      cursor.active = false;
+      cursor.intensity = 0;
+    };
+    const handleVisibilityChange = () => {
+      if (document.hidden) handleCursorInactive();
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleCursorInactive, { passive: true });
+    window.addEventListener("mouseleave", handleCursorInactive);
+    window.addEventListener("blur", handleCursorInactive);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleCursorInactive);
+      window.removeEventListener("mouseleave", handleCursorInactive);
+      window.removeEventListener("blur", handleCursorInactive);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      handleCursorInactive();
+    };
   }, []);
 
   return (
-    <Canvas
-      camera={{ position: [0, 0, 5], fov: 60 }}
-      dpr={[1, 1.5]}
-      className="opacity-60"
-    >
-      <ParticleField
-        mousePosition={mousePosition}
-        reducedMotion={prefersReducedMotion}
-      />
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 60 }}
+        dpr={1}
+        gl={{ antialias: false, powerPreference: "high-performance" }}
+        className="opacity-60 pointer-events-none"
+        style={{ pointerEvents: 'none' }}
+      >
+      <ParticleField cursorRef={cursorRef} reducedMotion={prefersReducedMotion} />
     </Canvas>
   );
 }

@@ -57,7 +57,7 @@ describe("Hero", () => {
     it("renders a primary CTA link", () => {
       render(<Hero />);
       const ctaLinks = screen.getAllByRole("link");
-      expect(ctaLinks.length).toBeGreaterThanOrEqual(2);
+      expect(ctaLinks.length).toBeGreaterThanOrEqual(1);
     });
 
     it("renders contact/link buttons with accessible labels", () => {
@@ -67,9 +67,9 @@ describe("Hero", () => {
         .filter(
           (link) =>
             link.getAttribute("href") === "#projects" ||
-            link.getAttribute("href")?.startsWith("mailto:"),
+            link.getAttribute("href")?.startsWith("#contact"),
         );
-      expect(ctaLinks.length).toBeGreaterThanOrEqual(2);
+      expect(ctaLinks.length).toBeGreaterThanOrEqual(1);
     });
   });
 

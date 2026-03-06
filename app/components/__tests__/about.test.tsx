@@ -8,7 +8,7 @@ vi.mock("motion/react", () => ({
     {},
     {
       get: (_target, prop) => {
-        const MotionTag = String(prop) as keyof JSX.IntrinsicElements;
+        const MotionTag = String(prop) as keyof React.JSX.IntrinsicElements;
         return function MotionComponent({
           children,
           initial,
@@ -48,8 +48,8 @@ vi.mock("motion/react", () => ({
           void whileTap;
           void layout;
           void layoutId;
-          return <MotionTag {...rest}>{children}</MotionTag>;
-        };
+        return React.createElement(MotionTag, rest, children);
+      };
       },
     },
   ),

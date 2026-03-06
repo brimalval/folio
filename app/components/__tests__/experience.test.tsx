@@ -5,16 +5,16 @@ import ExperienceSection from '../experience'
 
 vi.mock('motion/react', () => ({
   motion: new Proxy({}, {
-    get: (_target, prop) => {
-      const MotionTag = String(prop) as keyof JSX.IntrinsicElements
-      return function MotionComponent({
-        children, initial, animate, exit, variants, whileInView, viewport,
-        transition, whileHover, whileTap, layout, layoutId, ...rest
-      }: React.HTMLAttributes<HTMLElement> & { children?: React.ReactNode; initial?: unknown; animate?: unknown; exit?: unknown; variants?: unknown; whileInView?: unknown; viewport?: unknown; transition?: unknown; whileHover?: unknown; whileTap?: unknown; layout?: unknown; layoutId?: unknown }) {
+      get: (_target, prop) => {
+        const MotionTag = String(prop) as keyof React.JSX.IntrinsicElements
+        return function MotionComponent({
+          children, initial, animate, exit, variants, whileInView, viewport,
+          transition, whileHover, whileTap, layout, layoutId, ...rest
+        }: React.HTMLAttributes<HTMLElement> & { children?: React.ReactNode; initial?: unknown; animate?: unknown; exit?: unknown; variants?: unknown; whileInView?: unknown; viewport?: unknown; transition?: unknown; whileHover?: unknown; whileTap?: unknown; layout?: unknown; layoutId?: unknown }) {
         void initial; void animate; void exit; void variants; void whileInView
         void viewport; void transition; void whileHover; void whileTap
         void layout; void layoutId
-        return <MotionTag {...rest}>{children}</MotionTag>
+        return React.createElement(MotionTag, rest, children)
       }
     }
   }),

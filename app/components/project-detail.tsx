@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 import type { Project } from '@/types/portfolio'
+import { useLenis } from '@/lib/contexts/lenis-context'
+import { lockScroll, unlockScroll } from '@/lib/utils/scroll-lock-manager'
 
 interface ProjectDetailProps {
   selectedId: string
@@ -18,21 +20,61 @@ export default function ProjectDetail({
   accentColors,
   onClose,
 }: ProjectDetailProps) {
+  const lenis = useLenis()
+  const modalRef = useRef<HTMLDivElement>(null)
   const project = projects.find((p) => p.id === selectedId)
   const projectIndex = projects.findIndex((p) => p.id === selectedId)
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
+    lockScroll(lenis)
+
     return () => {
-      document.body.style.overflow = ''
+      unlockScroll(lenis)
     }
-  }, [])
+  }, [lenis])
 
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      const target = e.target
+      const isEditableTarget =
+        target instanceof HTMLElement &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
+        return
+      }
+
+      const isScrollKey =
+        e.key === 'PageDown' || e.key === ' ' || e.key === 'Spacebar'
+
+      if (!isScrollKey || isEditableTarget) {
+        return
+      }
+
+      const modalElement = modalRef.current
+      const activeElement = document.activeElement
+      const focusInsideModal =
+        modalElement !== null &&
+        activeElement instanceof Node &&
+        modalElement.contains(activeElement)
+      const targetInsideModal =
+        modalElement !== null &&
+        target instanceof Node &&
+        modalElement.contains(target)
+
+      if (focusInsideModal || targetInsideModal) {
+        return
+      }
+
+      e.preventDefault()
     }
-    window.addEventListener('keydown', fn)
+    window.addEventListener('keydown', fn, { passive: false })
+
     return () => window.removeEventListener('keydown', fn)
   }, [onClose])
 
@@ -52,6 +94,7 @@ export default function ProjectDetail({
       />
 
       <motion.div
+        ref={modalRef}
         layoutId={`project-card-${project.id}`}
         data-testid="project-detail"
         className="fixed inset-x-4 top-8 bottom-8 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl z-50 rounded-2xl overflow-y-auto"

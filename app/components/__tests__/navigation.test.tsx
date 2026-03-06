@@ -10,7 +10,7 @@ vi.mock('../theme-toggle', () => ({
 vi.mock('motion/react', () => ({
   motion: new Proxy({}, {
     get: (_target, prop) => {
-      const MotionTag = String(prop) as keyof JSX.IntrinsicElements
+      const MotionTag = String(prop) as keyof React.JSX.IntrinsicElements
       return function MotionComponent({
         children, initial, animate, exit, variants, whileInView, viewport,
         transition, whileHover, whileTap, layout, layoutId, ...rest
@@ -18,7 +18,7 @@ vi.mock('motion/react', () => ({
         void initial; void animate; void exit; void variants; void whileInView
         void viewport; void transition; void whileHover; void whileTap
         void layout; void layoutId
-        return <MotionTag {...rest}>{children}</MotionTag>
+        return React.createElement(MotionTag, rest, children)
       }
     }
   }),

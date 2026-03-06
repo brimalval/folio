@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'motion/react'
 import profile from '@/data/profile.json'
 import ThemeToggle from './theme-toggle'
 import GlassSurface from './glass-surface'
+import { lockScroll, unlockScroll } from '@/lib/utils/scroll-lock-manager'
+import { useLenis } from '@/lib/contexts/lenis-context'
 
 const navItems = [
   { id: 'hero', label: 'Home' },
@@ -49,6 +51,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
   const [isScrolled, setIsScrolled] = useState(false)
+  const lenis = useLenis()
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -91,15 +94,16 @@ export default function Navigation() {
   }, [])
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
+    if (!isOpen) {
+      return
     }
+
+    lockScroll(lenis)
+
     return () => {
-      document.body.style.overflow = ''
+      unlockScroll(lenis)
     }
-  }, [isOpen])
+  }, [isOpen, lenis])
 
   return (
     <>

@@ -64,6 +64,14 @@
   --accent-warm: var(--rose);
   --accent-highlight: var(--gold);
   --accent-critical: var(--love);
+  
+  /* Section background colors for smooth transitions */
+  --section-bg-hero: #faf4ed;
+  --section-bg-about: #fbf0eb;
+  --section-bg-projects: #f4f7f4;
+  --section-bg-skills: #faf4ed;
+  --section-bg-experience: #faf4f0;
+  --section-bg-contact: #f7f0ed;
 }
 
 [data-theme="dark"] {
@@ -89,17 +97,27 @@
   --accent-warm: var(--rose);
   --accent-highlight: var(--gold);
   --accent-critical: var(--love);
+  
+  /* Section background colors for smooth transitions */
+  --section-bg-hero: #191724;
+  --section-bg-about: #1d1b2e;
+  --section-bg-projects: #181c29;
+  --section-bg-skills: #191724;
+  --section-bg-experience: #1c1c2e;
+  --section-bg-contact: #161420;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--section-bg-color, var(--background));
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color 0.5s ease-in-out;
 }
 
 /* Hide native scrollbar */
 html {
   scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
 }
 html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
@@ -138,44 +156,6 @@ html::-webkit-scrollbar {
 .stagger-4 { transition-delay: 0.4s; }
 .stagger-5 { transition-delay: 0.5s; }
 
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  
-  .animate-scroll {
-    animation: none;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: none; }
-  }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .hover\:scale-105:hover,
-  .hover\:scale-\[1\.02\]:hover,
-  [class*="hover:scale"] {
-    transform: none !important;
-  }
-}
-
-/* Ensure animations work smoothly */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
 
 /* Subtle grain texture overlay for human-made character */
 body::before {
@@ -295,65 +275,14 @@ body::before {
   box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
 }
 
-/* Reduce motion overrides */
-@media (prefers-reduced-motion: reduce) {
-  .section-reveal,
-  .reveal-stagger > * {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  
-  .card-hover:hover {
-    transform: none;
-  }
-}
-
 /* Section Color Temperature Shifts */
-/* Subtle background variations per section for editorial rhythm */
+/* Section backgrounds are now controlled via body --section-bg-color */
 
-/* Hero: Pure base background */
-.section-hero {
-  background-color: var(--background);
-}
-
-/* About: Slightly warmer (rose/pink tint) */
-[data-theme="light"] .section-about {
-  background-color: #fbf0eb;
-}
-
-[data-theme="dark"] .section-about {
-  background-color: #1d1b2e;
-}
-
-/* Projects: Slightly cooler (pine/foam tint) */
-[data-theme="light"] .section-projects {
-  background-color: #f4f7f4;
-}
-
-[data-theme="dark"] .section-projects {
-  background-color: #181c29;
-}
-
-/* Skills: Neutral base */
-.section-skills {
-  background-color: var(--background);
-}
-
-/* Experience: Slightly warmer (neutral-warm) */
-[data-theme="light"] .section-experience {
-  background-color: #faf4f0;
-}
-
-[data-theme="dark"] .section-experience {
-  background-color: #1c1c2e;
-}
-
-/* Contact: Slightly deeper/darker */
-[data-theme="light"] .section-contact {
-  background-color: #f7f0ed;
-}
-
-[data-theme="dark"] .section-contact {
-  background-color: #161420;
+.section-hero,
+.section-about,
+.section-projects,
+.section-skills,
+.section-experience,
+.section-contact {
+  background-color: transparent;
 }
