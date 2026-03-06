@@ -1,44 +1,44 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
+import { Outfit } from "next/font/google";
+import DevAgentation from "./components/dev-agentation";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: "variable",
 });
 
 export const metadata: Metadata = {
-	title: "Brian Malcolm Valencia | Full-Stack Software Engineer",
-	description:
-		"Brian Malcolm Valencia - Enterprise-scale full-stack developer specializing in TypeScript, NextJS, and cloud infrastructure. Based in the Philippines.",
-	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon.ico",
-		apple: "/favicon.ico",
-	},
+  title: "Brian Valencia — Full-Stack Engineer",
+  description:
+    "Full-stack engineer building well-crafted digital products. Based in the Philippines.",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en" className="dark">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
-			>
-				<Navigation />
-				<main className="flex-1">{children}</main>
-				<Footer />
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const savedTheme = localStorage.getItem('theme');
+                const theme = savedTheme || 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className={`${outfit.variable} antialiased`}>
+        {children}
+        {process.env.NODE_ENV === "development" && <DevAgentation />}
+      </body>
+    </html>
+  );
 }

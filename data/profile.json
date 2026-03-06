@@ -1,14 +1,28 @@
 {
-	"name": "Brian Valencia",
-	"title": "Full-Stack Software Engineer",
-	"bio": "Mid-to-Senior level Full-stack Software Engineer with DevOps experience, focused on modern full-stack development and building production-ready applications with real business impact.",
-	"location": "Philippines",
-	"email": "brianmalcolm.v@gmail.com",
-	"phone": "+63 916 416 4268",
-	"github": "brimalval",
-	"linkedin": "brian-malcolm-valencia-032752220",
-	"avatar": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico-thumb.jpg",
-	"fullPhoto": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico.jpg",
-	"resumeUrl": "/",
-	"website": ""
+  "name": "Brian Valencia",
+  "title": "Full-Stack Software Engineer",
+  "about": {
+    "body": "I'm a software engineer based in the Philippines who started in systems and infrastructure, wandered into full-stack product work, and lately has been deeply interested in the AI side of things: building RAG pipelines, wiring up MCPs, figuring out how to make intelligent systems actually useful rather than just impressive. I like working on teams where there's still room to shape how things are built, not just where they're built. My favorite kind of software is the kind nobody complains about.",
+    "statements": [
+      "Somewhere between \"make it work\" and \"make it right\" is where I live",
+      "I do my best to prevent the cloud from being your cost center",
+      "Untyped code gives me a rash"
+    ]
+  },
+  "bio": "Full-stack Software Engineer with DevOps experience, focused on modern full-stack development and building production-ready applications with real business impact.",
+  "location": "Philippines",
+  "email": "brianmalcolm.v@gmail.com",
+  "phone": "+63 916 416 4268",
+  "github": "brimalval",
+  "linkedin": "brian-malcolm-valencia-032752220",
+  "avatar": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico-thumb.jpg",
+  "fullPhoto": "https://brimalval-public-site-assets.s3.ap-southeast-1.amazonaws.com/folio/glico.jpg",
+  "resumeUrl": "/",
+  "website": "",
+  "interests": [
+    "Learning Japanese",
+    "Dabbling in the keyboard hobby",
+    "Tweaking development environment",
+    "Experimenting with AI tools"
+  ]
 }
