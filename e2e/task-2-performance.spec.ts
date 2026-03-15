@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, Page } from 'playwright/test'
 import * as path from 'path'
 import { mkdir, writeFile } from 'node:fs/promises'
 
@@ -143,6 +143,5 @@ test('task-2 hero performance measurement', async ({ page }) => {
   await mkdir(path.dirname(EVIDENCE_PATH), { recursive: true })
   await writeFile(EVIDENCE_PATH, JSON.stringify(evidence, null, 2))
 
-  console.log('Task 2 performance evidence written:', EVIDENCE_PATH)
   expect(typeof interactiveStats.fps).toBe('number')
 })

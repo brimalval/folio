@@ -16,5 +16,11 @@
 		"title": "ChAI Assistant",
 		"description": "AI-powered customer service tool saving 217 hours with 60% prompt acceptance rate",
 		"technologies": ["NextJS", "Python", "FastAPI", "OpenAI SDK", "Langchain"]
+	},
+	{
+		"id": "bunpro-mcp",
+		"title": "Bunpro MCP",
+		"description": "MCP server for Bunpro Japanese learning API integration",
+		"technologies": ["Python", "FastAPI", "MCP"]
 	}
 ]

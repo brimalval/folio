@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'motion/react'
 import profile from '@/data/profile.json'
 import ThemeToggle from './theme-toggle'
@@ -31,6 +32,7 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
       className="transition-transform duration-300"
       style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
     >
+      <title>{isOpen ? 'Close navigation menu' : 'Open navigation menu'}</title>
       {isOpen ? (
         <>
           <line x1="18" y1="6" x2="6" y2="18" />
@@ -124,58 +126,65 @@ export default function Navigation() {
           `}
         >
           <div className="flex items-center justify-between">
-            <a
-              href="#hero"
-              onClick={(e) => {
-                e.preventDefault()
-                scrollToSection('hero')
-              }}
-              className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
-              style={{ color: 'var(--foreground)' }}
+            <button
+              type="button"
+              onClick={() => scrollToSection('hero')}
+              className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded bg-transparent border-none appearance-none"
             >
               {profile.name.split(' ')[0]}
-            </a>
+            </button>
 
-            <div className="flex items-center gap-2">
-              <ul className="hidden md:flex items-center gap-2">
-                {navItems.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={`#${item.id}`}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        scrollToSection(item.id)
-                      }}
-                      className={`
-                        relative px-3 py-2 text-sm font-medium
-                        transition-colors duration-200 cursor-pointer
-                        focus-visible:outline-none focus-visible:ring-2 
-                        focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 
-                        focus-visible:ring-offset-[var(--background)]
-                        after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px 
-                        after:transition-transform after:duration-200 after:origin-left
-                        ${activeSection === item.id
-                          ? 'text-[var(--foam)] after:bg-[var(--foam)] after:scale-x-100'
-                          : 'text-[var(--subtle)] hover:text-[var(--foreground)] after:bg-[var(--foreground)] after:scale-x-0 hover:after:scale-x-100'
-                        }
-                      `}
+              <div className="flex items-center gap-2">
+                <ul className="hidden md:flex items-center gap-2">
+                  {navItems.map((item) => (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          scrollToSection(item.id)
+                        }}
+                        className={`
+                          relative px-3 py-2 text-sm font-medium
+                          transition-colors duration-200 cursor-pointer
+                          focus-visible:outline-none focus-visible:ring-2 
+                          focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 
+                          focus-visible:ring-offset-[var(--background)]
+                          after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px 
+                          after:transition-transform after:duration-200 after:origin-left
+                          ${activeSection === item.id
+                            ? 'text-[var(--foam)] after:bg-[var(--foam)] after:scale-x-100'
+                            : 'text-[var(--subtle)] hover:text-[var(--foreground)] after:bg-[var(--foreground)] after:scale-x-0 hover:after:scale-x-100'
+                          }
+                        `}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                  <li>
+                    <Link
+                      href="/projects"
+                      className={
+                        'relative px-3 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px after:transition-transform after:duration-200 after:origin-left text-[var(--subtle)] hover:text-[var(--foreground)] after:bg-[var(--foreground)] after:scale-x-0 hover:after:scale-x-100'
+                      }
                     >
-                      {item.label}
-                    </a>
+                      All Projects
+                    </Link>
                   </li>
-                ))}
-              </ul>
+                </ul>
 
               <ThemeToggle />
 
-              <button
-                data-testid="hamburger-button"
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                style={{ color: 'var(--foreground)' }}
-                aria-label={isOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isOpen}
-              >
+                <button
+                  type="button"
+                  data-testid="hamburger-button"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  style={{ color: 'var(--foreground)' }}
+                  aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={isOpen}
+                >
                 <HamburgerIcon isOpen={isOpen} />
               </button>
             </div>
@@ -230,10 +239,25 @@ export default function Navigation() {
                           `}
                         >
                           {item.label}
-                        </a>
-                      </motion.li>
-                    ))}
-                  </ul>
+                      </a>
+                    </motion.li>
+                  ))}
+                  <motion.li
+                    key="projects-route"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navItems.length * 0.05 + 0.1 }}
+                  >
+                    <Link
+                      href="/projects"
+                      className={
+                        'block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] text-[var(--subtle)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]/60'
+                      }
+                    >
+                      All Projects
+                    </Link>
+                  </motion.li>
+                </ul>
                 </div>
               </GlassSurface>
             </motion.div>

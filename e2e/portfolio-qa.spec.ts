@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, Page } from 'playwright/test'
 import * as path from 'path'
 
 const EVIDENCE_DIR = path.join(process.cwd(), '.sisyphus/evidence')

@@ -6,15 +6,17 @@ import projects from "@/data/projects.json";
 import { projectVariants, viewportConfig } from "@/lib/animations/variants";
 import type { Project } from "@/types/portfolio";
 import ProjectDetail from "./project-detail";
-import StickySectionHeader from "./sticky-section-header";
+import { GitHubLink } from "./github-link";
 
 export default function Projects() {
   const typedProjects = projects as Project[];
-  const accentColors = ["var(--foam)", "var(--pine)", "var(--gold)"];
+  const featuredProjects = typedProjects.filter((p) => p.featured === true);
+  const accentColors = ["var(--foam)", "var(--pine)", "var(--gold)", "var(--love)"];
   const categoryLabels = [
     "Enterprise Platform",
     "HR Automation",
     "AI Assistant",
+    "Learning Project",
   ];
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -45,7 +47,7 @@ export default function Projects() {
             viewport={viewportConfig}
             variants={projectVariants.container}
           >
-            {typedProjects.slice(0, 3).map((project, index) => {
+            {featuredProjects.map((project, index) => {
               const accent = accentColors[index];
               const categoryLabel = categoryLabels[index];
               const projectNumber = String(index + 1).padStart(2, "0");
@@ -87,37 +89,42 @@ export default function Projects() {
                           {project.description}
                         </p>
                         <div className="flex flex-wrap gap-2">
-                          {project.technologies.slice(0, 6).map((tech) => (
-                            <span
-                              key={tech}
-                              className="pl-2 pr-3 py-0.5 text-xs font-mono border-l-2 tracking-wide"
-                              style={{
-                                borderColor: accent,
-                                backgroundColor: "var(--surface)",
-                                color: "var(--muted)",
-                              }}
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        {project.metrics && project.metrics.length > 0 && (
-                          <div className="flex flex-col gap-4">
-                            {project.metrics.map((metric, i) => (
-                              <MetricBlock
-                                key={i}
-                                value={metric.value}
-                                label={metric.label}
-                                accent={accent}
-                              />
-                            ))}
+                           {project.technologies.slice(0, 6).map((tech) => (
+                             <span
+                               key={tech}
+                               className="pl-2 pr-3 py-0.5 text-xs font-mono border-l-2 tracking-wide"
+                               style={{
+                                 borderColor: accent,
+                                 backgroundColor: "var(--surface)",
+                                 color: "var(--muted)",
+                               }}
+                             >
+                               {tech}
+                             </span>
+                           ))}
+                         </div>
+                        {project.githubUrl && (
+                          <div className="mt-4">
+                            <GitHubLink href={project.githubUrl} />
                           </div>
                         )}
-                      </div>
-                    </div>
-                    <ExpandAffordance />
+                       </div>
+                       <div>
+                         {project.metrics && project.metrics.length > 0 && (
+                           <div className="flex flex-col gap-4">
+                             {project.metrics.map((metric, i) => (
+                               <MetricBlock
+                                 key={i}
+                                 value={metric.value}
+                                 label={metric.label}
+                                 accent={accent}
+                               />
+                             ))}
+                           </div>
+                         )}
+                       </div>
+                     </div>
+                     <ExpandAffordance />
                   </motion.article>
                 );
               }
@@ -178,28 +185,33 @@ export default function Projects() {
                           {project.description}
                         </p>
                         <div className="flex flex-wrap gap-2">
-                          {project.technologies.slice(0, 6).map((tech) => (
-                            <span
-                              key={tech}
-                              className="pl-2 pr-3 py-0.5 text-xs font-mono border-l-2 tracking-wide"
-                              style={{
-                                borderColor: accent,
-                                backgroundColor: "var(--surface)",
-                                color: "var(--muted)",
-                              }}
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <ExpandAffordance />
-                  </motion.article>
-                );
-              }
+                           {project.technologies.slice(0, 6).map((tech) => (
+                             <span
+                               key={tech}
+                               className="pl-2 pr-3 py-0.5 text-xs font-mono border-l-2 tracking-wide"
+                               style={{
+                                 borderColor: accent,
+                                 backgroundColor: "var(--surface)",
+                                 color: "var(--muted)",
+                               }}
+                             >
+                               {tech}
+                             </span>
+                           ))}
+                         </div>
+                        {project.githubUrl && (
+                          <div className="mt-4">
+                            <GitHubLink href={project.githubUrl} />
+                          </div>
+                        )}
+                       </div>
+                     </div>
+                     <ExpandAffordance />
+                   </motion.article>
+                 );
+               }
 
-              return (
+               return (
                 <motion.article
                   key={project.id}
                   data-testid={`project-card-${index}`}
@@ -250,26 +262,31 @@ export default function Projects() {
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {project.technologies.slice(0, 6).map((tech) => (
-                          <span
-                            key={tech}
-                            className="pl-2 pr-3 py-0.5 text-xs font-mono border-l-2 tracking-wide"
-                            style={{
-                              borderColor: accent,
-                              backgroundColor: "var(--surface)",
-                              color: "var(--muted)",
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <ExpandAffordance />
-                </motion.article>
-              );
-            })}
+                         {project.technologies.slice(0, 6).map((tech) => (
+                           <span
+                             key={tech}
+                             className="pl-2 pr-3 py-0.5 text-xs font-mono border-l-2 tracking-wide"
+                             style={{
+                               borderColor: accent,
+                               backgroundColor: "var(--surface)",
+                               color: "var(--muted)",
+                             }}
+                           >
+                             {tech}
+                           </span>
+                         ))}
+                       </div>
+                      {project.githubUrl && (
+                        <div className="mt-4">
+                          <GitHubLink href={project.githubUrl} />
+                        </div>
+                      )}
+                     </div>
+                   </div>
+                   <ExpandAffordance />
+                 </motion.article>
+               );
+             })}
           </motion.div>
         </div>
       </section>
@@ -321,7 +338,7 @@ function ExpandAffordance() {
       className="mt-6 flex items-center gap-2 text-sm group-hover:gap-3 transition-all duration-300"
       style={{ color: "var(--muted)" }}
     >
-      <span>View full case study</span>
+      <span>View details</span>
       <span className="transition-transform duration-300 group-hover:translate-x-1">
         →
       </span>

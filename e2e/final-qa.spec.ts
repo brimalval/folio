@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, Page } from 'playwright/test'
 import * as path from 'path'
 
 const EVIDENCE_DIR = path.join(process.cwd(), '.sisyphus/evidence/final-qa')
@@ -81,7 +81,6 @@ test('05 Theme toggle changes data-theme attribute', async ({ page }) => {
   await page.waitForLoadState('networkidle')
 
   const initialTheme = await page.evaluate(() => document.documentElement.getAttribute('data-theme'))
-  console.log('Initial theme:', initialTheme)
 
   const toggleBtn = page.locator('button[aria-label*="theme"], button[aria-label*="Theme"], button[aria-label*="dark"], button[aria-label*="light"], [data-testid="theme-toggle"]').first()
   await expect(toggleBtn).toBeVisible({ timeout: 3000 })
@@ -89,7 +88,6 @@ test('05 Theme toggle changes data-theme attribute', async ({ page }) => {
   await page.waitForTimeout(300)
 
   const newTheme = await page.evaluate(() => document.documentElement.getAttribute('data-theme'))
-  console.log('Theme after toggle:', newTheme)
   expect(newTheme).not.toBe(initialTheme)
 
   await ss(page, '07-theme-toggled.png')
@@ -123,7 +121,6 @@ test('07 Scrollbar hidden via CSS', async ({ page }) => {
       inlineScrollbarWidth: document.documentElement.style.scrollbarWidth,
     }
   })
-  console.log('Scrollbar info:', JSON.stringify(scrollbarInfo))
 
   await ss(page, '10-no-scrollbar.png')
 })
@@ -136,7 +133,6 @@ test('08 Particle field canvas or fallback present', async ({ page }) => {
 
   const hasCanvas = (await page.locator('canvas').count()) > 0
   const hasFallback = (await page.locator('[data-testid="hero-3d-fallback"]').count()) > 0
-  console.log('Has canvas:', hasCanvas, '| Has fallback:', hasFallback)
   expect(hasCanvas || hasFallback).toBe(true)
 
   await ss(page, '11-hero-particles.png')

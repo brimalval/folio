@@ -28,6 +28,8 @@ export interface Project {
   highlights: string[];
   technologies: string[];
   gallery: GalleryImage[];
+  featured?: boolean;
+  githubUrl?: string;
 }
 
 export interface Skill {

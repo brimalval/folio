@@ -1,0 +1,39 @@
+---
+id: bunpro-mcp
+title: "Bunpro MCP Server"
+description: "MCP server exposing Bunpro Japanese learning API"
+summary: "Personal learning project exploring MCP protocol with practical Japanese study integration"
+featured: true
+tags: ["mcp", "python", "japanese-learning", "api"]
+technologies: ["Python", "FastAPI", "MCP", "Uvicorn", "uv"]
+role: "Full-stack + Protocol Exploration"
+thumbnail: "/images/projects/bunpro-mcp-thumbnail.jpg"
+images: []
+metrics: "Personal project exploring MCP protocol. Used occasionally for grammar and vocabulary clarification during Japanese study."
+challenges:
+  - Reverse-engineering Bunpro's undocumented API
+  - Implementing error handling for graceful failures
+  - Testing with MCP Inspector
+learnings:
+  - MCP protocol fundamentals
+  - Python async patterns for API servers
+  - Error handling patterns for production code
+---
+
+# Bunpro MCP Server
+
+## Overview
+
+Built to explore the Model Context Protocol, Bunpro MCP Server exposes Bunpro's Japanese-learning API to assistant workflows so I could ask grammar, vocabulary, reading, and study-progress questions using natural language.
+
+## Challenge
+
+The Bunpro API is undocumented, so every endpoint had to be reverse-engineered from client traffic. Delivering reliable answers meant anticipating every failure mode, building centralized error handling, and then validating every tool with MCP Inspector.
+
+## Solution
+
+FastAPI served as the async backbone, with MCP routes tailored for grammar, vocabulary, reading passages, stats, and reviews. Uvicorn/uv keeps performance tight while shared helpers enforce consistent error handling, and MCP Inspector runs keep each tool honest before it ships to a user-facing assistant.
+
+## Results
+
+The server now supports structured Bunpro interactions and doubles as a learning reference whenever I need to clarify Japanese study topics, demonstrating how MCP fundamentals, Python async practices, and resilient error handling work together in a learning-focused side project.

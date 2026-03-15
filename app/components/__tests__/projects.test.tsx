@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@/lib/test-utils'
 import { describe, it, expect, vi } from 'vitest'
+import { within } from '@testing-library/react'
 import Projects from '../projects'
 
 vi.mock('motion/react', () => ({
@@ -39,6 +40,7 @@ describe('Projects', () => {
     expect(screen.getByTestId('project-card-0')).toBeInTheDocument()
     expect(screen.getByTestId('project-card-1')).toBeInTheDocument()
     expect(screen.getByTestId('project-card-2')).toBeInTheDocument()
+    expect(screen.getByTestId('project-card-3')).toBeInTheDocument()
   })
 
   it('heading is NOT "Featured Work"', () => {
@@ -58,5 +60,24 @@ describe('Projects', () => {
     fireEvent.click(screen.getByTestId('project-card-0'))
     const detail = screen.getByTestId('project-detail')
     expect(detail).toBeInTheDocument()
+  })
+
+  it('renders GitHub link for bunpro card', () => {
+    render(<Projects />)
+    const bunproCard = screen.getByTestId('project-card-3')
+    const githubLink = within(bunproCard).getByRole('link', { name: /view on github/i })
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/brimalval/bunpro-mcp')
+    expect(githubLink).toHaveAttribute('target', '_blank')
+    expect(githubLink).toHaveAttribute('rel', expect.stringContaining('noopener'))
+    expect(githubLink).toHaveAttribute('rel', expect.stringContaining('noreferrer'))
+  })
+
+  it('clicking GitHub link does NOT open modal', () => {
+    render(<Projects />)
+    const bunproCard = screen.getByTestId('project-card-3')
+    const githubLink = within(bunproCard).getByRole('link', { name: /view on github/i })
+    expect(screen.queryByTestId('project-detail')).not.toBeInTheDocument()
+    fireEvent.click(githubLink)
+    expect(screen.queryByTestId('project-detail')).not.toBeInTheDocument()
   })
 })

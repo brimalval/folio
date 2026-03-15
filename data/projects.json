@@ -47,7 +47,8 @@
 				"alt": "Promotion configuration",
 				"title": "Promotion configuration"
 			}
-		]
+		],
+		"featured": true
 	},
 	{
 		"id": "hris-system",
@@ -73,7 +74,8 @@
 			"ShadCN",
 			"Tanstack"
 		],
-		"gallery": []
+		"gallery": [],
+		"featured": true
 	},
 	{
 		"id": "chai-assistant",
@@ -102,6 +104,26 @@
 			"Langchain",
 			"TypeScript"
 		],
-		"gallery": []
+		"gallery": [],
+		"featured": true
+	},
+	{
+		"id": "bunpro-mcp",
+		"title": "Bunpro MCP Server",
+		"description": "MCP server exposing Bunpro Japanese learning API to AI assistants",
+		"longDescription": "Model Context Protocol server bridging Bunpro's Japanese learning platform with AI assistants like OpenCode, enabling natural language queries about grammar, vocabulary, reading passages, and study progress.",
+		"problem": "Wanted to explore MCP protocol and needed a real project. Bunpro's API is undocumented, requiring reverse engineering.",
+		"solution": "Built FastAPI/Python MCP server with tools for grammar, vocabulary, reading, stats, and reviews. Centralized error handling and MCP Inspector testing.",
+		"metrics": [],
+		"highlights": [
+			"Personal learning project exploring Model Context Protocol (MCP)",
+			"Reverse-engineered undocumented Bunpro API endpoints",
+			"Implements centralized error handling for graceful failures",
+			"Tested using MCP Inspector for tool validation"
+		],
+		"technologies": ["Python", "FastAPI", "MCP", "Uvicorn", "uv"],
+		"gallery": [],
+		"featured": true,
+		"githubUrl": "https://github.com/brimalval/bunpro-mcp"
 	}
 ]
