@@ -24,19 +24,26 @@ const colorPalette = [
   new THREE.Color("#ebbcba"),
 ];
 
-function createParticleData(count: number) {
+export function createParticleData(count: number) {
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
+  const driftParams = new Float32Array(count * 6);
   for (let i = 0; i < count; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 12;
+    positions[i * 3]     = (Math.random() - 0.5) * 12;
     positions[i * 3 + 1] = (Math.random() - 0.5) * 8;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
     const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-    colors[i * 3] = color.r;
+    colors[i * 3]     = color.r;
     colors[i * 3 + 1] = color.g;
     colors[i * 3 + 2] = color.b;
+    driftParams[i * 6]     = 0.3 + Math.random() * 0.4; // ampX
+    driftParams[i * 6 + 1] = 0.3 + Math.random() * 0.4; // ampY
+    driftParams[i * 6 + 2] = 0.2 + Math.random() * 0.3; // freqX (rad/s)
+    driftParams[i * 6 + 3] = 0.2 + Math.random() * 0.3; // freqY (rad/s)
+    driftParams[i * 6 + 4] = Math.random() * Math.PI * 2; // phaseX
+    driftParams[i * 6 + 5] = Math.random() * Math.PI * 2; // phaseY
   }
-  return { positions, colors };
+  return { positions, colors, driftParams };
 }
 
 const mobileParticleData = createParticleData(MOBILE_PARTICLE_COUNT);
