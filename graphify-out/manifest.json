@@ -1,0 +1,392 @@
+{
+  "/home/vaiciel/Projects/folio/skills-lock.json": {
+    "mtime": 1773590840.6530247,
+    "ast_hash": "673dd19f065dc186385459036fe4e81b",
+    "semantic_hash": "673dd19f065dc186385459036fe4e81b"
+  },
+  "/home/vaiciel/Projects/folio/postcss.config.mjs": {
+    "mtime": 1773590840.6530247,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "/home/vaiciel/Projects/folio/package.json": {
+    "mtime": 1773590840.6130247,
+    "ast_hash": "a76e85ce3f6c2bed2747538f13fd94a2",
+    "semantic_hash": "a76e85ce3f6c2bed2747538f13fd94a2"
+  },
+  "/home/vaiciel/Projects/folio/next-env.d.ts": {
+    "mtime": 1773689118.5761087,
+    "ast_hash": "d0f8375ae1199dc7acd3977fc33b78b8",
+    "semantic_hash": "d0f8375ae1199dc7acd3977fc33b78b8"
+  },
+  "/home/vaiciel/Projects/folio/test-utils.tsx": {
+    "mtime": 1773590840.6530247,
+    "ast_hash": "591015aff2cb6ad325fc84a857b63fb5",
+    "semantic_hash": "591015aff2cb6ad325fc84a857b63fb5"
+  },
+  "/home/vaiciel/Projects/folio/eslint.config.mjs": {
+    "mtime": 1773590840.5530248,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "/home/vaiciel/Projects/folio/playwright.config.ts": {
+    "mtime": 1773674801.1587327,
+    "ast_hash": "99f99cbef5822759dbffc4d25e88fc60",
+    "semantic_hash": "99f99cbef5822759dbffc4d25e88fc60"
+  },
+  "/home/vaiciel/Projects/folio/tsconfig.json": {
+    "mtime": 1773590840.6730247,
+    "ast_hash": "d492910c21bc896e270c25eed4fd0f1e",
+    "semantic_hash": "d492910c21bc896e270c25eed4fd0f1e"
+  },
+  "/home/vaiciel/Projects/folio/vitest.config.ts": {
+    "mtime": 1773590840.6930246,
+    "ast_hash": "ec72df2bb4f349a4875595b60925f298",
+    "semantic_hash": "ec72df2bb4f349a4875595b60925f298"
+  },
+  "/home/vaiciel/Projects/folio/next.config.ts": {
+    "mtime": 1773590840.6130247,
+    "ast_hash": "ebe8193bf623e074132359e441ae15e3",
+    "semantic_hash": "ebe8193bf623e074132359e441ae15e3"
+  },
+  "/home/vaiciel/Projects/folio/data/education.json": {
+    "mtime": 1762879436.4952352,
+    "ast_hash": "fff2081e0ca0ab98a576b3e656031df6",
+    "semantic_hash": "fff2081e0ca0ab98a576b3e656031df6"
+  },
+  "/home/vaiciel/Projects/folio/data/experience.json": {
+    "mtime": 1773590840.5030248,
+    "ast_hash": "52516d9bf448a974eca61238f751af9e",
+    "semantic_hash": "52516d9bf448a974eca61238f751af9e"
+  },
+  "/home/vaiciel/Projects/folio/data/project-summaries.json": {
+    "mtime": 1773674801.1587327,
+    "ast_hash": "d92d706c2c7911e1f97c8438b9b8410a",
+    "semantic_hash": "d92d706c2c7911e1f97c8438b9b8410a"
+  },
+  "/home/vaiciel/Projects/folio/data/skills-homepage.json": {
+    "mtime": 1762699919.031817,
+    "ast_hash": "97dd93877696a690e3839a95690c8de4",
+    "semantic_hash": "97dd93877696a690e3839a95690c8de4"
+  },
+  "/home/vaiciel/Projects/folio/data/projects.json": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "c470dbb05ce462f14f703a6a31af774f",
+    "semantic_hash": "c470dbb05ce462f14f703a6a31af774f"
+  },
+  "/home/vaiciel/Projects/folio/data/experience-about.json": {
+    "mtime": 1767350375.970912,
+    "ast_hash": "4aaa54503b4c5719b4c3ef96455fcb7f",
+    "semantic_hash": "4aaa54503b4c5719b4c3ef96455fcb7f"
+  },
+  "/home/vaiciel/Projects/folio/data/profile.json": {
+    "mtime": 1773590840.5130248,
+    "ast_hash": "98645067c76d41f8b516293264f7d50d",
+    "semantic_hash": "98645067c76d41f8b516293264f7d50d"
+  },
+  "/home/vaiciel/Projects/folio/data/socials.json": {
+    "mtime": 1762879436.4952352,
+    "ast_hash": "750359ef4c8ee9e9c62abbe76c26669d",
+    "semantic_hash": "750359ef4c8ee9e9c62abbe76c26669d"
+  },
+  "/home/vaiciel/Projects/folio/data/skills.json": {
+    "mtime": 1762879344.2052486,
+    "ast_hash": "7045e3ca98580cc63c377b7bbf4cd14b",
+    "semantic_hash": "7045e3ca98580cc63c377b7bbf4cd14b"
+  },
+  "/home/vaiciel/Projects/folio/app/page.tsx": {
+    "mtime": 1773590840.4930248,
+    "ast_hash": "a96cea6fd5abcd01ae1784b95cd2135e",
+    "semantic_hash": "a96cea6fd5abcd01ae1784b95cd2135e"
+  },
+  "/home/vaiciel/Projects/folio/app/layout.tsx": {
+    "mtime": 1773590840.4930248,
+    "ast_hash": "cc10c3692a048e6e9c56249668647f61",
+    "semantic_hash": "cc10c3692a048e6e9c56249668647f61"
+  },
+  "/home/vaiciel/Projects/folio/app/projects/page.tsx": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "1091ebf99c58bd79a8fb14d38a782144",
+    "semantic_hash": "1091ebf99c58bd79a8fb14d38a782144"
+  },
+  "/home/vaiciel/Projects/folio/app/components/agentation-wrapper.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "1ad9ec9a8f2009d408d4dee3fc54d553",
+    "semantic_hash": "1ad9ec9a8f2009d408d4dee3fc54d553"
+  },
+  "/home/vaiciel/Projects/folio/app/components/skills.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "f42fee852ee8ae3ebf5cdc6d095dbbc0",
+    "semantic_hash": "f42fee852ee8ae3ebf5cdc6d095dbbc0"
+  },
+  "/home/vaiciel/Projects/folio/app/components/experience.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "e90b55cf6a01bfcd8eecc09a20d8117c",
+    "semantic_hash": "e90b55cf6a01bfcd8eecc09a20d8117c"
+  },
+  "/home/vaiciel/Projects/folio/app/components/github-link.tsx": {
+    "mtime": 1773670843.0594587,
+    "ast_hash": "4d6f13017fb31c6066377ffbc131fe48",
+    "semantic_hash": "4d6f13017fb31c6066377ffbc131fe48"
+  },
+  "/home/vaiciel/Projects/folio/app/components/project-detail.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "8d0d00c800aa953f4bfc93c2f469df75",
+    "semantic_hash": "8d0d00c800aa953f4bfc93c2f469df75"
+  },
+  "/home/vaiciel/Projects/folio/app/components/projects.tsx": {
+    "mtime": 1773690687.4258204,
+    "ast_hash": "08b10d72d1bf79ffd2c16811662ff3e2",
+    "semantic_hash": "08b10d72d1bf79ffd2c16811662ff3e2"
+  },
+  "/home/vaiciel/Projects/folio/app/components/sticky-section-header.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "5ef3411599a1fd85a739f57c475e90e5",
+    "semantic_hash": "5ef3411599a1fd85a739f57c475e90e5"
+  },
+  "/home/vaiciel/Projects/folio/app/components/three-canvas.tsx": {
+    "mtime": 1773590840.4930248,
+    "ast_hash": "712b645b557902a696326833a8f8eafd",
+    "semantic_hash": "712b645b557902a696326833a8f8eafd"
+  },
+  "/home/vaiciel/Projects/folio/app/components/hero.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "e6dacedb972d8eb5aba32beb357bfdbf",
+    "semantic_hash": "e6dacedb972d8eb5aba32beb357bfdbf"
+  },
+  "/home/vaiciel/Projects/folio/app/components/contact.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "244b13d3fe8ecec178ef5373e607132d",
+    "semantic_hash": "244b13d3fe8ecec178ef5373e607132d"
+  },
+  "/home/vaiciel/Projects/folio/app/components/about.tsx": {
+    "mtime": 1773590840.4730248,
+    "ast_hash": "241bb255184c682c206e3de40986cc93",
+    "semantic_hash": "241bb255184c682c206e3de40986cc93"
+  },
+  "/home/vaiciel/Projects/folio/app/components/glass-surface.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "caf7b13af41a67806e0804e4b957f7c8",
+    "semantic_hash": "caf7b13af41a67806e0804e4b957f7c8"
+  },
+  "/home/vaiciel/Projects/folio/app/components/dev-agentation.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "57ccd5733d1b792c25a91fdea98214a9",
+    "semantic_hash": "57ccd5733d1b792c25a91fdea98214a9"
+  },
+  "/home/vaiciel/Projects/folio/app/components/section-bg-manager.tsx": {
+    "mtime": 1773590840.4830248,
+    "ast_hash": "ca9cb631a6d45f3c74adcb00401145d7",
+    "semantic_hash": "ca9cb631a6d45f3c74adcb00401145d7"
+  },
+  "/home/vaiciel/Projects/folio/app/components/theme-toggle.tsx": {
+    "mtime": 1773590840.4930248,
+    "ast_hash": "ce9cc799f524583317638e6deac4aeed",
+    "semantic_hash": "ce9cc799f524583317638e6deac4aeed"
+  },
+  "/home/vaiciel/Projects/folio/app/components/navigation.tsx": {
+    "mtime": 1773674801.1587327,
+    "ast_hash": "a2a8ae991b8b5b3621b5614e7ac365e0",
+    "semantic_hash": "a2a8ae991b8b5b3621b5614e7ac365e0"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/glass-surface.test.tsx": {
+    "mtime": 1773590840.4630249,
+    "ast_hash": "b26c351757e60ed1c3c8fff3146285cc",
+    "semantic_hash": "b26c351757e60ed1c3c8fff3146285cc"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/projects.test.tsx": {
+    "mtime": 1773690687.4258204,
+    "ast_hash": "a5ad2975323761710abe7d4ed7bbaaa3",
+    "semantic_hash": "a5ad2975323761710abe7d4ed7bbaaa3"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/skills.test.tsx": {
+    "mtime": 1773590840.4730248,
+    "ast_hash": "49721bc453d4886e28e735ec0869381a",
+    "semantic_hash": "49721bc453d4886e28e735ec0869381a"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/hero.test.tsx": {
+    "mtime": 1773590840.4630249,
+    "ast_hash": "6b170a0c56bcb12100cbc2cb39daafe9",
+    "semantic_hash": "6b170a0c56bcb12100cbc2cb39daafe9"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/about.test.tsx": {
+    "mtime": 1773590840.4530249,
+    "ast_hash": "e17dbe4fa3fdb83f923d6ba5dc7d2d85",
+    "semantic_hash": "e17dbe4fa3fdb83f923d6ba5dc7d2d85"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/contact.test.tsx": {
+    "mtime": 1773590840.4630249,
+    "ast_hash": "784c694ae25de3ff07097a58980c9a7c",
+    "semantic_hash": "784c694ae25de3ff07097a58980c9a7c"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/experience.test.tsx": {
+    "mtime": 1773590840.4630249,
+    "ast_hash": "128247543a1f0ac9f6a70ad55e78d552",
+    "semantic_hash": "128247543a1f0ac9f6a70ad55e78d552"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/navigation.test.tsx": {
+    "mtime": 1773590840.4730248,
+    "ast_hash": "7c9fd24d4ff4080ee2e3a80c3fb7e905",
+    "semantic_hash": "7c9fd24d4ff4080ee2e3a80c3fb7e905"
+  },
+  "/home/vaiciel/Projects/folio/app/components/__tests__/project-detail.test.tsx": {
+    "mtime": 1773590840.4730248,
+    "ast_hash": "d976197dafd9e9560ad84d39948d39de",
+    "semantic_hash": "d976197dafd9e9560ad84d39948d39de"
+  },
+  "/home/vaiciel/Projects/folio/__tests__/schema/project-schema.test.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "a248caa399a501bb23017a72465054bd",
+    "semantic_hash": "a248caa399a501bb23017a72465054bd"
+  },
+  "/home/vaiciel/Projects/folio/types/portfolio.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "ad44785a51a64e0be21487ae700cbeb3",
+    "semantic_hash": "ad44785a51a64e0be21487ae700cbeb3"
+  },
+  "/home/vaiciel/Projects/folio/lib/icon-mapping.ts": {
+    "mtime": 1773590840.6130247,
+    "ast_hash": "b41b382c664d344657e716666df9832f",
+    "semantic_hash": "b41b382c664d344657e716666df9832f"
+  },
+  "/home/vaiciel/Projects/folio/lib/tech-icons.ts": {
+    "mtime": 1772540251.3291385,
+    "ast_hash": "9a2a87d8b2c42b5b20ab2c96b138a232",
+    "semantic_hash": "9a2a87d8b2c42b5b20ab2c96b138a232"
+  },
+  "/home/vaiciel/Projects/folio/lib/data.ts": {
+    "mtime": 1773590840.5830247,
+    "ast_hash": "ecdaa35a27af705fd5696d53bbf67115",
+    "semantic_hash": "ecdaa35a27af705fd5696d53bbf67115"
+  },
+  "/home/vaiciel/Projects/folio/lib/async-data.ts": {
+    "mtime": 1772540235.5791376,
+    "ast_hash": "de54b8fc28ee814cffbc5734d6618f73",
+    "semantic_hash": "de54b8fc28ee814cffbc5734d6618f73"
+  },
+  "/home/vaiciel/Projects/folio/lib/test-utils.tsx": {
+    "mtime": 1773590840.6130247,
+    "ast_hash": "8df755682059a5a24d8f50e621a9a478",
+    "semantic_hash": "8df755682059a5a24d8f50e621a9a478"
+  },
+  "/home/vaiciel/Projects/folio/lib/__tests__/setup.test.tsx": {
+    "mtime": 1773590840.5630248,
+    "ast_hash": "61e212630516a65b475ea1fc976fa6ce",
+    "semantic_hash": "61e212630516a65b475ea1fc976fa6ce"
+  },
+  "/home/vaiciel/Projects/folio/lib/animations/variants.ts": {
+    "mtime": 1773590840.5730247,
+    "ast_hash": "011f6ad6856577c80905fef7d9b7124a",
+    "semantic_hash": "011f6ad6856577c80905fef7d9b7124a"
+  },
+  "/home/vaiciel/Projects/folio/lib/contexts/lenis-context.tsx": {
+    "mtime": 1773590840.5830247,
+    "ast_hash": "7ce35f0152f6957b88ac820275d9ca06",
+    "semantic_hash": "7ce35f0152f6957b88ac820275d9ca06"
+  },
+  "/home/vaiciel/Projects/folio/lib/utils/scroll-lock-manager.ts": {
+    "mtime": 1773590840.6130247,
+    "ast_hash": "143cc8ba6e8df7d97c901e601c406a73",
+    "semantic_hash": "143cc8ba6e8df7d97c901e601c406a73"
+  },
+  "/home/vaiciel/Projects/folio/lib/hooks/use-active-section.ts": {
+    "mtime": 1773590840.5930247,
+    "ast_hash": "4a0a5c067f0a8e3323f52bc3c3c6bdf8",
+    "semantic_hash": "4a0a5c067f0a8e3323f52bc3c3c6bdf8"
+  },
+  "/home/vaiciel/Projects/folio/lib/hooks/useScrollReveal.ts": {
+    "mtime": 1773590840.5930247,
+    "ast_hash": "69c3f51235e958e5bc7f617e1afb450b",
+    "semantic_hash": "69c3f51235e958e5bc7f617e1afb450b"
+  },
+  "/home/vaiciel/Projects/folio/lib/hooks/__tests__/useScrollReveal.test.tsx": {
+    "mtime": 1773590840.5930247,
+    "ast_hash": "7531875e6ad5acadd90d24aec938313f",
+    "semantic_hash": "7531875e6ad5acadd90d24aec938313f"
+  },
+  "/home/vaiciel/Projects/folio/e2e/projects-page.spec.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "351e23d63f18919487511ed4bb3e50fb",
+    "semantic_hash": "351e23d63f18919487511ed4bb3e50fb"
+  },
+  "/home/vaiciel/Projects/folio/e2e/portfolio-qa.spec.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "b6a65500946d0e614cbab9ff69246d69",
+    "semantic_hash": "b6a65500946d0e614cbab9ff69246d69"
+  },
+  "/home/vaiciel/Projects/folio/e2e/final-qa.spec.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "543cbb9bc8d068e56e4f50b2d389ff1b",
+    "semantic_hash": "543cbb9bc8d068e56e4f50b2d389ff1b"
+  },
+  "/home/vaiciel/Projects/folio/e2e/project-cards.spec.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "fe288eac8e961282f925bb0aeb2a7c2e",
+    "semantic_hash": "fe288eac8e961282f925bb0aeb2a7c2e"
+  },
+  "/home/vaiciel/Projects/folio/e2e/task-2-performance.spec.ts": {
+    "mtime": 1773674801.2587328,
+    "ast_hash": "7551e106dbfdf3b5edff4aced875b263",
+    "semantic_hash": "7551e106dbfdf3b5edff4aced875b263"
+  },
+  "/home/vaiciel/Projects/folio/e2e/full-flow.spec.ts": {
+    "mtime": 1773674801.1687326,
+    "ast_hash": "090f435b8f50a27f1f3bc7502c90958c",
+    "semantic_hash": "090f435b8f50a27f1f3bc7502c90958c"
+  },
+  "/home/vaiciel/Projects/folio/README.md": {
+    "mtime": 1772516240.4059298,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "/home/vaiciel/Projects/folio/content/projects/bunpro-mcp.mdx": {
+    "mtime": 1773674801.1587327,
+    "ast_hash": "55e4db2fdb546901496b9ce3716d09da",
+    "semantic_hash": "55e4db2fdb546901496b9ce3716d09da"
+  },
+  "/home/vaiciel/Projects/folio/content/projects/hris-system.mdx": {
+    "mtime": 1763295960.95486,
+    "ast_hash": "1f441e283030d899af7449ea919c5c0c",
+    "semantic_hash": "1f441e283030d899af7449ea919c5c0c"
+  },
+  "/home/vaiciel/Projects/folio/content/projects/omni-platform.mdx": {
+    "mtime": 1767350365.370914,
+    "ast_hash": "a5f0255f9dffb605b0ff57e2267051eb",
+    "semantic_hash": "a5f0255f9dffb605b0ff57e2267051eb"
+  },
+  "/home/vaiciel/Projects/folio/content/projects/chai-ai.mdx": {
+    "mtime": 1762879344.2052486,
+    "ast_hash": "d3aba67044e8972389f0817b62ec4433",
+    "semantic_hash": "d3aba67044e8972389f0817b62ec4433"
+  },
+  "/home/vaiciel/Projects/folio/.agents/skills/agentation/SKILL.md": {
+    "mtime": 1773590840.4230247,
+    "ast_hash": "0af45d789555c3a5822c7b3779cd8dca",
+    "semantic_hash": "0af45d789555c3a5822c7b3779cd8dca"
+  },
+  "/home/vaiciel/Projects/folio/public/next.svg": {
+    "mtime": 1772516240.4059298,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "/home/vaiciel/Projects/folio/public/file.svg": {
+    "mtime": 1772516240.4059298,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "/home/vaiciel/Projects/folio/public/window.svg": {
+    "mtime": 1772516240.4059298,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  },
+  "/home/vaiciel/Projects/folio/public/globe.svg": {
+    "mtime": 1772516240.4059298,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "/home/vaiciel/Projects/folio/public/vercel.svg": {
+    "mtime": 1772516240.4059298,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  }
+}
