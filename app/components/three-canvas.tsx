@@ -88,8 +88,8 @@ function ParticleField({
       return;
     }
 
-    points.rotation.y = clock.elapsedTime * 0.015;
-    points.rotation.x = Math.sin(clock.elapsedTime * 0.01) * 0.05;
+    const t = clock.elapsedTime;
+    const driftParams = particleData.driftParams;
 
     const targetIntensity = !cursor.active ? 0 : 1;
     cursor.intensity += (targetIntensity - cursor.intensity) * CURSOR_INTENSITY_EASE;
@@ -101,15 +101,22 @@ function ParticleField({
     const radiusSq = CURSOR_REPULSION_RADIUS * CURSOR_REPULSION_RADIUS;
 
     for (let i = 0; i < positions.length; i += 3) {
+      const pi = i / 3;
+      const dp = pi * 6;
       const spawnX = spawnPositions[i];
       const spawnY = spawnPositions[i + 1];
       const spawnZ = spawnPositions[i + 2];
-      let targetX = spawnX;
-      let targetY = spawnY;
+
+      // Sinusoidal drift: rest target oscillates around the spawn point
+      const restX = spawnX + Math.sin(t * driftParams[dp + 2] + driftParams[dp + 4]) * driftParams[dp];
+      const restY = spawnY + Math.cos(t * driftParams[dp + 3] + driftParams[dp + 5]) * driftParams[dp + 1];
+      let targetX = restX;
+      let targetY = restY;
 
       if (hasInfluence) {
-        const dx = spawnX - cursorWorldX;
-        const dy = spawnY - cursorWorldY;
+        // Distance check uses CURRENT position, not rest position
+        const dx = positions[i]     - cursorWorldX;
+        const dy = positions[i + 1] - cursorWorldY;
         const distSq = dx * dx + dy * dy;
 
         if (distSq < radiusSq) {
@@ -117,14 +124,14 @@ function ParticleField({
           const safeDistance = distance || 0.0001;
           const falloff = 1 - distance / CURSOR_REPULSION_RADIUS;
           const repulsion = CURSOR_REPULSION_STRENGTH * falloff * influence;
-          targetX = spawnX + (dx / safeDistance) * repulsion;
-          targetY = spawnY + (dy / safeDistance) * repulsion;
+          targetX = positions[i]     + (dx / safeDistance) * repulsion;
+          targetY = positions[i + 1] + (dy / safeDistance) * repulsion;
         }
       }
 
-      positions[i] += (targetX - positions[i]) * PARTICLE_EASE;
+      positions[i]     += (targetX - positions[i])     * PARTICLE_EASE;
       positions[i + 1] += (targetY - positions[i + 1]) * PARTICLE_EASE;
-      positions[i + 2] += (spawnZ - positions[i + 2]) * PARTICLE_EASE;
+      positions[i + 2] += (spawnZ  - positions[i + 2]) * PARTICLE_EASE;
     }
 
     positionsAttributeRef.current.needsUpdate = true;
