@@ -60,7 +60,7 @@ function ParticleField({
   const positionsAttributeRef = useRef<THREE.BufferAttribute | null>(null);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const particleData = isMobile ? mobileParticleData : desktopParticleData;
-  const restPositionsRef = useRef<Float32Array>(
+  const spawnPositionsRef = useRef<Float32Array>(
     new Float32Array(particleData.positions),
   );
 
@@ -68,7 +68,7 @@ function ParticleField({
     if (!pointsRef.current || !positionsAttributeRef.current) return;
     const points = pointsRef.current;
     const positions = positionsAttributeRef.current.array as Float32Array;
-    const restPositions = restPositionsRef.current;
+    const spawnPositions = spawnPositionsRef.current;
     const cursor = cursorRef.current;
 
     if (reducedMotion) {
@@ -78,9 +78,9 @@ function ParticleField({
       cursor.y = 0;
 
       for (let i = 0; i < positions.length; i += 3) {
-        positions[i] = restPositions[i];
-        positions[i + 1] = restPositions[i + 1];
-        positions[i + 2] = restPositions[i + 2];
+        positions[i] = spawnPositions[i];
+        positions[i + 1] = spawnPositions[i + 1];
+        positions[i + 2] = spawnPositions[i + 2];
       }
 
       points.rotation.set(0, 0, 0);
@@ -101,15 +101,15 @@ function ParticleField({
     const radiusSq = CURSOR_REPULSION_RADIUS * CURSOR_REPULSION_RADIUS;
 
     for (let i = 0; i < positions.length; i += 3) {
-      const restX = restPositions[i];
-      const restY = restPositions[i + 1];
-      const restZ = restPositions[i + 2];
-      let targetX = restX;
-      let targetY = restY;
+      const spawnX = spawnPositions[i];
+      const spawnY = spawnPositions[i + 1];
+      const spawnZ = spawnPositions[i + 2];
+      let targetX = spawnX;
+      let targetY = spawnY;
 
       if (hasInfluence) {
-        const dx = restX - cursorWorldX;
-        const dy = restY - cursorWorldY;
+        const dx = spawnX - cursorWorldX;
+        const dy = spawnY - cursorWorldY;
         const distSq = dx * dx + dy * dy;
 
         if (distSq < radiusSq) {
@@ -117,14 +117,14 @@ function ParticleField({
           const safeDistance = distance || 0.0001;
           const falloff = 1 - distance / CURSOR_REPULSION_RADIUS;
           const repulsion = CURSOR_REPULSION_STRENGTH * falloff * influence;
-          targetX = restX + (dx / safeDistance) * repulsion;
-          targetY = restY + (dy / safeDistance) * repulsion;
+          targetX = spawnX + (dx / safeDistance) * repulsion;
+          targetY = spawnY + (dy / safeDistance) * repulsion;
         }
       }
 
       positions[i] += (targetX - positions[i]) * PARTICLE_EASE;
       positions[i + 1] += (targetY - positions[i + 1]) * PARTICLE_EASE;
-      positions[i + 2] += (restZ - positions[i + 2]) * PARTICLE_EASE;
+      positions[i + 2] += (spawnZ - positions[i + 2]) * PARTICLE_EASE;
     }
 
     positionsAttributeRef.current.needsUpdate = true;
