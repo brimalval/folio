@@ -2,6 +2,7 @@
 	{
 		"id": "omni-platform",
 		"title": "OMNI Platform Suite",
+		"category": "Enterprise Platform",
 		"description": "Internal dashboard for supply chain, order management, and content management",
 		"longDescription": "All-in-one enterprise platform managing over 25 consumer goods/home furnishing brands across Philippines, Singapore, and Malaysia—including KitchenAid, Coleman, InstantPot, Oster, Tempur, Sealy, and more.",
 		"problem": "Managing over 25 brands across 3 countries with disparate systems for inventory, orders, and content. Need for unified platform to handle complex cross-border e-commerce operations.",
@@ -53,6 +54,7 @@
 	{
 		"id": "hris-system",
 		"title": "HRIS Employee Management System",
+		"category": "HR Automation",
 		"description": "Company-wide employee management system replacing legacy C#/jQuery system",
 		"longDescription": "Modern employee management system serving 550+ employees with automated workflows for HR, accounting, and department managers.",
 		"problem": "Legacy C#/jQuery system. HR and accounting teams struggling with some regular workflows (such as payroll calculation and timekeeping) for 550+ employees due to lack of automation in the system.",
@@ -80,6 +82,7 @@
 	{
 		"id": "chai-assistant",
 		"title": "ChAI - Customer Success AI Integration",
+		"category": "AI Assistant",
 		"description": "AI assistant that generates responses based on company documents, streamlining customer success team workflow",
 		"longDescription": "AI-powered customer service tool using document-based response generation to handle routine inquiries and reduce team workload.",
 		"problem": "Customer success team spending excessive time on routine inquiries. Need for automation to handle repetitive queries while maintaining quality and accuracy.",
@@ -110,6 +113,7 @@
 	{
 		"id": "bunpro-mcp",
 		"title": "Bunpro MCP Server",
+		"category": "Learning Project",
 		"description": "MCP server exposing Bunpro Japanese learning API to AI assistants",
 		"longDescription": "Model Context Protocol server bridging Bunpro's Japanese learning platform with AI assistants like OpenCode, enabling natural language queries about grammar, vocabulary, reading passages, and study progress.",
 		"problem": "Wanted to explore MCP protocol and needed a real project. Bunpro's API is undocumented, requiring reverse engineering.",

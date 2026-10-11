@@ -4,11 +4,16 @@ import { describe, it, expect, vi } from 'vitest'
 import { within } from '@testing-library/react'
 import Projects from '../projects'
 
-vi.mock('motion/react', () => ({
+vi.mock('motion/react', () => {
+  // Cache per tag so components keep a stable identity across renders (no remounts).
+  const cache = new Map<string, React.FC<Record<string, unknown>>>()
+  return {
   motion: new Proxy({}, {
       get: (_target, prop) => {
         const MotionTag = String(prop) as keyof React.JSX.IntrinsicElements
-        return function MotionComponent({
+        const cached = cache.get(MotionTag)
+        if (cached) return cached
+        const component = function MotionComponent({
           children, initial, animate, exit, variants, whileInView, viewport,
           transition, whileHover, whileTap, layout, layoutId, ...rest
         }: React.HTMLAttributes<HTMLElement> & { children?: React.ReactNode; initial?: unknown; animate?: unknown; exit?: unknown; variants?: unknown; whileInView?: unknown; viewport?: unknown; transition?: unknown; whileHover?: unknown; whileTap?: unknown; layout?: unknown; layoutId?: unknown }) {
@@ -16,12 +21,15 @@ vi.mock('motion/react', () => ({
         void viewport; void transition; void whileHover; void whileTap
         void layout; void layoutId
         return React.createElement(MotionTag, rest, children)
-      }
+      } as React.FC<Record<string, unknown>>
+        cache.set(MotionTag, component)
+        return component
     }
   }),
   AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   useReducedMotion: () => false,
-}))
+  }
+})
 
 describe('Projects', () => {
   it('has data-testid="projects-section"', () => {
@@ -79,5 +87,32 @@ describe('Projects', () => {
     expect(screen.queryByTestId('project-detail')).not.toBeInTheDocument()
     fireEvent.click(githubLink)
     expect(screen.queryByTestId('project-detail')).not.toBeInTheDocument()
+  })
+
+  it('each card exposes a real "View details" button that opens the dialog', () => {
+    render(<Projects />)
+    const card = screen.getByTestId('project-card-1')
+    const trigger = within(card).getByRole('button', { name: /view details/i })
+    expect(trigger).toHaveAttribute('aria-haspopup', 'dialog')
+    expect(card).not.toHaveAttribute('tabindex')
+    fireEvent.click(trigger)
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+  })
+
+  it('returns focus to the card trigger when the dialog closes', () => {
+    render(<Projects />)
+    const trigger = within(screen.getByTestId('project-card-0')).getByRole('button', { name: /view details/i })
+    trigger.focus()
+    fireEvent.click(trigger)
+    expect(screen.getByRole('dialog')).toHaveFocus()
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(trigger).toHaveFocus()
+  })
+
+  it('renders category labels from project data', () => {
+    render(<Projects />)
+    expect(within(screen.getByTestId('project-card-0')).getByText(/Enterprise Platform/)).toBeInTheDocument()
+    expect(within(screen.getByTestId('project-card-3')).getByText(/Learning Project/)).toBeInTheDocument()
   })
 })

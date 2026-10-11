@@ -56,6 +56,7 @@ vi.mock("motion/react", () => ({
   AnimatePresence: ({ children }: { children: React.ReactNode }) => (
     <>{children}</>
   ),
+  MotionConfig: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   useReducedMotion: () => false,
 }));
 
@@ -94,6 +95,14 @@ describe("About", () => {
   it("renders availability text (Open to opportunities)", () => {
     render(<About />);
     expect(screen.getByText("Open to opportunities")).toBeInTheDocument();
+  });
+
+  it("serves the photo through next/image with responsive sizes", () => {
+    render(<About />);
+    const img = screen.getByAltText("Brian Valencia at Glico Running Man, Osaka");
+    expect(img).toHaveAttribute("sizes");
+    expect(img).toHaveAttribute("loading", "lazy");
+    expect(img.getAttribute("srcset")).toMatch(/_next\/image/);
   });
 
   it("has two-column grid layout class on desktop", () => {

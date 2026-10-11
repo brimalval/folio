@@ -38,4 +38,22 @@ describe('GlassSurface', () => {
     render(<GlassSurface>content</GlassSurface>)
     expect(document.querySelector('[data-glass-surface]')).toBeInTheDocument()
   })
+
+  it('scopes intensity per instance instead of injecting a global style', () => {
+    render(
+      <>
+        <GlassSurface intensity="strong">a</GlassSurface>
+        <GlassSurface intensity="subtle">b</GlassSurface>
+      </>
+    )
+    expect(document.querySelector('style')).toBeNull()
+    const [strong, subtle] = document.querySelectorAll<HTMLElement>('[data-glass-surface]')
+    expect(strong.style.getPropertyValue('--glass-bg-dark')).toContain('0.65')
+    expect(subtle.style.getPropertyValue('--glass-bg-dark')).toContain('0.35')
+  })
+
+  it('marks frosted surfaces with data-glass-frosted', () => {
+    render(<GlassSurface frosted>content</GlassSurface>)
+    expect(document.querySelector('[data-glass-frosted]')).toBeInTheDocument()
+  })
 })

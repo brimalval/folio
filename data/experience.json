@@ -5,7 +5,7 @@
     "position": "Full-Stack Software Engineer III",
     "startDate": "April 2024",
     "endDate": "January 2026",
-    "description": "Leading digital transformation initiatives for Southeast Asia's premier home goods distributor, developing enterprise-scale platforms that serve thousands of customers across multiple countries.",
+    "description": "Led frontend and backend development of OMNI Platform: an enterprise suite managing 25+ brands across 3 SE Asian markets. Shipped new e-commerce workflows, supply chain tooling, and promotional automation systems used daily by operations teams. Built using Next.js and Hono.js. Improved a legacy C#/jQuery system by introducing automations to regular processes and modernizing the stack (Next.js).",
     "location": "Philippines",
     "companySize": "550+ employees helping manage 30+ global home brands distributed across Philippines, Singapore, and Malaysia",
     "technologies": [
@@ -32,7 +32,7 @@
     "position": "Full-Stack Software Engineer II",
     "startDate": "March 2023",
     "endDate": "April 2024",
-    "description": "Digital transformation initiatives for Southeast Asia's premier home goods distributor",
+    "description": "Expanded platform capabilities with new order management modules and cross-border inventory features. Contributed to architecture decisions that reduced deployment complexity and improved team velocity. Built an AI-powered platform that streamlined the daily work of the customer success team.",
     "location": "Philippines",
     "companySize": "550+ employees helping manage 30+ global home brands distributed across Philippines, Singapore, and Malaysia",
     "technologies": [
@@ -59,7 +59,7 @@
     "position": "Full-Stack Software Engineer",
     "startDate": "October 2022",
     "endDate": "March 2023",
-    "description": "Digital transformation initiatives for Southeast Asia's premier home goods distributor",
+    "description": "Built initial production-ready modules for the OMNI platform (in Python), a unified backend for 10+ in-house e-commerce platforms. Shipped real features alongside senior engineers while ramping on enterprise-scale full-stack development.",
     "location": "Philippines",
     "companySize": "550+ employees helping manage 30+ global home brands distributed across Philippines, Singapore, and Malaysia",
     "technologies": [
@@ -86,7 +86,7 @@
     "position": "Software Developer Intern",
     "startDate": "March 2022",
     "endDate": "April 2022",
-    "description": "Internship program with intensive learning and practical application in software development.",
+    "description": "2-month internship. Was put through the wringer, exploring the process of developing a production-ready full-stack application using C# with .NET MVC.",
     "location": "Philippines",
     "companySize": "Technology company focused on digital solutions",
     "technologies": [

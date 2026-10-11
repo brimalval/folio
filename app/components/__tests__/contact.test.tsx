@@ -124,4 +124,19 @@ describe('Contact', () => {
       expect(contactSection.className).toMatch(/py-|px-|gap-/)
     })
   })
+
+  describe('Focus and touch targets', () => {
+    it('uses a visible focus-visible ring color on links', () => {
+      render(<Contact />)
+      screen.getAllByRole('link').forEach(link => {
+        expect(link.className).toContain('focus-visible:ring-[var(--foam)]')
+      })
+    })
+
+    it('gives social links a 44px minimum height', () => {
+      render(<Contact />)
+      expect(screen.getByTestId('social-link-github').className).toContain('min-h-11')
+      expect(screen.getByTestId('social-link-linkedin').className).toContain('min-h-11')
+    })
+  })
 })

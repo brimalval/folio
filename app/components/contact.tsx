@@ -45,7 +45,7 @@ export default function Contact() {
           <a
             href={`mailto:${profile.email}`}
             data-testid="email-link"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-lg font-medium text-sm tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-lg font-medium text-sm tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             style={{ backgroundColor: 'var(--foam)', color: 'var(--base)' }}
           >
             <Mail className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function Contact() {
         </motion.div>
 
         <motion.div
-          className="mt-8 flex items-center justify-center gap-6"
+          className="mt-6 flex items-center justify-center gap-4"
           variants={contactVariants.links}
         >
           {socials.map((social) => (
@@ -64,9 +64,9 @@ export default function Contact() {
               data-testid={`social-link-${social.platform}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+              className="inline-flex items-center gap-1.5 min-h-11 px-2 rounded-md text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               aria-label={social.displayName}
-              style={{ color: social.platform === 'github' ? 'var(--pine)' : 'var(--rose)' }}
+              style={{ color: social.platform === 'github' ? 'var(--pine-text)' : 'var(--rose)' }}
             >
               {social.platform === 'github' && <Github className="w-4 h-4" />}
               {social.platform === 'linkedin' && <Linkedin className="w-4 h-4" />}
@@ -85,7 +85,7 @@ export default function Contact() {
               data-testid="resume-link"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[var(--muted)] hover:text-[var(--subtle)] underline underline-offset-4 transition-colors duration-200"
+              className="text-sm text-[var(--muted)] hover:text-[var(--subtle)] underline underline-offset-4 transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Download Resume
             </a>

@@ -115,4 +115,51 @@ describe('ProjectDetail', () => {
     render(<ProjectDetail {...defaultProps} />)
     expect(document.querySelectorAll('img').length).toBe(0)
   })
+
+  it('is an accessible modal dialog labelled by the project title', () => {
+    render(<ProjectDetail {...defaultProps} />)
+    const dialog = screen.getByRole('dialog', { name: 'Test Project' })
+    expect(dialog).toHaveAttribute('aria-modal', 'true')
+    expect(dialog).toBe(screen.getByTestId('project-detail'))
+  })
+
+  it('moves focus into the dialog on open', () => {
+    render(<ProjectDetail {...defaultProps} />)
+    expect(screen.getByRole('dialog')).toHaveFocus()
+  })
+
+  it('restores focus to the previously focused element on close', () => {
+    const trigger = document.createElement('button')
+    document.body.appendChild(trigger)
+    trigger.focus()
+    const { unmount } = render(<ProjectDetail {...defaultProps} />)
+    expect(trigger).not.toHaveFocus()
+    unmount()
+    expect(trigger).toHaveFocus()
+    trigger.remove()
+  })
+
+  it('traps Tab and Shift+Tab inside the dialog', () => {
+    render(
+      <ProjectDetail
+        {...defaultProps}
+        selectedId="gallery-project"
+        projects={[mockProjectWithGallery]}
+      />
+    )
+    const close = screen.getByRole('button', { name: 'Close' })
+
+    // From the dialog container, Shift+Tab wraps to the last focusable element.
+    fireEvent.keyDown(window, { key: 'Tab', shiftKey: true })
+    expect(close).toHaveFocus()
+
+    // Close is both first and last here, so Tab wraps back onto it.
+    fireEvent.keyDown(window, { key: 'Tab' })
+    expect(close).toHaveFocus()
+  })
+
+  it('close button meets the 44px target size', () => {
+    render(<ProjectDetail {...defaultProps} />)
+    expect(screen.getByRole('button', { name: 'Close' })).toHaveClass('w-11', 'h-11')
+  })
 })

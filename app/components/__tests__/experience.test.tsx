@@ -61,4 +61,20 @@ describe('ExperienceSection', () => {
     render(<ExperienceSection />)
     expect(screen.queryByRole('heading', { name: /^education$/i })).not.toBeInTheDocument()
   })
+
+  it('renders descriptions from data/experience.json', () => {
+    render(<ExperienceSection />)
+    expect(screen.getByText(/^2-month internship\./)).toBeInTheDocument()
+  })
+
+  it('does not use side-tab border cards', () => {
+    render(<ExperienceSection />)
+    const item = screen.getByTestId('experience-item-0')
+    expect(item.className).not.toMatch(/border-l-/)
+  })
+
+  it('does not repeat the institution name in the education description', () => {
+    render(<ExperienceSection />)
+    expect(screen.getAllByText(/Technological Institute of the Philippines/)).toHaveLength(1)
+  })
 })

@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState, useEffect, type MutableRefObject } from "react";
+import { useRef, useEffect, useSyncExternalStore, type MutableRefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { usePrefersReducedMotion } from "@/lib/hooks/useScrollReveal";
 
 const MOBILE_PARTICLE_COUNT = 150;
 const DESKTOP_PARTICLE_COUNT = 180;
@@ -161,8 +162,30 @@ function ParticleField({
   );
 }
 
-export default function ThreeCanvas() {
-  const prefersReducedMotion = false;
+const subscribeToVisibility = (callback: () => void) => {
+  document.addEventListener("visibilitychange", callback);
+  return () => document.removeEventListener("visibilitychange", callback);
+};
+
+function useDocumentVisible(): boolean {
+  return useSyncExternalStore(
+    subscribeToVisibility,
+    () => !document.hidden,
+    () => true,
+  );
+}
+
+type ThreeCanvasProps = {
+  /** False when the hero is scrolled out of view; the field freezes on its last frame. */
+  active?: boolean;
+};
+
+export default function ThreeCanvas({ active = true }: ThreeCanvasProps) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const documentVisible = useDocumentVisible();
+  // "demand" renders once on mount and on prop changes only, which gives a static
+  // field for reduced motion and a paused one when the hero or tab is not visible.
+  const isAnimating = active && documentVisible && !prefersReducedMotion;
   const cursorRef = useRef<CursorState>({
     x: 0,
     y: 0,
@@ -171,6 +194,8 @@ export default function ThreeCanvas() {
   });
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const updateCursor = (clientX: number, clientY: number) => {
       const cursor = cursorRef.current;
       cursor.x = (clientX / window.innerWidth) * 2 - 1;
@@ -210,12 +235,13 @@ export default function ThreeCanvas() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       handleCursorInactive();
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
         dpr={1}
+        frameloop={isAnimating ? "always" : "demand"}
         gl={{ antialias: false, powerPreference: "high-performance" }}
         className="opacity-60 pointer-events-none"
         style={{ pointerEvents: 'none' }}

@@ -7,7 +7,10 @@ type ActiveSectionState = {
   ratio: number
 }
 
-const THRESHOLDS = [0, 0.25, 0.5, 0.75, 1.0]
+// A section is active while it crosses the viewport's horizontal center line.
+// Ranking by intersection ratio misfires for sections taller than the viewport,
+// whose ratio stays low even when they fill the screen.
+const CENTER_LINE_ROOT_MARGIN = '-50% 0px -50% 0px'
 const DEFAULT_SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact']
 
 type SectionMetrics = {
@@ -57,7 +60,8 @@ const observerInit = (): IntersectionObserver => {
   if (sharedObserver) return sharedObserver
 
   sharedObserver = new IntersectionObserver(handleEntries, {
-    threshold: THRESHOLDS,
+    rootMargin: CENTER_LINE_ROOT_MARGIN,
+    threshold: 0,
   })
 
   incrementDevObserverCount()
@@ -72,9 +76,10 @@ const handleEntries = (entries: IntersectionObserverEntry[]) => {
     const id = entry.target.id
     if (!id || !sectionRefCount.has(id)) return
 
-    const ratio = entry.intersectionRatio
+    // The root collapses to a line, so intersectionRatio is 0 even when crossing it.
+    const visible = entry.isIntersecting
+    const ratio = visible ? 1 : 0
     const top = entry.boundingClientRect.top
-    const visible = ratio > 0
     const prev = sectionMetrics.get(id)
 
     if (
@@ -99,7 +104,7 @@ const computeActiveState = (): ActiveSectionState => {
   let bestTop = Number.POSITIVE_INFINITY
 
   sectionMetrics.forEach((metrics, id) => {
-    if (!metrics.visible || metrics.ratio <= 0) return
+    if (!metrics.visible) return
 
     if (
       metrics.ratio > bestRatio ||
@@ -112,7 +117,11 @@ const computeActiveState = (): ActiveSectionState => {
   })
 
   if (bestId === null) {
-    return { activeId: null, ratio: 0 }
+    // Between observed sections (e.g. a footer or gap): keep the last active one.
+    return lastBroadcastState.activeId !== null &&
+      sectionMetrics.has(lastBroadcastState.activeId)
+      ? { activeId: lastBroadcastState.activeId, ratio: 0 }
+      : { activeId: null, ratio: 0 }
   }
 
   return { activeId: bestId, ratio: bestRatio }

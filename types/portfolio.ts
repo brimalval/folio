@@ -30,6 +30,7 @@ export interface Project {
   gallery: GalleryImage[];
   featured?: boolean;
   githubUrl?: string;
+  category?: string;
 }
 
 export interface Skill {

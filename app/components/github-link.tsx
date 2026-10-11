@@ -9,15 +9,13 @@ export function GitHubLink({ href, onClick }: GitHubLinkProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="View on GitHub"
+      aria-label="View on GitHub (opens in a new tab)"
       onClick={(e) => {
         e.stopPropagation();
         onClick?.(e);
       }}
-      className="inline-flex items-center gap-1.5 text-sm transition-colors"
-      style={{ color: "var(--muted)" }}
-      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+      // min-h-11 gives a 44px hit area; the negative margin keeps the visual rhythm.
+      className="-my-3 -ml-1 px-1 min-h-11 inline-flex items-center gap-1.5 text-sm rounded transition-colors text-[var(--muted)] hover:text-[var(--iris)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)]"
     >
       <svg
         viewBox="0 0 24 24"

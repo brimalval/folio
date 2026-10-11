@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -35,7 +35,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${outfit.variable} antialiased`}>
+      <body className="antialiased">
         {children}
         {process.env.NODE_ENV === "development" && <DevAgentation />}
       </body>

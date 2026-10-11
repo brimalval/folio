@@ -44,13 +44,20 @@
 [data-theme="light"] {
   --background: #faf4ed;
   --foreground: #575279;
-  --love: #b4637a;
-  --iris: #907aa9;
-  --foam: #56949f;
-  --gold: #ea9d34;
-  --rose: #d7827e;
-  --subtle: #797593;
-  --muted: #9893a5;
+  /* Rose Pine Dawn accents, deepened along their own hue so they clear
+     4.5:1 as text on every light section background. Raw Dawn values
+     remain available as --color-dawn-*. */
+  --love: #a44f67;
+  --iris: #796095;
+  --foam: #42727b;
+  --gold: #975d10;
+  --rose: #a25450;
+  /* Text-safe tokens: >=4.5:1 on base, surface and overlay */
+  --text-subtle: #64607c;
+  --text-muted: #6b6783;
+  --pine-text: #286983;
+  --subtle: var(--text-subtle);
+  --muted: var(--text-muted);
   --surface: #fffaf3;
   --overlay: #f4ede8;
   --base: #faf4ed;
@@ -82,12 +89,17 @@
   --foam: #9ccfd8;
   --gold: #f6c177;
   --rose: #ebbcba;
-  --subtle: #908caa;
-  --muted: #6e6a86;
+  /* Text-safe tokens: >=4.5:1 on base, surface and overlay.
+     Raw Rose Pine muted/pine (#6e6a86, #286983) remain as --color-rosepine-*. */
+  --text-subtle: #908caa;
+  --text-muted: #908caa;
+  --pine-text: #3e8fb0;
+  --subtle: var(--text-subtle);
+  --muted: var(--text-muted);
   --surface: #1f1d2e;
   --overlay: #26233a;
   --base: #191724;
-  --pine: #286983;
+  --pine: var(--pine-text);
   --highlight: #31748f;
   --nav-bg-rgb: 25, 23, 36;
   --border-rgb: 255, 255, 255;
@@ -114,48 +126,50 @@ body {
   transition: background-color 0.5s ease-in-out;
 }
 
-/* Hide native scrollbar */
+/* Thin themed scrollbar */
 html {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--border-rgb), 0.22) transparent;
   scroll-behavior: smooth;
 }
 html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  width: 8px;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background: rgba(var(--border-rgb), 0.22);
+  border-radius: 9999px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--border-rgb), 0.35);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+::selection {
+  background: color-mix(in srgb, var(--iris) 30%, transparent);
+  color: var(--foreground);
 }
 
-@keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: 0.6; }
+/* Baseline keyboard focus for anything without its own ring */
+:focus-visible {
+  outline: 2px solid var(--foam);
+  outline-offset: 2px;
 }
 
-.animate-scroll {
-  animation: scroll-bounce 2s ease-in-out infinite;
+/* Glass surfaces: per-instance values come from inline CSS vars */
+[data-glass-surface] {
+  background: var(--glass-bg-light);
 }
-
-/* Scroll reveal animations */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+[data-glass-surface][data-glass-frosted] {
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.05);
 }
-
-.scroll-reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
+[data-theme="dark"] [data-glass-surface] {
+  background: var(--glass-bg-dark);
 }
-
-/* Stagger delays for children */
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
-.stagger-5 { transition-delay: 0.5s; }
-
+[data-theme="dark"] [data-glass-surface][data-glass-frosted] {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
 
 /* Subtle grain texture overlay for human-made character */
 body::before {
@@ -173,108 +187,6 @@ body::before {
   opacity: 0.05;
 }
 
-/* Grain overlay utility for specific containers */
-.grain-overlay {
-  position: relative;
-}
-
-.grain-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
-
-[data-theme="dark"] .grain-overlay::after {
-  opacity: 0.05;
-}
-
-/* Section entrance with subtle character */
-.section-reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), 
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.section-reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered children reveal */
-.reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), 
-              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger.in-view > *:nth-child(2) { transition-delay: 80ms; }
-.reveal-stagger.in-view > *:nth-child(3) { transition-delay: 160ms; }
-.reveal-stagger.in-view > *:nth-child(4) { transition-delay: 240ms; }
-.reveal-stagger.in-view > *:nth-child(5) { transition-delay: 320ms; }
-.reveal-stagger.in-view > *:nth-child(6) { transition-delay: 400ms; }
-
-.reveal-stagger.in-view > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Intentional card hover - subtle lift with shadow, not just scale */
-.card-hover {
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.15);
-}
-
-/* CTA button polish - subtle gradient glow */
-.cta-primary {
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cta-primary:hover::before {
-  opacity: 1;
-}
-
-/* Subtle divider between sections */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--subtle) 20%, 
-    var(--subtle) 80%, 
-    transparent 100%
-  );
-  opacity: 0.3;
-  max-width: 200px;
-  margin: 0 auto;
-}
-
-/* Light mode specific adjustments */
-[data-theme="light"] .card-hover:hover {
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
-}
-
 /* Section Color Temperature Shifts */
 /* Section backgrounds are now controlled via body --section-bg-color */
 
@@ -285,4 +197,13 @@ body::before {
 .section-experience,
 .section-contact {
   background-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    transition: none;
+  }
 }

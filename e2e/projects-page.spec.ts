@@ -46,4 +46,13 @@ test.describe('/projects page QA', () => {
 
     await expect(detail).not.toBeVisible()
   })
+
+  test('has a back link to the homepage', async ({ page }) => {
+    await page.goto('/projects')
+
+    const back = page.getByRole('link', { name: 'Back to home' })
+    await expect(back).toBeVisible()
+    await expect(back).toHaveAttribute('href', '/#projects')
+  })
 })
+

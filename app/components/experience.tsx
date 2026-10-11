@@ -8,20 +8,22 @@ import type { Experience, Education } from "@/types/portfolio";
 
 const companyAccents: Record<string, string> = {
   "Focus Global Inc.": "var(--foam)",
-  "Netzwelt Inc.": "var(--pine)",
+  "Netzwelt Inc.": "var(--pine-text)",
   education: "var(--gold)",
 };
 
-const rewrittenDescriptions: Record<string, string> = {
-  "focus-global-3":
-    "Led frontend and backend development of OMNI Platform: an enterprise suite managing 25+ brands across 3 SE Asian markets. Shipped new e-commerce workflows, supply chain tooling, and promotional automation systems used daily by operations teams. Built using Next.js and Hono.js. Improved a legacy C#/jQuery system by introducing automations to regular processes and modernizing the stack (Next.js).",
-  "focus-global-2":
-    "Expanded platform capabilities with new order management modules and cross-border inventory features. Contributed to architecture decisions that reduced deployment complexity and improved team velocity. Built an AI-powered platform that streamlined the daily work of the customer success team.",
-  "focus-global":
-    "Built initial production-ready modules for the OMNI platform (in Python), a unified backend for 10+ in-house e-commerce platforms. Shipped real features alongside senior engineers while ramping on enterprise-scale full-stack development.",
-  "netzwelt-internship":
-    "2-month internship. Was put through the wringer, exploring the process of developing a production-ready full-stack application using C# with .NET MVC.",
-};
+function TimelineDot({ color }: { color: string }) {
+  return (
+    <span
+      aria-hidden
+      className="absolute left-0 top-[1.4rem] h-[11px] w-[11px] rounded-full"
+      style={{
+        backgroundColor: color,
+        boxShadow: "0 0 0 4px var(--section-bg-color, var(--background))",
+      }}
+    />
+  );
+}
 
 export default function ExperienceSection() {
   const typedExperience = experience as Experience[];
@@ -48,20 +50,23 @@ export default function ExperienceSection() {
           Where I&apos;ve Worked
         </motion.h2>
 
-        <div className="space-y-8">
+        <div className="relative space-y-8">
+          <span
+            aria-hidden
+            className="absolute left-[5px] top-7 bottom-7 w-px"
+            style={{ backgroundColor: "rgba(var(--border-rgb), 0.12)" }}
+          />
           {typedExperience.map((item, index) => {
             const accentColor = companyAccents[item.company] ?? "var(--iris)";
-            const description =
-              rewrittenDescriptions[item.id] ?? item.description;
 
             return (
               <motion.div
                 key={item.id}
                 data-testid={`experience-item-${index}`}
                 variants={experienceVariants.item}
-                className="grid md:grid-cols-[1fr_3fr] gap-6 border-l-4 pl-6 py-4"
-                style={{ borderLeftColor: accentColor }}
+                className="relative grid md:grid-cols-[1fr_3fr] gap-x-6 gap-y-3 pl-8 py-4"
               >
+                <TimelineDot color={accentColor} />
                 <div className="flex flex-col gap-1">
                   <p
                     className="text-sm font-mono"
@@ -93,7 +98,7 @@ export default function ExperienceSection() {
                     className="text-sm leading-relaxed mb-4"
                     style={{ color: "var(--subtle)" }}
                   >
-                    {description}
+                    {item.description}
                   </p>
 
                   {item.technologies && (
@@ -120,9 +125,9 @@ export default function ExperienceSection() {
           <motion.div
             data-testid="experience-item-4"
             variants={experienceVariants.item}
-            className="grid md:grid-cols-[1fr_3fr] gap-6 border-l-4 pl-6 py-4"
-            style={{ borderLeftColor: companyAccents.education }}
+            className="relative grid md:grid-cols-[1fr_3fr] gap-x-6 gap-y-3 pl-8 py-4"
           >
+            <TimelineDot color={companyAccents.education} />
             <div className="flex flex-col gap-1">
               <p
                 className="text-sm font-mono"
@@ -152,8 +157,8 @@ export default function ExperienceSection() {
                 className="text-sm leading-relaxed"
                 style={{ color: "var(--subtle)" }}
               >
-                BS Computer Science — Technological Institute of the Philippines
-                · Magna Cum Laude
+                {typedEducation.highlights?.join(" · ") ??
+                  typedEducation.description}
               </p>
             </div>
           </motion.div>

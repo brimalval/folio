@@ -48,4 +48,48 @@ test.describe('Project cards QA', () => {
 
     await expect(detail).not.toBeVisible()
   })
+
+  test('mobile 375: every card reveals and the page has no horizontal overflow', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 })
+    await page.goto('/')
+
+    for (const i of [0, 1, 2, 3]) {
+      const card = page.getByTestId(`project-card-${i}`)
+      await card.scrollIntoViewIfNeeded()
+      await expect(card).toHaveCSS('opacity', '1')
+    }
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - window.innerWidth
+    )
+    expect(overflow).toBeLessThanOrEqual(0)
+  })
+
+  test('keyboard: Enter opens the dialog, focus moves in, Escape returns focus', async ({ page }) => {
+    await page.goto('/')
+
+    const trigger = page
+      .getByTestId('project-card-0')
+      .getByRole('button', { name: /view details/i })
+    const dialog = page.getByRole('dialog')
+
+    await trigger.focus()
+    await page.keyboard.press('Enter')
+
+    await expect(dialog).toBeVisible()
+    await expect(dialog).toHaveAttribute('aria-modal', 'true')
+    await expect(dialog).toBeFocused()
+
+    // Focus stays inside the dialog while tabbing.
+    for (let n = 0; n < 5; n++) {
+      await page.keyboard.press('Tab')
+      const inside = await dialog.evaluate((el) => el.contains(document.activeElement))
+      expect(inside).toBe(true)
+    }
+
+    await page.keyboard.press('Escape')
+    await expect(dialog).not.toBeVisible()
+    await expect(trigger).toBeFocused()
+  })
 })
+

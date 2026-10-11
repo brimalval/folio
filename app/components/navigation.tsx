@@ -1,13 +1,14 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, MotionConfig } from 'motion/react'
 import profile from '@/data/profile.json'
 import ThemeToggle from './theme-toggle'
 import GlassSurface from './glass-surface'
 import { lockScroll, unlockScroll } from '@/lib/utils/scroll-lock-manager'
 import { useLenis } from '@/lib/contexts/lenis-context'
+import { useActiveSection } from '@/lib/hooks/use-active-section'
 
 const navItems = [
   { id: 'hero', label: 'Home' },
@@ -17,6 +18,10 @@ const navItems = [
   { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ]
+
+const navSectionIds = navItems.map((item) => item.id)
+
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled])'
 
 function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -29,10 +34,10 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="transition-transform duration-300"
+      aria-hidden="true"
+      className="transition-transform duration-300 motion-reduce:transition-none"
       style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
     >
-      <title>{isOpen ? 'Close navigation menu' : 'Open navigation menu'}</title>
       {isOpen ? (
         <>
           <line x1="18" y1="6" x2="6" y2="18" />
@@ -51,9 +56,12 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('hero')
   const [isScrolled, setIsScrolled] = useState(false)
   const lenis = useLenis()
+  const activeSection = useActiveSection(navSectionIds).activeId ?? 'hero'
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const wasOpenRef = useRef(false)
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -72,28 +80,54 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Move focus into the menu on open; hand it back to the toggle on close.
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      {
-        rootMargin: '-50% 0px -50% 0px',
-        threshold: 0,
+    if (isOpen) {
+      wasOpenRef.current = true
+      menuRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)?.focus()
+      return
+    }
+    if (wasOpenRef.current) {
+      wasOpenRef.current = false
+      hamburgerRef.current?.focus()
+    }
+  }, [isOpen])
+
+  // Escape closes; Tab cycles between the toggle and the menu links.
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setIsOpen(false)
+        return
       }
-    )
+      if (event.key !== 'Tab' || !menuRef.current || !hamburgerRef.current) return
 
-    navItems.forEach(({ id }) => {
-      const element = document.getElementById(id)
-      if (element) observer.observe(element)
-    })
+      const focusables = [
+        hamburgerRef.current,
+        ...menuRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      ]
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      const current = document.activeElement
 
-    return () => observer.disconnect()
-  }, [])
+      if (event.shiftKey && current === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && current === last) {
+        event.preventDefault()
+        first.focus()
+      } else if (!focusables.includes(current as HTMLElement)) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen])
 
   useEffect(() => {
     if (!isOpen) {
@@ -108,13 +142,13 @@ export default function Navigation() {
   }, [isOpen, lenis])
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <motion.nav
         data-testid="navigation"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="fixed top-4 left-4 right-4 z-50"
+        className="fixed top-4 left-4 right-4 z-[60]"
       >
         <GlassSurface
           intensity={isScrolled ? 'strong' : 'medium'}
@@ -129,7 +163,7 @@ export default function Navigation() {
             <button
               type="button"
               onClick={() => scrollToSection('hero')}
-              className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded bg-transparent border-none appearance-none"
+              className="inline-flex items-center min-h-11 px-1 -mx-1 text-xl font-bold tracking-tight hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded bg-transparent border-none appearance-none"
             >
               {profile.name.split(' ')[0]}
             </button>
@@ -177,13 +211,15 @@ export default function Navigation() {
               <ThemeToggle />
 
                 <button
+                  ref={hamburgerRef}
                   type="button"
                   data-testid="hamburger-button"
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  onClick={() => setIsOpen((open) => !open)}
+                  className="md:hidden inline-flex items-center justify-center h-11 w-11 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foam)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   style={{ color: 'var(--foreground)' }}
                   aria-label={isOpen ? 'Close menu' : 'Open menu'}
                   aria-expanded={isOpen}
+                  aria-controls="mobile-menu"
                 >
                 <HamburgerIcon isOpen={isOpen} />
               </button>
@@ -202,8 +238,11 @@ export default function Navigation() {
               transition={{ duration: 0.2 }}
               className="fixed inset-0 bg-black/50 z-40 md:hidden"
               onClick={() => setIsOpen(false)}
+              aria-hidden="true"
             />
             <motion.div
+              ref={menuRef}
+              id="mobile-menu"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -264,6 +303,6 @@ export default function Navigation() {
           </>
         )}
       </AnimatePresence>
-    </>
+    </MotionConfig>
   )
 }

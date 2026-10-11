@@ -5,7 +5,6 @@ import skills from "@/data/skills.json";
 import { skillsVariants, viewportConfig } from "@/lib/animations/variants";
 import type { Skill } from "@/types/portfolio";
 import { getSkillIcon } from "@/lib/icon-mapping";
-import StickySectionHeader from "./sticky-section-header";
 
 const categoryLabels: Record<string, string> = {
   frontend: "Frontend",
@@ -19,7 +18,7 @@ const categoryOrder = ["frontend", "backend", "database", "devops", "tool"];
 
 const categoryAccents: Record<string, string> = {
   frontend: "var(--foam)",
-  backend: "var(--pine)",
+  backend: "var(--pine-text)",
   database: "var(--gold)",
   devops: "var(--rose)",
   tool: "var(--iris)",

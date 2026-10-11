@@ -84,16 +84,9 @@ describe("Hero", () => {
   });
 
   describe("Scroll Indicator", () => {
-    it("renders scroll indicator", () => {
+    it("does not render a hidden scroll indicator", () => {
       render(<Hero />);
-      expect(screen.getByTestId("scroll-indicator")).toBeInTheDocument();
-    });
-
-    it("scroll indicator has animation attributes", () => {
-      render(<Hero />);
-      const scrollIndicator = screen.getByTestId("scroll-indicator");
-      // Check for motion/animation-related attributes or class
-      expect(scrollIndicator.className).toMatch(/animate|motion|scroll/);
+      expect(screen.queryByTestId("scroll-indicator")).not.toBeInTheDocument();
     });
   });
 
@@ -108,7 +101,8 @@ describe("Hero", () => {
       render(<Hero />);
       const links = screen.getAllByRole("link");
       links.forEach((link) => {
-        expect(link.className).toMatch(/focus|ring|outline/);
+        expect(link.className).toMatch(/focus-visible:ring-2/);
+        expect(link.className).not.toMatch(/(^|\s)focus:outline-none/);
       });
     });
   });

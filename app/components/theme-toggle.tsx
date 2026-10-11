@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useSyncExternalStore } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { usePrefersReducedMotion } from '@/lib/hooks/useScrollReveal'
 
 function SunIcon() {
   return (
@@ -47,25 +48,13 @@ function MoonIcon() {
 
 const noopSubscribe = () => () => {}
 
-function useMediaQuery(query: string) {
-  return useSyncExternalStore(
-    (callback) => {
-      const mq = window.matchMedia(query)
-      mq.addEventListener('change', callback)
-      return () => mq.removeEventListener('change', callback)
-    },
-    () => window.matchMedia(query).matches,
-    () => false
-  )
-}
-
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window === 'undefined') return 'dark'
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
     return savedTheme || 'dark'
   })
-  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const prefersReducedMotion = usePrefersReducedMotion()
   const mounted = useSyncExternalStore(noopSubscribe, () => true, () => false)
 
   useEffect(() => {
@@ -80,9 +69,10 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+        className="inline-flex items-center justify-center h-11 w-11 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
         style={{ color: 'var(--foreground)' }}
         aria-label="Toggle theme"
+        type="button"
       >
         <MoonIcon />
       </button>
@@ -91,11 +81,11 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      className="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+      className="inline-flex items-center justify-center h-11 w-11 rounded-lg hover:bg-[var(--surface)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
       style={{ color: 'var(--foreground)' }}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-      aria-pressed={theme === 'dark'}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
