@@ -1,10 +1,3 @@
-export interface ProjectSummary {
-  id: string;
-  title: string;
-  description: string;
-  technologies: string[];
-}
-
 export interface ProjectMetric {
   value: string;
   label: string;
@@ -45,32 +38,6 @@ export interface Skill {
   name: string;
   level: "beginner" | "intermediate" | "advanced" | "expert";
   certifications?: string[];
-}
-
-export interface SkillDisplay {
-  name: string;
-  icon: string;
-}
-
-export interface SkillCategory {
-  category: string;
-  skills: SkillDisplay[];
-}
-
-export interface Overview {
-  scale: string;
-  marketLeadership: string;
-  brandPortfolio: string;
-  businessModel: string;
-}
-
-export interface ExperienceAbout {
-  company: string;
-  position: string;
-  period: string;
-  description: string;
-  overview: Overview;
-  responsibilities: string[];
 }
 
 export interface Experience {

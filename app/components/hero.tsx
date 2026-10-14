@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, MotionConfig } from "motion/react";
+import { motion } from "motion/react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
 import profile from "@/data/profile.json";
@@ -53,7 +53,6 @@ export default function Hero() {
   const heroOnScreen = useIsOnScreen(sectionRef);
 
   return (
-    <MotionConfig reducedMotion="user">
       <section
         ref={sectionRef}
         data-testid="hero-section"
@@ -137,6 +136,5 @@ export default function Hero() {
           </motion.div>
         </GlassSurface>
       </section>
-    </MotionConfig>
   );
 }

@@ -2,6 +2,8 @@
 
 import { motion } from 'motion/react'
 import { useEffect, useId, useRef } from 'react'
+import { createPortal } from 'react-dom'
+import Image from 'next/image'
 import { X } from 'lucide-react'
 import type { Project } from '@/types/portfolio'
 import { useLenis } from '@/lib/contexts/lenis-context'
@@ -22,6 +24,31 @@ const FOCUSABLE_SELECTOR = [
   'textarea:not([disabled])',
   '[tabindex]:not([tabindex="-1"])',
 ].join(',')
+
+// Page landmarks made inert while the dialog is open. The dialog itself is
+// portalled to <body>, so it is never inside one of these.
+const PAGE_LANDMARK_SELECTOR = 'nav, main, footer'
+
+// Intrinsic size of the gallery screenshots (~16:9 desktop captures); next/image
+// needs it to reserve space. Rendered width is controlled by CSS.
+const GALLERY_IMAGE_WIDTH = 1700
+const GALLERY_IMAGE_HEIGHT = 904
+const GALLERY_IMAGE_SIZES = '(min-width: 768px) 704px, 100vw'
+
+// Sets `inert` on top-level page landmarks; returns a function that undoes it.
+function makePageInert(dialog: HTMLElement | null): () => void {
+  const landmarks = Array.from(
+    document.querySelectorAll<HTMLElement>(PAGE_LANDMARK_SELECTOR)
+  ).filter(
+    (el) =>
+      !el.hasAttribute('inert') &&
+      !(dialog && dialog.contains(el)) &&
+      !el.parentElement?.closest(PAGE_LANDMARK_SELECTOR)
+  )
+  landmarks.forEach((el) => el.setAttribute('inert', ''))
+
+  return () => landmarks.forEach((el) => el.removeAttribute('inert'))
+}
 
 function getFocusable(container: HTMLElement): HTMLElement[] {
   return Array.from(
@@ -73,13 +100,16 @@ export default function ProjectDetail({
     }
   }, [lenis])
 
-  // Move focus into the dialog on open; hand it back to the trigger on close.
+  // Make the rest of the page inert and move focus into the dialog on open;
+  // undo both on close (inert must be lifted before focus can return).
   useEffect(() => {
     const previouslyFocused =
       document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const restorePage = makePageInert(modalRef.current)
     modalRef.current?.focus({ preventScroll: true })
 
     return () => {
+      restorePage()
       if (previouslyFocused?.isConnected) {
         previouslyFocused.focus({ preventScroll: true })
       }
@@ -144,7 +174,9 @@ export default function ProjectDetail({
       ? accentColors[projectIndex % accentColors.length]
       : 'var(--foam)'
 
-  return (
+  // Portalled to <body> so the dialog sits outside the landmarks made inert
+  // above and stacks over the fixed nav (z-[60]).
+  return createPortal(
     <>
       <motion.div
         initial={{ opacity: 0 }}
@@ -152,7 +184,7 @@ export default function ProjectDetail({
         exit={{ opacity: 0 }}
         onClick={onClose}
         aria-hidden="true"
-        className="fixed inset-0 z-40"
+        className="fixed inset-0 z-[70]"
         style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
       />
 
@@ -164,7 +196,8 @@ export default function ProjectDetail({
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="fixed inset-x-4 top-8 bottom-8 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl z-50 rounded-2xl overflow-y-auto overscroll-contain focus:outline-none"
+        data-lenis-prevent
+        className="fixed inset-0 md:inset-x-auto md:top-8 md:bottom-8 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl z-[71] rounded-none md:rounded-2xl overflow-y-auto overscroll-contain focus:outline-none"
         style={{
           backgroundColor: 'var(--surface)',
           border: '1px solid rgba(var(--border-rgb, 128,128,128), 0.2)',
@@ -242,7 +275,7 @@ export default function ProjectDetail({
                 {project.metrics.map((metric, i) => (
                   <div key={i} className="flex flex-col min-w-0">
                     <span
-                      className="text-2xl font-bold tabular-nums break-words"
+                      className="text-xl sm:text-2xl font-bold tabular-nums whitespace-nowrap"
                       style={{ color: accent }}
                     >
                       {metric.value}
@@ -283,12 +316,13 @@ export default function ProjectDetail({
               <div className="space-y-4">
                 {project.gallery.map((img) => (
                   <figure key={img.id}>
-                    <img
+                    <Image
                       src={img.src}
                       alt={img.alt}
-                      className="rounded-lg w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
+                      width={GALLERY_IMAGE_WIDTH}
+                      height={GALLERY_IMAGE_HEIGHT}
+                      sizes={GALLERY_IMAGE_SIZES}
+                      className="rounded-lg w-full h-auto object-cover"
                     />
                     {img.title && (
                       <figcaption
@@ -305,7 +339,8 @@ export default function ProjectDetail({
           )}
         </div>
       </motion.div>
-    </>
+    </>,
+    document.body
   )
 }
 

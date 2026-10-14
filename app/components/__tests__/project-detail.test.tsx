@@ -162,4 +162,49 @@ describe('ProjectDetail', () => {
     render(<ProjectDetail {...defaultProps} />)
     expect(screen.getByRole('button', { name: 'Close' })).toHaveClass('w-11', 'h-11')
   })
+
+  it('portals the dialog to document.body, outside the page landmarks', () => {
+    const { container } = render(<ProjectDetail {...defaultProps} />)
+    const dialog = screen.getByTestId('project-detail')
+    expect(container.contains(dialog)).toBe(false)
+    expect(dialog.parentElement).toBe(document.body)
+  })
+
+  it('stacks the dialog above the fixed nav (z-[60])', () => {
+    render(<ProjectDetail {...defaultProps} />)
+    expect(screen.getByTestId('project-detail')).toHaveClass('z-[71]')
+  })
+
+  it('is full-screen below md and a centered card from md up', () => {
+    render(<ProjectDetail {...defaultProps} />)
+    expect(screen.getByTestId('project-detail')).toHaveClass(
+      'inset-0',
+      'rounded-none',
+      'md:rounded-2xl',
+      'md:max-w-3xl'
+    )
+  })
+
+  it('makes nav, main and footer inert while open and restores them on close', () => {
+    const nav = document.createElement('nav')
+    const main = document.createElement('main')
+    const footer = document.createElement('footer')
+    const preInert = document.createElement('footer')
+    preInert.setAttribute('inert', '')
+    document.body.append(nav, main, footer, preInert)
+
+    const { unmount } = render(<ProjectDetail {...defaultProps} />)
+    for (const el of [nav, main, footer]) expect(el).toHaveAttribute('inert')
+
+    unmount()
+    for (const el of [nav, main, footer]) expect(el).not.toHaveAttribute('inert')
+    // An element that was already inert is left untouched.
+    expect(preInert).toHaveAttribute('inert')
+    ;[nav, main, footer, preInert].forEach((el) => el.remove())
+  })
+
+  it('keeps metric values on one line', () => {
+    render(<ProjectDetail {...defaultProps} />)
+    expect(screen.getByText('99%')).toHaveClass('whitespace-nowrap')
+  })
 })

@@ -70,7 +70,7 @@ export const heroVariants = {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: [0.34, 1.56, 0.64, 1],
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   } as Variants,
@@ -243,7 +243,7 @@ export const skillsVariants = {
       rotate: 0,
       transition: {
         duration: 0.4,
-        ease: [0.34, 1.56, 0.64, 1],
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   } as Variants,

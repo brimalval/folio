@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import projects from "@/data/projects.json";
 import type { Project } from "@/types/portfolio";
@@ -23,7 +23,7 @@ export default function ProjectsPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <main className="min-h-screen px-6 py-20">
         <div className="max-w-5xl mx-auto">
           <nav aria-label="Breadcrumb" className="mb-10">
@@ -137,6 +137,6 @@ export default function ProjectsPage() {
           />
         )}
       </AnimatePresence>
-    </>
+    </MotionConfig>
   );
 }

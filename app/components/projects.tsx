@@ -229,7 +229,7 @@ export function ProjectCardShell({
     <motion.article
       data-testid={`project-card-${index}`}
       aria-labelledby={titleId}
-      className={`group cursor-pointer transition-all duration-300 has-[[data-card-trigger]:focus-visible]:ring-2 has-[[data-card-trigger]:focus-visible]:ring-[var(--iris)] has-[[data-card-trigger]:focus-visible]:ring-offset-2 has-[[data-card-trigger]:focus-visible]:ring-offset-[var(--background)] ${className}`}
+      className={`group cursor-pointer transition-shadow duration-300 motion-reduce:transition-none has-[[data-card-trigger]:focus-visible]:ring-2 has-[[data-card-trigger]:focus-visible]:ring-[var(--iris)] has-[[data-card-trigger]:focus-visible]:ring-offset-2 has-[[data-card-trigger]:focus-visible]:ring-offset-[var(--background)] ${className}`}
       style={style}
       variants={variants}
       initial={initial}
@@ -341,7 +341,7 @@ function MetricBlock({
   return (
     <div className="flex flex-col min-w-0">
       <span
-        className="text-2xl md:text-3xl font-bold tabular-nums break-words"
+        className="text-xl sm:text-2xl md:text-3xl font-bold tabular-nums whitespace-nowrap"
         style={{ color: accent }}
       >
         {value}

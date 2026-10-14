@@ -47,7 +47,6 @@ export default function Skills() {
       id="skills"
       className="section-skills px-6"
     >
-      {/* <StickySectionHeader sectionId="skills" title="Toolkit" /> */}
       <motion.div
         className="pt-20 pb-20 md:pb-28 max-w-5xl mx-auto"
         initial="hidden"

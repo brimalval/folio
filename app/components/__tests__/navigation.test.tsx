@@ -95,4 +95,12 @@ describe('Navigation', () => {
     fireEvent.keyDown(document, { key: 'Tab' })
     expect(document.activeElement).toBe(toggle)
   })
+
+  it('exposes the mobile menu as a labelled modal dialog', () => {
+    render(<Navigation />)
+    fireEvent.click(screen.getByTestId('hamburger-button'))
+    const menu = screen.getByRole('dialog', { name: 'Site menu' })
+    expect(menu).toHaveAttribute('aria-modal', 'true')
+    expect(menu.id).toBe('mobile-menu')
+  })
 })

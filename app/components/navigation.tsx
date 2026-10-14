@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence, MotionConfig } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import profile from '@/data/profile.json'
 import ThemeToggle from './theme-toggle'
 import GlassSurface from './glass-surface'
@@ -142,7 +142,7 @@ export default function Navigation() {
   }, [isOpen, lenis])
 
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       <motion.nav
         data-testid="navigation"
         initial={{ y: -100, opacity: 0 }}
@@ -243,6 +243,9 @@ export default function Navigation() {
             <motion.div
               ref={menuRef}
               id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site menu"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -303,6 +306,6 @@ export default function Navigation() {
           </>
         )}
       </AnimatePresence>
-    </MotionConfig>
+    </>
   )
 }

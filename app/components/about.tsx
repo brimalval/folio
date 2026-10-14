@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion, MotionConfig } from "motion/react";
+import { motion } from "motion/react";
 import { MapPin, CheckCircle2 } from "lucide-react";
 import profile from "@/data/profile.json";
 import { aboutVariants, viewportConfig } from "@/lib/animations/variants";
 
 export default function About() {
   return (
-    <MotionConfig reducedMotion="user">
       <section className="section-about py-24 md:py-32 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -128,6 +127,5 @@ export default function About() {
           </div>
         </div>
       </section>
-    </MotionConfig>
   );
 }

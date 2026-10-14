@@ -6,16 +6,6 @@
   --font-sans: var(--font-outfit);
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
 
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 5rem;
-  --space-4xl: 7rem;
-  --space-5xl: 9rem;
-  
   --color-rosepine-love: #eb6f92;
   --color-rosepine-iris: #c4a7e7;
   --color-rosepine-foam: #9ccfd8;
@@ -62,15 +52,8 @@
   --overlay: #f4ede8;
   --base: #faf4ed;
   --pine: #286983;
-  --highlight: #286983;
   --nav-bg-rgb: 250, 244, 237;
   --border-rgb: 0, 0, 0;
-  --wireframe: #575279;
-  --accent-primary: var(--iris);
-  --accent-secondary: var(--foam);
-  --accent-warm: var(--rose);
-  --accent-highlight: var(--gold);
-  --accent-critical: var(--love);
   
   /* Section background colors for smooth transitions */
   --section-bg-hero: #faf4ed;
@@ -100,15 +83,8 @@
   --overlay: #26233a;
   --base: #191724;
   --pine: var(--pine-text);
-  --highlight: #31748f;
   --nav-bg-rgb: 25, 23, 36;
   --border-rgb: 255, 255, 255;
-  --wireframe: #e0def4;
-  --accent-primary: var(--iris);
-  --accent-secondary: var(--foam);
-  --accent-warm: var(--rose);
-  --accent-highlight: var(--gold);
-  --accent-critical: var(--love);
   
   /* Section background colors for smooth transitions */
   --section-bg-hero: #191724;
@@ -151,10 +127,13 @@ html::-webkit-scrollbar-thumb:hover {
   color: var(--foreground);
 }
 
-/* Baseline keyboard focus for anything without its own ring */
-:focus-visible {
-  outline: 2px solid var(--foam);
-  outline-offset: 2px;
+/* Baseline keyboard focus for anything without its own ring.
+   Layered so Tailwind's focus-visible:outline-none utilities can override it. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--foam);
+    outline-offset: 2px;
+  }
 }
 
 /* Glass surfaces: per-instance values come from inline CSS vars */

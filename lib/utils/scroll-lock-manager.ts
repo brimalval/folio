@@ -83,7 +83,3 @@ export function unlockScroll(lenis?: Lenis) {
   lenisInstance?.start()
   lenisInstance = undefined
 }
-
-export function isScrollLocked() {
-  return lockCount > 0
-}
