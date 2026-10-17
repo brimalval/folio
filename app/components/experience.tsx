@@ -72,7 +72,8 @@ export default function ExperienceSection() {
                     className="text-sm font-mono"
                     style={{ color: "var(--muted)" }}
                   >
-                    {item.startDate} — {item.endDate ?? "Present"}
+                    <span className="whitespace-nowrap">{item.startDate} —</span>{" "}
+                    <span className="whitespace-nowrap">{item.endDate ?? "Present"}</span>
                   </p>
                   <p
                     className="text-base font-semibold"

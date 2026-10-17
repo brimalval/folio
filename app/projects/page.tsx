@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import projects from "@/data/projects.json";
+import profile from "@/data/profile.json";
 import type { Project } from "@/types/portfolio";
 import ProjectDetail, { TechChips } from "@/app/components/project-detail";
 import { ProjectCardShell } from "@/app/components/projects";
@@ -125,6 +126,21 @@ export default function ProjectsPage() {
           )}
         </div>
       </main>
+
+      <footer className="px-6 pb-12 text-center text-sm text-[var(--muted)]">
+        <p>
+          Let&apos;s talk:{" "}
+          <a
+            href={`mailto:${profile.email}`}
+            className="inline-flex items-center min-h-11 px-1 rounded underline underline-offset-4 text-[var(--foreground)] hover:text-[var(--foam)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--iris)]"
+          >
+            {profile.email}
+          </a>
+        </p>
+        <p>
+          © {new Date().getFullYear()} {profile.name}
+        </p>
+      </footer>
 
       <AnimatePresence>
         {selectedId && (
